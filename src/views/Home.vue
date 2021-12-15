@@ -6,7 +6,7 @@
         Use this to search through your account. Search what account you have
         access to, and find the DIDs thst you need.
       </p>
-      <div class="content-search">search</div>
+      <div class="content-search my-3"><search-input /></div>
       <search-list />
     </div>
     <div class="landing-image">
@@ -18,9 +18,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SearchList from "@/components/cards/SearchList.vue";
+import SearchInput from "@/components/search-bar/SearchInput.vue";
 
 export default defineComponent({
   name: "Home",
-  components: { SearchList },
+  components: { SearchList, SearchInput },
 });
 </script>

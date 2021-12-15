@@ -6,6 +6,27 @@
 }
 
 
+@mixin centerItem($jc) {
+   display: flex;
+   justify-content: $jc;
+   align-items: center;
+
+}
+
+
+@mixin centerWithDirection($direction) {
+   display: flex;
+   flex-direction: $direction;
+   justify-content: center;
+   align-items: center;
+}
+
+
+@mixin defaultBorder {
+   opacity: 0.4;
+   border: 1px solid $text-color;
+}
+
 
 // Media Query Mixins
 @mixin mediaSm {
@@ -21,7 +42,7 @@
 }
 
 @mixin mediaLg {
-   @media screen and (min-width: 769px) and (max-width: 1170px) {
+   @media screen and (min-width: 769px) {
       @content;
    }
 }

@@ -1,13 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container" id="container">
     <app-header />
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
+    <router-view />
     <app-footer />
   </div>
-  <router-view />
 </template>
-
 
 <script lang="ts">
 import { defineComponent } from "vue";

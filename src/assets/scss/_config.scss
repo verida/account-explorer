@@ -1,12 +1,16 @@
 .container {
+    position: relative;
     padding: 0 1rem;
     margin: 1rem 2rem;
 
+
     @include mediaMd {
-      margin: 1rem 0rem;
+        margin: 1rem 0rem;
     }
 
 }
+
+
 
 // Margin & Padding
 $spaceamounts: (1, 2, 3, 4, 5);
