@@ -1,29 +1,39 @@
 <template>
   <div class="profile-account mt-5 mx-1">
     <div class="content-search"><search-input :didSearch="true" /></div>
-    {{ profile.did }}
     <h5 class="my-1">RESULTS:</h5>
-    <profile-card />
-    <not-found />
+    <pulse-loader v-if="loader" color="#5761D7" :loading="loader" />
+    <profile-card v-else-if="profile.name" :profile="profile" />
+    <not-found v-else />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import ProfileCard from "@/components/cards/Profile.vue";
 import SearchInput from "@/components/search-bar/SearchInput.vue";
 import NotFound from "@/components/cards/NotFound.vue";
 
 export default defineComponent({
   name: "ProfileDetails",
-  components: { ProfileCard, SearchInput, NotFound },
+  components: { ProfileCard, SearchInput, NotFound, PulseLoader },
   computed: {
-    ...mapState(["profile"]),
+    ...mapState(["profile", "loader"]),
+  },
+  methods: {
+    ...mapActions(["fetchProfile"]),
+    async loadProfile() {
+      const did = this.$route.params.did;
+      await this.fetchProfile(did);
+    },
   },
 
-  mounted() {
-    console.log(this.profile);
+  async beforeMount() {
+    if (!this.profile.name) {
+      await this.loadProfile();
+    }
   },
 });
 </script>

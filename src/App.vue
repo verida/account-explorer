@@ -1,8 +1,6 @@
 <template>
-  <div class="container" id="container">
+  <div class="container">
     <app-header />
-    <!-- <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> -->
     <router-view />
     <app-footer />
   </div>

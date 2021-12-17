@@ -11,7 +11,6 @@
           placeholder="search...."
         />
       </div>
-
       <img
         class="search-input-close"
         src="../../assets/images/icon_close.svg"
@@ -21,6 +20,7 @@
       />
       <button
         type="submit"
+        :disabled="loader"
         v-show="!didSearch"
         class="button search-input-button"
       >
@@ -31,19 +31,21 @@
     <button
       v-show="!didSearch"
       type="submit"
+      :disabled="loader"
       class="search-btn button button-block button-fw my-1"
     >
       <span>Search</span>
       <img src="../../assets/images/arrow.svg" alt="arrow_icon" />
     </button>
     <span class="text-danger">{{ didError }}</span>
+    <span class="text-danger">{{ error }}</span>
   </form>
 </template>
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
 import { validateDid } from "@/utils/utils";
@@ -53,9 +55,9 @@ export default defineComponent({
   props: {
     didSearch: Boolean,
   },
-  data: () => ({
-    error: {},
-  }),
+  computed: {
+    ...mapState(["profile", "error", "loader"]),
+  },
   setup() {
     const schema = yup.object({
       did: yup.string().required().min(50).max(50),
@@ -63,7 +65,6 @@ export default defineComponent({
     useForm({
       validationSchema: schema,
     });
-
     const { value: did, errorMessage: didError } = useField("did");
     return {
       did,
@@ -72,6 +73,7 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(["fetchProfile"]),
+    ...mapMutations(["setLoader"]),
     async search() {
       if (this.didError) {
         return;
@@ -81,11 +83,10 @@ export default defineComponent({
         this.didError = "Verida vault address is invalid";
         return;
       }
-      try {
-        await this.fetchProfile(this.did);
+
+      await this.fetchProfile(this.did);
+      if (this.didSearch) {
         this.$router.push(`/${this.did}`);
-      } catch (error: any) {
-        this.error = error;
       }
     },
     clearInput() {

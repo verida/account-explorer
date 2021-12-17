@@ -1,4 +1,5 @@
 import { Client, EnvironmentType } from "@verida/client-ts";
+import { Profile } from "@/interface";
 
 const { VUE_APP_CONTEXT_NAME, VUE_APP_VERIDA_TESTNET_DEFAULT_SERVER } =
   process.env;
@@ -10,19 +11,27 @@ const userConfig = {
 
 class VeridaHelper {
   client: Client;
+  profile?: Profile;
 
   constructor() {
     this.client = new Client(userConfig);
   }
 
-  async getProfile() {
-    const did = "did:vda:0x798aCB521757ffd91622c78a9bB119f416de993C";
-    const profile = await this.client.openPublicProfile(
+  async getProfile(did: string): Promise<boolean> {
+    const profileInstance = await this.client.openPublicProfile(
       did,
       VUE_APP_CONTEXT_NAME,
       "basicProfile"
     );
-    return profile;
+
+    if (profileInstance) {
+      this.profile = await profileInstance.getMany({}, {});
+      if (this.profile) {
+        this.profile.did = did;
+      }
+    }
+
+    return true;
   }
 }
 

@@ -11,6 +11,12 @@
     margin: 0 0.8rem;
   }
 
+  img {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: $border-radius;
+  }
+
   @include mediaMd {
     width: 100%;
   }
@@ -32,9 +38,11 @@
 
 .profile-card {
   padding: 1.5rem;
+  width: 100%;
 
   @include mediaLg {
     display: flex;
+    justify-content: space-between;
 
     &>* {
       margin: 0 0.4rem;
@@ -45,7 +53,6 @@
     order: 3;
 
     button {
-      // padding: 0;
       width: 100%;
     }
 
@@ -54,6 +61,11 @@
       box-sizing: border-box;
       border-radius: 8px;
       padding: 0.6rem;
+
+      @include mediaMd {
+
+        display: none;
+      }
     }
 
     @include mediaMd {
@@ -65,6 +77,25 @@
   }
 
   &-img {
+    @include mediaMd {
+      display: flex;
+    }
+
+
+
+    h4 {
+      display: none;
+
+      @include mediaMd {
+        display: block;
+      }
+    }
+
+    img {
+      border-radius: $border-radius;
+      height: 2.5rem;
+      width: 2.5rem;
+    }
 
     @include mediaLg {
       img {
@@ -76,11 +107,19 @@
 
 
   &-details {
+    @include mediaLg {
+      flex-basis: 70%;
+    }
+
     h4 {
       font-weight: 600;
       font-size: 1.25rem;
       line-height: 1.6rem;
       color: $text-color;
+
+      @include mediaMd {
+        display: none;
+      }
     }
 
     p {
@@ -92,9 +131,14 @@
       span {
         font-size: 0.75rem;
         line-height: 150%;
+        width: 100%;
         padding: 0.5rem 0 0 0;
         text-transform: uppercase;
         color: rgba(6, 5, 32, 0.51);
+      }
+
+      img {
+        margin:0 0 -0.3rem 0.4rem
       }
     }
   }

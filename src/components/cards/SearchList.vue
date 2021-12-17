@@ -1,11 +1,13 @@
 <template>
-  <div class="search-card mt-2">
-    <img alt="user-avatar" src="../../assets/images/user.png" />
-    <div class="details">
-      <h4>Waden Warren</h4>
-      <p>DID: ethr:0xef7ef8c9a6d4ae6fc02b6fc1</p>
+  <router-link :to="url[0]">
+    <div class="search-card mt-2">
+      <img alt="user-avatar" :src="profile?.avatar?.uri" />
+      <div class="details">
+        <h4>{{ profile.name }}</h4>
+        <p>{{ profile.did }}</p>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script lang="ts">
@@ -13,5 +15,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SearchList",
+  props: ["profile", "url"],
+  mounted() {
+    console.log(this.url);
+  },
 });
 </script>
