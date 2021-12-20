@@ -37,8 +37,8 @@
       <span>Search</span>
       <img src="../../assets/images/arrow.svg" alt="arrow_icon" />
     </button>
-    <span class="text-danger">{{ didError }}</span>
-    <span class="text-danger">{{ error }}</span>
+    <p class="text-danger mt-1">{{ didError }}</p>
+    <p class="text-danger mt-1">{{ error }}</p>
   </form>
 </template>
 
@@ -57,6 +57,17 @@ export default defineComponent({
   },
   computed: {
     ...mapState(["profile", "error", "loader"]),
+  },
+  watch: {
+    did(did) {
+      if (this.didError) {
+        return;
+      }
+
+      console.log(did);
+
+      this.search();
+    },
   },
   setup() {
     const schema = yup.object({

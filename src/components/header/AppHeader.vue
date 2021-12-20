@@ -4,10 +4,10 @@
       <img alt="Vue logo" src="../../assets/images/logoverida.svg"
     /></router-link>
 
-    <div class="login-section">
+    <!-- <div class="login-section">
       <span>Login with Verida</span>
       <img alt="Vue logo" src="../../assets/images/arrow.svg" />
-    </div>
+    </div> -->
   </header>
 </template>
 

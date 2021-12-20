@@ -2,12 +2,18 @@
   <div class="profile">
     <div class="profile-card mt-2">
       <div class="mb-1 profile-card-img">
-        <img alt="user-avatar" :src="profile?.avatar?.uri" />
+        <img
+          v-if="profile.avatar?.uri"
+          alt="user-avatar"
+          :src="profile.avatar.uri"
+        />
+        <img v-else alt="user-avatar" src="../../assets/images/avatar.svg" />
         <h4 class="ml-1">{{ profile.name }}</h4>
       </div>
       <div class="profile-card-button mb-2">
-        <button class="button button-outlined mb-1">Add as Contact</button>
-        <img alt="user-avatar" src="../../assets/images/qr.svg" />
+        <!-- <button class="button button-outlined mb-1">Add as Contact</button> -->
+        <!-- <img alt="user-avatar" src="../../assets/images/qr.svg" /> -->
+        <qrcode-vue class="qr-img" :value="profile.did" :size="150" />
       </div>
 
       <div class="profile-card-details">
@@ -33,6 +39,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import useClipboard from "vue-clipboard3";
+import QrcodeVue from "qrcode.vue";
 
 export default defineComponent({
   name: "Profile",
@@ -56,7 +63,7 @@ export default defineComponent({
   data: () => ({
     message: "hello man",
   }),
-  components: {},
+  components: { QrcodeVue },
   methods: {},
 });
 </script>
