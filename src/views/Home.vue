@@ -24,7 +24,7 @@ import { defineComponent } from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState } from "vuex";
 import SearchList from "@/components/cards/SearchList.vue";
-import SearchInput from "@/components/search-bar/SearchInput.vue";
+import SearchInput from "@/components/SearchInput.vue";
 
 export default defineComponent({
   name: "Home",
