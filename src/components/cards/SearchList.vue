@@ -16,8 +16,5 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "SearchList",
   props: ["profile", "url"],
-  mounted() {
-    console.log(this.url);
-  },
 });
 </script>

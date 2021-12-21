@@ -5,9 +5,9 @@
         <img src="../../assets/images/icon_search.svg" alt="icon_search" />
         <input
           required
-          v-model.trim="did"
           type="text"
           name="did"
+          v-model="did"
           placeholder="search...."
         />
       </div>
@@ -58,20 +58,9 @@ export default defineComponent({
   computed: {
     ...mapState(["profile", "error", "loader"]),
   },
-  watch: {
-    did(did) {
-      if (this.didError) {
-        return;
-      }
-
-      console.log(did);
-
-      this.search();
-    },
-  },
   setup() {
     const schema = yup.object({
-      did: yup.string().required().min(50).max(50),
+      did: yup.string().trim().required().min(50).max(50),
     });
     useForm({
       validationSchema: schema,
@@ -94,7 +83,6 @@ export default defineComponent({
         this.didError = "Verida vault address is invalid";
         return;
       }
-
       await this.fetchProfile(this.did);
       if (this.didSearch) {
         this.$router.push(`/${this.did}`);
