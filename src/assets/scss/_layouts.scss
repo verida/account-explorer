@@ -1,0 +1,32 @@
+header {
+    @include center-item;
+    .login-section {
+        @include center-item;
+        & > * {
+            margin: 0 0.3rem;
+        }
+    }
+}
+
+
+footer {
+    font-size: 0.875rem;
+    position: absolute;
+    bottom: 0;
+    width: 92%;
+    margin: 2rem  auto 0 auto;
+
+    hr {
+        opacity: 0.1;
+        border: 1px solid $text-color
+    }
+
+    .footer-section {
+        @include center-item;
+
+        a {
+            text-decoration: none;
+            color: $text-color;
+        }
+    }
+}

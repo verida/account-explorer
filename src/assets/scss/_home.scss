@@ -1,0 +1,45 @@
+.home {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include mediaXl {
+        grid-template-columns: 2fr 2fr;
+    }
+
+}
+
+.content {
+    h1 {
+        font-weight: bold;
+        font-size: 2rem;
+        color: $text-color;
+
+        @include mediaXl {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 150%;
+        letter-spacing: -0.03em;
+
+        @include mediaXl {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+    }
+}
+
+.landing-image {
+    img {
+        height: 20rem;
+        width: 20rem;
+
+        @include mediaXl {
+            height: 87%;
+            width: 87%;
+        }
+    }
+}

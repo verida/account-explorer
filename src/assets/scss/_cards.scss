@@ -1,0 +1,170 @@
+.search-card {
+  display: flex;
+  box-shadow: $border-radius;
+  border-radius: $border-radius;
+  width: 37rem;
+  padding: 1.5rem;
+  background: $white;
+  border: 1px solid rgba(6, 5, 32, 0.1);
+
+  .details {
+    margin: 0 0.8rem;
+  }
+
+  img {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: $border-radius;
+  }
+
+  @include mediaMd {
+    width: 100%;
+  }
+}
+
+
+.profile {
+  background: $white;
+  border: 1px solid rgba(6, 5, 32, 0.1);
+  box-shadow: $box-shadow;
+  border-radius: 8px;
+
+  hr {
+    opacity: 0.1;
+    border: 1px solid $text-color;
+  }
+
+}
+
+.profile-card {
+  padding: 1.5rem;
+  width: 100%;
+
+  @include mediaLg {
+    display: flex;
+    justify-content: space-between;
+
+    &>* {
+      margin: 0 0.4rem;
+    }
+  }
+
+  &-button {
+    order: 3;
+
+    button {
+      width: 100%;
+    }
+
+    .qr-img {
+      border: 1px solid rgba(6, 5, 32, 0.2);
+      box-sizing: border-box;
+      border-radius: 8px;
+      padding: 0.6rem;
+
+      @include mediaMd {
+
+        display: none;
+      }
+    }
+
+    @include mediaMd {
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  &-img {
+    @include mediaMd {
+      display: flex;
+    }
+
+
+
+    h4 {
+      display: none;
+
+      @include mediaMd {
+        display: block;
+      }
+    }
+
+    img {
+      border-radius: $border-radius;
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+    @include mediaLg {
+      img {
+        height: 5.5rem;
+        width: 5.5rem;
+      }
+    }
+  }
+
+
+  &-details {
+    @include mediaLg {
+      flex-basis: 70%;
+    }
+
+    h4 {
+      font-weight: 600;
+      font-size: 1.25rem;
+      line-height: 1.6rem;
+      color: $text-color;
+
+      @include mediaMd {
+        display: none;
+      }
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 0.88rem;
+      color: $text-color;
+      margin: 1.5rem 0 0 0;
+
+      span {
+        font-size: 0.75rem;
+        line-height: 150%;
+        width: 100%;
+        padding: 0.5rem 0 0 0;
+        text-transform: uppercase;
+        color: rgba(6, 5, 32, 0.51);
+      }
+
+      img {
+        margin:0 0 -0.3rem 0.4rem
+      }
+    }
+  }
+}
+
+
+.message-card {
+  @include centerItem(space-between);
+  border: $border;
+  margin: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius;
+
+  textarea {
+    border: none;
+    // padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    line-height: 150%;
+    letter-spacing: -0.03em;
+    color: $text-color;
+    opacity: 0.4;
+    outline: none;
+  }
+}
+
+.not-found {
+  @include centerWithDirection(column);
+
+}
