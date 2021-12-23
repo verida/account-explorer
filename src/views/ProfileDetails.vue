@@ -13,7 +13,7 @@ import { defineComponent } from "vue";
 import { mapState, mapActions } from "vuex";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import ProfileCard from "@/components/cards/Profile.vue";
-import SearchInput from "@/components/search-bar/SearchInput.vue";
+import SearchInput from "@/components/SearchInput.vue";
 import NotFound from "@/components/cards/NotFound.vue";
 
 export default defineComponent({

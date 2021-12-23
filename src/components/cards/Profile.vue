@@ -11,8 +11,7 @@
         <h4 class="ml-1">{{ profile.name }}</h4>
       </div>
       <div class="profile-card-button mb-2">
-        <!-- <button class="button button-outlined mb-1">Add as Contact</button> -->
-        <!-- <img alt="user-avatar" src="../../assets/images/qr.svg" /> -->
+        <add-contact />
         <qrcode-vue class="qr-img" :value="profile.did" :size="150" />
       </div>
 
@@ -40,6 +39,7 @@
 import { defineComponent } from "vue";
 import useClipboard from "vue-clipboard3";
 import QrcodeVue from "qrcode.vue";
+import AddContact from "@/components/AddContact.vue";
 
 export default defineComponent({
   name: "Profile",
@@ -63,7 +63,7 @@ export default defineComponent({
   data: () => ({
     message: "hello man",
   }),
-  components: { QrcodeVue },
+  components: { QrcodeVue, AddContact },
   methods: {},
 });
 </script>
