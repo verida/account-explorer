@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client, EnvironmentType, Network } from "@verida/client-ts";
 import { EventEmitter } from "events";
 import { hasSession, VaultAccount } from "@verida/account-web-vault";
@@ -60,9 +61,28 @@ class VeridaHelper extends EventEmitter {
 
     this.did = await this.account.did();
 
-    this.connected = true;
+    await this.initProfile();
 
+    if (this.context) {
+      this.connected = true;
+    }
     this.emit("connected", this.connected);
+  }
+
+  private async initProfile(): Promise<void> {
+    const client = await this.context.getClient();
+    const profile = await client.openPublicProfile(this.did, "Verida: Vault");
+    const cb = async () => {
+      const data = await profile.getMany();
+      this.profile = {
+        name: data.name,
+        country: data.country,
+        avatar: data?.avatar?.uri,
+      };
+      this.emit("profileChanged", this.profile);
+    };
+    profile.listen(cb);
+    cb();
   }
 
   async autoLogin() {
@@ -102,8 +122,7 @@ class VeridaHelper extends EventEmitter {
 
     const messaging = await this.context.getMessaging();
     const subject = "Contact Details";
-    const res = await messaging.send(this.did, type, data, subject, config);
-    console.log(res);
+    await messaging.send(this.did, type, data, subject, config);
     return true;
   }
 

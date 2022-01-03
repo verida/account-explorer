@@ -11,6 +11,7 @@
       <search-list
         v-else-if="profile.name"
         :profile="profile"
+        :path="path"
         :url="[`/${profile.did}`]"
       />
     </div>
@@ -29,8 +30,14 @@ import SearchInput from "@/components/SearchInput.vue";
 export default defineComponent({
   name: "Home",
   components: { SearchList, SearchInput, PulseLoader },
+  data: () => ({
+    path: "",
+  }),
   computed: {
     ...mapState(["profile", "loader"]),
+  },
+  beforeMount() {
+    this.path = this.$route.path;
   },
 });
 </script>

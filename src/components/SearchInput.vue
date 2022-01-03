@@ -65,11 +65,18 @@ export default defineComponent({
     useForm({
       validationSchema: schema,
     });
+
     const { value: did, errorMessage: didError } = useField("did");
+
     return {
       did,
       didError,
     };
+  },
+  watch: {
+    async $route(to) {
+      await this.fetchProfile(to.params.did);
+    },
   },
   methods: {
     ...mapActions(["fetchProfile"]),

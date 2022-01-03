@@ -4,11 +4,10 @@
       <img alt="Vue logo" src="../assets/images/logoverida.svg"
     /></router-link>
     <button v-if="loading" class="login-section">connecting...</button>
-    <button v-else-if="connected" class="login-section" @click="logout">
-      <span>Logout</span>
-      <img alt="Vue logo" src="../assets/images/arrow.svg" />
-    </button>
-    <button v-else class="login-section" @click="connect">
+    <div class="login-section" v-else-if="connected">
+      <user-menu :logout="logout" />
+    </div>
+    <button v-else class="login-section" @click="login">
       <span>Login with Verida</span>
       <img alt="Vue logo" src="../assets/images/arrow.svg" />
     </button>
@@ -16,7 +15,9 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineComponent } from "vue";
+import UserMenu from "@/components/UserMenu.vue";
 import veridaHelper from "@/helpers/VeridaHelper";
 
 export default defineComponent({
@@ -26,15 +27,24 @@ export default defineComponent({
     loading: false,
     connected: false,
   }),
+  components: {
+    UserMenu,
+  },
   methods: {
-    async connect() {
+    async login() {
       this.loading = true;
       try {
         await veridaHelper.connect();
+        this.connectApp();
       } catch (error: any) {
         this.error = error;
       } finally {
         this.loading = false;
+      }
+    },
+    connectApp() {
+      if (veridaHelper.connected) {
+        this.connected = veridaHelper.connected;
       }
     },
     async logout() {
@@ -45,6 +55,7 @@ export default defineComponent({
       this.loading = true;
       try {
         await veridaHelper.autoLogin();
+        this.connectApp();
       } catch (error: any) {
         this.error = error;
       } finally {
@@ -54,11 +65,6 @@ export default defineComponent({
   },
   async beforeMount() {
     await this.init();
-  },
-  created() {
-    veridaHelper.on("connected", (connection: boolean) => {
-      this.connected = connection;
-    });
   },
 });
 </script>
