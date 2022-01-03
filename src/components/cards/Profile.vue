@@ -12,7 +12,11 @@
       </div>
       <div class="profile-card-button mb-2">
         <add-contact />
-        <qrcode-vue class="qr-img" :value="profile.did" :size="150" />
+        <qrcode-vue
+          class="qr-img"
+          :value="`${url}/${profile.did}`"
+          :size="150"
+        />
       </div>
 
       <div class="profile-card-details">
@@ -20,6 +24,7 @@
         <p>
           <span> DID:</span> {{ profile.did }}
           <img
+            title="copy"
             @click="onCopy(profile.did)"
             alt="user-avatar"
             src="../../assets/images/icon_copy.svg"
@@ -41,6 +46,8 @@ import useClipboard from "vue-clipboard3";
 import QrcodeVue from "qrcode.vue";
 import AddContact from "@/components/AddContact.vue";
 
+const { VUE_APP_BASE_URL } = process.env;
+
 export default defineComponent({
   name: "Profile",
   props: {
@@ -52,7 +59,6 @@ export default defineComponent({
     const onCopy = async (did: string) => {
       try {
         await toClipboard(did);
-        console.log("Copied to clipboard");
       } catch (e) {
         console.error(e);
       }
@@ -61,7 +67,7 @@ export default defineComponent({
     return { onCopy };
   },
   data: () => ({
-    message: "hello man",
+    url: VUE_APP_BASE_URL,
   }),
   components: { QrcodeVue, AddContact },
   methods: {},
