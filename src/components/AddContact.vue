@@ -20,6 +20,7 @@ import { defineComponent } from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import veridaHelper from "@/helpers/VeridaHelper";
 import { BASIC_PROFILE_SCHEMA } from "@/constant";
+import { mapState } from "vuex";
 
 export default defineComponent({
   name: "AddContact",
@@ -31,14 +32,17 @@ export default defineComponent({
   components: {
     PulseLoader,
   },
+  computed: {
+    ...mapState(["profile"]),
+  },
   methods: {
     async addContact() {
       const issueDate = new Date();
-      const profile = veridaHelper.profile;
+
       const data = {
-        firstName: profile?.name,
-        lastName: profile?.name,
-        did: profile?.did,
+        firstName: this.profile?.name,
+        lastName: this.profile?.name,
+        did: this.profile?.did,
         name: "Contact Details",
         schema: BASIC_PROFILE_SCHEMA,
         testTimestamp: issueDate.toISOString(),
