@@ -15,4 +15,6 @@ jobs:
         uses: zendesk/action-create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_schema: semantic
 
