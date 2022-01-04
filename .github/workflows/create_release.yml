@@ -16,4 +16,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          auto_increment_type: patch
+          tag_schema: semantic
+
