@@ -38,8 +38,6 @@
 }
 
 
-
-
 // Search input field
 
 .search-input {
@@ -56,18 +54,13 @@
         flex-basis: 70%;
     }
 
-    // &-close {
-    //     // flex-basis: 10%;
-
-    // }
-
     &-button {
-        visibility: hidden;
+        display: none;
         flex-basis: 10%;
-        margin-bottom: 0.7rem;
+        margin-bottom: 0.5rem;
 
         @include mediaLg {
-            visibility: visible;
+            display: flex;
         }
     }
 
