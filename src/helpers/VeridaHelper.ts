@@ -85,14 +85,8 @@ class VeridaHelper extends EventEmitter {
     cb();
   }
 
-  async autoLogin() {
-    const isLoggedIn = hasSession(VUE_APP_CONTEXT_NAME);
-
-    if (isLoggedIn) {
-      await this.connect();
-      return true;
-    }
-    return false;
+  autoLogin() {
+    return hasSession(VUE_APP_CONTEXT_NAME);
   }
 
   async getProfile(did: string): Promise<boolean> {
@@ -121,7 +115,7 @@ class VeridaHelper extends EventEmitter {
     };
 
     const messaging = await this.context.getMessaging();
-    const subject = "Contact Details";
+    const subject = `New Contact: ${messageData.firstName}`;
     await messaging.send(this.did, type, data, subject, config);
     return true;
   }
