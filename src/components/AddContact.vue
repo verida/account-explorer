@@ -26,19 +26,17 @@ export default defineComponent({
   name: "AddContact",
   data: () => ({
     error: null,
-    connected: veridaHelper.connected,
     isSubmitting: false,
   }),
   components: {
     PulseLoader,
   },
   computed: {
-    ...mapState(["profile"]),
+    ...mapState(["connected", "profile"]),
   },
   methods: {
     async addContact() {
       const issueDate = new Date();
-
       const data = {
         firstName: this.profile?.name,
         lastName: this.profile?.name,
@@ -51,7 +49,9 @@ export default defineComponent({
       this.isSubmitting = true;
       try {
         await veridaHelper.sendMessage(data);
-        this.$toast.success("Contact details added  Successfully");
+        this.$toast.success(
+          "Contact details sent. Please accept this contact in the Verida Vault"
+        );
       } catch (error) {
         this.$toast.error("Something went wrong ");
       } finally {

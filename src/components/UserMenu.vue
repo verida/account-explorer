@@ -22,6 +22,7 @@
 <script>
 import { defineComponent } from "vue";
 import veridaHelper from "@/helpers/VeridaHelper";
+import { mapMutations } from "vuex";
 
 export default defineComponent({
   name: "UserMenu",
@@ -40,12 +41,14 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapMutations(["setStatus"]),
     toggleDropdown() {
       this.isOpened = !this.isOpened;
     },
 
     async onLogout() {
       await this.logout();
+      this.setStatus(false);
     },
     setProfile(profile) {
       this.avatar = profile?.avatar;
