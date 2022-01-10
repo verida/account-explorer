@@ -19,32 +19,31 @@
 import { defineComponent } from "vue";
 import UserMenu from "@/components/UserMenu.vue";
 import veridaHelper from "@/helpers/VeridaHelper";
+import { mapMutations, mapState } from "vuex";
 
 export default defineComponent({
   name: "Header",
   data: () => ({
     error: null,
     loading: false,
-    connected: false,
   }),
   components: {
     UserMenu,
   },
+  computed: {
+    ...mapState(["connected"]),
+  },
   methods: {
+    ...mapMutations(["setStatus"]),
     async login() {
       this.loading = true;
       try {
         await veridaHelper.connect();
-        this.connectApp();
+        this.setStatus(true);
       } catch (error: any) {
         this.error = error;
       } finally {
         this.loading = false;
-      }
-    },
-    connectApp() {
-      if (veridaHelper.connected) {
-        this.connected = veridaHelper.connected;
       }
     },
     async logout() {
@@ -52,19 +51,14 @@ export default defineComponent({
       this.connected = false;
     },
     async init() {
-      this.loading = true;
-      try {
-        await veridaHelper.autoLogin();
-        this.connectApp();
-      } catch (error: any) {
-        this.error = error;
-      } finally {
-        this.loading = false;
+      const hasSession = veridaHelper.autoLogin();
+      if (hasSession) {
+        await this.login();
       }
     },
   },
   async beforeMount() {
-    await this.init();
+    await this.login();
   },
 });
 </script>
