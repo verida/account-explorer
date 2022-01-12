@@ -9,8 +9,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@verida/account-web-vault": "^1.1.6",
-    "@verida/client-ts": "^1.1.9",
+    "@verida/account-web-vault": "^1.1.7",
+    "@verida/client-ts": "^1.1.10",
     "core-js": "^3.6.5",
     "qrcode.vue": "^3.3.3",
     "vee-validate": "^4.5.7",

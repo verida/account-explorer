@@ -19,7 +19,7 @@ const userConfig = {
 };
 
 class VeridaHelper extends EventEmitter {
-  private client: Client;
+  private client: any;
   public profile?: Profile;
   private context: any;
   private account: any;

@@ -58,7 +58,7 @@ export default defineComponent({
     },
   },
   async beforeMount() {
-    await this.login();
+    await this.init();
   },
 });
 </script>
