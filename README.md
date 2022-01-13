@@ -5,20 +5,35 @@ This is a new application designed to show the public profile of any user on the
 ## Install
 
 ```
+yarn install
+```
+or
+```
 npm install
 ```
 
 ## Build
 
 ```
+yarn build
+```
+or
+
+```
 npm run build
 ```
+
 
 ## Run
 
 ```
+yarn serve
+```
+or 
+```
 npm run serve
 ```
+
 
 ## Deployment
 
