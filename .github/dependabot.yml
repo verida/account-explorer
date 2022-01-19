@@ -1,1 +1,11 @@
 
+# Basic set up for three package managers
+
+version: 2
+updates:
+
+  # Maintain dependencies for yarn
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "daily"
