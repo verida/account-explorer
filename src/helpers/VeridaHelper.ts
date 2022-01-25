@@ -1,16 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, EnvironmentType, Network } from "@verida/client-ts";
+import { Client, Context, EnvironmentType } from "@verida/client-ts";
 import { EventEmitter } from "events";
-import { hasSession, VaultAccount } from "@verida/account-web-vault";
 import { Profile } from "@/interface";
 import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 
 const {
-  VUE_APP_CONTEXT_NAME,
-  VUE_APP_VERIDA_TESTNET_DEFAULT_SERVER,
   VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
   VUE_APP_VAULT_CONTEXT_NAME,
-  VUE_APP_LOGO_URL,
+
 } = process.env;
 
 const userConfig = {
@@ -22,8 +19,7 @@ class VeridaHelper extends EventEmitter {
   private client: any;
   public profile?: Profile;
   private context: any;
-  private account: any;
-  public did?: string;
+  private did?: string;
   public connected?: boolean;
   on: any;
 
@@ -32,41 +28,13 @@ class VeridaHelper extends EventEmitter {
     this.client = new Client(config);
   }
 
-  public async connect(): Promise<void> {
-    this.account = new VaultAccount({
-      defaultDatabaseServer: {
-        type: "VeridaDatabase",
-        endpointUri: VUE_APP_VERIDA_TESTNET_DEFAULT_SERVER as string,
-      },
-      defaultMessageServer: {
-        type: "VeridaMessage",
-        endpointUri: VUE_APP_VERIDA_TESTNET_DEFAULT_SERVER as string,
-      },
-      vaultConfig: {
-        request: {
-          logoUrl: VUE_APP_LOGO_URL,
-        },
-      },
-    });
-
-    this.context = await Network.connect({
-      client: {
-        environment: EnvironmentType.TESTNET,
-      },
-      account: this.account,
-      context: {
-        name: VUE_APP_CONTEXT_NAME as string,
-      },
-    });
-
-    this.did = await this.account.did();
-
-    await this.initProfile();
+  public async connect(context: Context): Promise<void> {
+    this.context = context;
+    this.did = await context.getAccount().did();
 
     if (this.context) {
       this.connected = true;
     }
-    this.emit("connected", this.connected);
   }
 
   private async initProfile(): Promise<void> {
@@ -83,10 +51,6 @@ class VeridaHelper extends EventEmitter {
     };
     profile.listen(cb);
     cb();
-  }
-
-  autoLogin() {
-    return hasSession(VUE_APP_CONTEXT_NAME);
   }
 
   async getProfile(did: string): Promise<boolean> {
@@ -120,13 +84,12 @@ class VeridaHelper extends EventEmitter {
     return true;
   }
 
-  async logout(): Promise<void> {
-    await this.context.getAccount().disconnect(VUE_APP_CONTEXT_NAME);
+  logout() {
     this.context = null;
-    this.account = null;
     this.connected = false;
     this.did = "";
   }
+
 }
 
 const veridaHelper = new VeridaHelper(userConfig);
