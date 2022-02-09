@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-// import NotFound from "../components/cards/NotFound.vue";
 import { USER_PROFILE } from "../constant/index";
 
 const routes: Array<RouteRecordRaw> = [
@@ -12,9 +11,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:did",
     name: USER_PROFILE,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ProfileDetails.vue"),
   },

@@ -7,7 +7,6 @@ import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 const {
   VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
   VUE_APP_VAULT_CONTEXT_NAME,
-
 } = process.env;
 
 const userConfig = {
@@ -18,7 +17,7 @@ const userConfig = {
 class VeridaHelper extends EventEmitter {
   private client: any;
   public profile?: Profile;
-  private context: any;
+  public context: any;
   private did?: string;
   public connected?: boolean;
   on: any;
@@ -35,22 +34,6 @@ class VeridaHelper extends EventEmitter {
     if (this.context) {
       this.connected = true;
     }
-  }
-
-  private async initProfile(): Promise<void> {
-    const client = await this.context.getClient();
-    const profile = await client.openPublicProfile(this.did, "Verida: Vault");
-    const cb = async () => {
-      const data = await profile.getMany();
-      this.profile = {
-        name: data.name,
-        country: data.country,
-        avatar: data?.avatar?.uri,
-      };
-      this.emit("profileChanged", this.profile);
-    };
-    profile.listen(cb);
-    cb();
   }
 
   async getProfile(did: string): Promise<boolean> {
@@ -89,7 +72,6 @@ class VeridaHelper extends EventEmitter {
     this.connected = false;
     this.did = "";
   }
-
 }
 
 const veridaHelper = new VeridaHelper(userConfig);
