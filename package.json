@@ -9,7 +9,7 @@
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
-		"@verida/account-web-vault": "^1.1.7",
+		"@verida/account-web-vault": "^1.1.8",
 		"@verida/client-ts": "^1.1.10",
 		"@verida/vue-account": "^0.1.14",
 		"core-js": "^3.6.5",
