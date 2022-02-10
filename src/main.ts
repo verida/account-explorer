@@ -7,10 +7,23 @@ import store from "./store";
 import "@/assets/scss/main.scss";
 import "vue-toast-notification/dist/theme-sugar.css";
 
-createApp(App)
-    .use(store)
-    .use(router)
-    .use(VueToast, {
-        position: "top",
-    })
-    .mount("#app");
+import Account from "@verida/vue-account";
+
+import "vue-toast-notification/dist/theme-sugar.css";
+import "./assets/scss/main.scss";
+
+const app = createApp(App);
+
+app.use(store);
+
+app.use(Account, { store });
+
+app.use(router);
+
+app.use(VueToast, {
+  position: "top",
+});
+
+app.mount("#app");
+
+createApp(App);

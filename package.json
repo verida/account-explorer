@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@verida/account-web-vault": "^1.1.7",
 		"@verida/client-ts": "^1.1.10",
-		"@verida/verida-vue-components": "0.1.4",
+		"@verida/vue-account": "^0.1.14",
 		"core-js": "^3.6.5",
 		"qrcode.vue": "^3.3.3",
 		"vee-validate": "^4.5.7",
