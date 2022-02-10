@@ -15,7 +15,7 @@
 		"core-js": "^3.6.5",
 		"qrcode.vue": "^3.3.3",
 		"vee-validate": "^4.5.7",
-		"vue": "^3.0.0",
+		"vue": "^3.2.30",
 		"vue-clipboard3": "^1.0.1",
 		"vue-router": "^4.0.0-0",
 		"vue-spinner": "^1.0.4",
