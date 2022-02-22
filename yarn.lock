@@ -2111,16 +2111,16 @@
     "@verida/keyring" "^1.1.2"
     url-parse "^1.5.3"
 
-"@verida/vue-account@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@verida/vue-account/-/vue-account-0.1.14.tgz#b386003a312f25445973d8737c819cfc7012a6c0"
-  integrity sha512-LcctZ6N2TTTvJvIW7H/hCY0F5yn3NDbbCJlcN7PECmiD0QgEjbkgEZaw1bv+mWEZAk0G0XJXkGg9tte7i+ZTxg==
+"@verida/vue-account@^0.1.15":
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/@verida/vue-account/-/vue-account-0.1.15.tgz#155396df245ad4a2ecb5f8384b2c383f8c626e00"
+  integrity sha512-E5C3bC3FxYa16Xg3rcEqjlCfd1IM8in8a4EEkbXOYi5SYYG5ZQMSVjM98shNyByKwUrNmd6pGP2DBS1La5OksQ==
   dependencies:
     "@verida/account-web-vault" "^1.1.7"
     "@verida/client-ts" "^1.1.10"
     store "^2.0.12"
     vue-clipboard2 "^0.3.3"
-    vue-spinner "^1.0.4"
+    vue-loading-overlay "^5.0.3"
     vuex "^4.0.2"
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
@@ -12328,6 +12328,11 @@ vue-loader@^15.9.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-loading-overlay@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/vue-loading-overlay/-/vue-loading-overlay-5.0.3.tgz#2838297fe9c7e8b2a1e1ce3415c115487885933a"
+  integrity sha512-6JWZalwlHF4do3HXsFZGt6PcWYseAI5FuNKpveEkljkzqskDWRr7rYmYHVx2kKu4qIvK0vLpL25T/hpFMNoevQ==
 
 vue-router@^4.0.0-0:
   version "4.0.12"
