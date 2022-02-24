@@ -2111,17 +2111,15 @@
     "@verida/keyring" "^1.1.2"
     url-parse "^1.5.3"
 
-"@verida/vue-account@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@verida/vue-account/-/vue-account-0.1.14.tgz#b386003a312f25445973d8737c819cfc7012a6c0"
-  integrity sha512-LcctZ6N2TTTvJvIW7H/hCY0F5yn3NDbbCJlcN7PECmiD0QgEjbkgEZaw1bv+mWEZAk0G0XJXkGg9tte7i+ZTxg==
+"@verida/vue-account@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@verida/vue-account/-/vue-account-0.1.17.tgz#7e596928c82eb4e9eb6652690e1f6f14af52a66b"
+  integrity sha512-qcqaBlNXLDNK05dyoAIl1AIyMRmtE7pEN8FuO9V5RFf9x0q21d9fU0lHPoQFbH4UTfBoOMaQQZOgTf0E+SAxMw==
   dependencies:
     "@verida/account-web-vault" "^1.1.7"
     "@verida/client-ts" "^1.1.10"
     store "^2.0.12"
     vue-clipboard2 "^0.3.3"
-    vue-spinner "^1.0.4"
-    vuex "^4.0.2"
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
@@ -12370,7 +12368,7 @@ vue@^3.0.0:
     "@vue/server-renderer" "3.2.26"
     "@vue/shared" "3.2.26"
 
-vuex@^4.0.0-0, vuex@^4.0.2:
+vuex@^4.0.0-0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
   integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
