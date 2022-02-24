@@ -4,7 +4,7 @@
       <h1>Account Explorer</h1>
       <p class="mt-1">
         Use this to search through your account. Search what account you have
-        access to, and find the DIDs thst you need.
+        access to, and find the DIDs that you need.
       </p>
       <div class="content-search my-3"><search-input /></div>
       <pulse-loader v-if="loader" color="#5761D7" :loading="loader" />
