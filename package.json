@@ -12,7 +12,7 @@
 		"@verida/account-web-vault": "^1.1.7",
 		"@verida/client-ts": "^1.1.11",
 		"@verida/vue-account": "^0.1.14",
-		"core-js": "^3.6.5",
+		"core-js": "^3.21.0",
 		"qrcode.vue": "^3.3.3",
 		"vee-validate": "^4.5.7",
 		"vue": "^3.0.0",
