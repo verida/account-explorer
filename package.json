@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"@verida/client-ts": "^1.1.12",
-		"@verida/vue-account": "^0.1.18",
+		"@verida/vue-account": "^0.1.19",
 		"core-js": "^3.21.0",
 		"qrcode.vue": "^3.3.3",
 		"vee-validate": "^4.5.7",
