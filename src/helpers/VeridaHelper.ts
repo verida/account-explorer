@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context, EnvironmentType } from "@verida/client-ts";
+import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
+import { Credentials } from "@verida/verifiable-credentials";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { ClientConfig } from "@verida/client-ts/dist/interfaces";
+import { Buffer } from "buffer";
+import { getUrlQuery } from "./StringFormatter";
 
 const {
   VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
@@ -20,6 +23,7 @@ class VeridaHelper extends EventEmitter {
   public context: any;
   private did?: string;
   public connected?: boolean;
+  public credentials: any;
   on: any;
 
   constructor(config: ClientConfig) {
@@ -36,7 +40,7 @@ class VeridaHelper extends EventEmitter {
     }
   }
 
-  async getProfile(did: string): Promise<boolean> {
+  async getProfile(did: string): Promise<any> {
     const profileInstance = await this.client.openPublicProfile(
       did,
       VUE_APP_VAULT_CONTEXT_NAME,
@@ -49,7 +53,7 @@ class VeridaHelper extends EventEmitter {
         this.profile.did = did;
       }
     }
-    return true;
+    return this.profile;
   }
 
   public async sendMessage(messageData: any): Promise<boolean> {
@@ -65,6 +69,56 @@ class VeridaHelper extends EventEmitter {
     const subject = `New Contact: ${messageData.firstName}`;
     await messaging.send(this.did, type, data, subject, config);
     return true;
+  }
+
+  public async getSchemaSpecs(schema: string): Promise<any> {
+    const schemas = await this.context.getClient().getSchema(schema);
+
+    const json = await schemas.getSpecification();
+
+    return json;
+  }
+
+  async readVerifiedCredential(publicUri: string) {
+    this.credentials = new Credentials(this.context);
+    // Fetch and decode the presentation
+
+    const decodedURI = Buffer.from(getUrlQuery(publicUri), "base64").toString(
+      "utf8"
+    );
+
+    const jwt = await Utils.fetchVeridaUri(decodedURI, this.context);
+
+    const decodedPresentation = await this.credentials.verifyPresentation(jwt);
+
+    // Retrieve the verifiable credential within the presentation
+
+    const verifiableCredential =
+      decodedPresentation.verifiablePresentation.verifiableCredential[0];
+    // const issuerProfile = await this.getProfile(verifiableCredential.issuer.id);
+
+    // const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
+    const issuerProfile = await this.getProfile(
+      "did:vda:0x798aCB521757ffd91622c78a9bB119f416de993C"
+    );
+
+    const subjectProfile = await this.getProfile(
+      "did:vda:0x798aCB521757ffd91622c78a9bB119f416de993C"
+    );
+
+    const schemaSpec = await this.getSchemaSpecs(
+      verifiableCredential.credentialSubject.schema
+    );
+
+    console.log(schemaSpec);
+
+    return {
+      publicUri,
+      schemaSpec,
+      issuerProfile,
+      subjectProfile,
+      verifiableCredential,
+    };
   }
 
   logout() {

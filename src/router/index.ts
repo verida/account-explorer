@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
+import ProfileDetails from "../views/ProfileDetails.vue";
+import Credential from "../views/Credential.vue";
+
 import { USER_PROFILE } from "../constant/index";
 
 const routes: Array<RouteRecordRaw> = [
@@ -11,14 +14,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:did",
     name: USER_PROFILE,
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ProfileDetails.vue"),
+    component: ProfileDetails,
   },
   {
-    path: "/(.*)*",
-    name: "NotFound",
-    component: () =>
-      import(/* webpackChunkName: "notfound" */ "../views/ProfileDetails.vue"),
+    path: "/credential",
+    name: "credential",
+    component: Credential,
   },
 ];
 

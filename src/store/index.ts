@@ -7,6 +7,7 @@ export default createStore({
     error: "",
     loader: false,
     connected: false,
+    credentialInfo: {},
   },
   mutations: {
     setProfile(state, profile) {
@@ -18,6 +19,9 @@ export default createStore({
       state.error = error;
       state.profile = {};
       state.loader = false;
+    },
+    setCredential(state, data) {
+      state.credentialInfo = data;
     },
     setStatus(state, status) {
       state.connected = status;
