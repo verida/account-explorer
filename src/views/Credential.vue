@@ -17,8 +17,9 @@
 import { defineComponent } from "vue";
 import ErrorPanel from "../components/cards/StatusPanel.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-import CredentialDetails from "../components/cards/CredentialDetails.vue";
+import CredentialDetails from "../components/cards/CredentialsDetails.vue";
 import { mapMutations, mapState } from "vuex";
+import VeridaHelper from "@/helpers/VeridaHelper";
 
 export default defineComponent({
   name: "Home",
@@ -36,15 +37,17 @@ export default defineComponent({
   },
   methods: {
     ...mapMutations(["setCredential"]),
-    init() {
-      const uri = this.$route.query.uri as string;
-      if (!uri && !this.credentialInfo) {
-        this.handleError("uri not found");
+    async init() {
+      this.loading = true;
+      try {
+        const uri = this.$route.query.uri as string;
+        const res = await VeridaHelper.readVerifiedCredential(uri);
+        this.setCredential(res);
+      } catch (error) {
+        this.handleError("error");
+      } finally {
+        this.loading = false;
       }
-      localStorage.setItem(
-        "uri_state",
-        JSON.stringify({ uri: uri, path: this.$route.query.path })
-      );
     },
     handleError(e: string) {
       setTimeout(() => {

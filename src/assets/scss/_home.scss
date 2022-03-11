@@ -16,7 +16,6 @@
 
         @include mediaXl {
             font-size: 4.5rem;
-            // font-weight: 700;
         }
     }
 
@@ -25,10 +24,6 @@
         line-height: 150%;
         letter-spacing: -0.03em;
 
-        @include mediaXl {
-            // font-size: 1.1rem;
-            // font-weight: 300;
-        }
     }
 }
 

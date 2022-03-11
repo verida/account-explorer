@@ -37,12 +37,6 @@ export default defineComponent({
     async onSuccess(response: Context) {
       this.setStatus(true);
       await VeridaHelper.connect(response);
-      const res = await VeridaHelper.readVerifiedCredential(
-        "https://scan.verida.io/credential?uri=dmVyaWRhOi8vZGlkOnZkYToweEIzNzI5OTgyQTI1ODU1NDRGRDcyYzk5Q0YzNzczYTljNmJhQkQ1NWMvR3BORGVQdldVNFJRdWQ5amFaSmlOd0Z5QVMvY3JlZGVudGlhbF9wdWJsaWNfZW5jcnlwdGVkLzhmMTg4MzEwLTlmNmUtMTFlYy04Y2M1LWRiNjVkZWZhMGVmMT9rZXk9MGMxMDBkNGY3M2IyOGViYjNjMTJhMDkzMjFmOWI2OGFiM2FlMWI5MTMyZjc4YTRkZTYyNGI0MzFmNDA2MWMwYg=="
-      );
-      console.log(res);
-      this.setCredential(res);
-      this.$router.push({ name: "credential" });
     },
     onError(error: Error) {
       this.setError(error);

@@ -16,7 +16,7 @@ const app = createApp(App);
 
 app.use(store);
 
-app.use(Account, { store });
+app.use(Account);
 
 app.use(router);
 

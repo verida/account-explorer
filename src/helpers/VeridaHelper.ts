@@ -5,7 +5,6 @@ import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 import { Buffer } from "buffer";
-import { getUrlQuery } from "./StringFormatter";
 
 const {
   VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
@@ -79,13 +78,11 @@ class VeridaHelper extends EventEmitter {
     return json;
   }
 
-  async readVerifiedCredential(publicUri: string) {
+  async readVerifiedCredential(uri: string) {
     this.credentials = new Credentials(this.context);
     // Fetch and decode the presentation
 
-    const decodedURI = Buffer.from(getUrlQuery(publicUri), "base64").toString(
-      "utf8"
-    );
+    const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, this.context);
 
@@ -110,7 +107,7 @@ class VeridaHelper extends EventEmitter {
       verifiableCredential.credentialSubject.schema
     );
 
-    console.log(schemaSpec);
+    const publicUri = `${window.origin}/credential?uri=${uri}`;
 
     return {
       publicUri,

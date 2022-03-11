@@ -83,11 +83,8 @@
       </div>
     </div>
   </div>
-  <div>
-    <vc-details
-      :schema="credentialInfo.schemaSpec"
-      :data="credentialInfo.credentialSubject"
-    />
+  <div class="mr-2">
+    <verifiable-credential-display :schema="schema" :data="data" />
   </div>
   <div class="code-view">
     <div class="code-view-header px-1">
@@ -109,7 +106,6 @@
         />
       </div>
     </div>
-
     <div v-show="isCodePreview" class="code-view-body">
       <pre>
           const CONTEXT_NAME = 'Verida: Sandbox Demo'
@@ -145,7 +141,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VcDetails from "@verida/vue-verifiable-credential-display";
+import VerifiableCredentialDisplay from "vue-vc-display/";
 import QrcodeVue from "qrcode.vue";
 import { mapState } from "vuex";
 
@@ -154,15 +150,20 @@ export default defineComponent({
   props: {
     profile: {},
   },
-  components: { QrcodeVue, VcDetails },
+  components: { QrcodeVue, VerifiableCredentialDisplay },
   data: () => ({
     isCodePreview: false,
+    schema: {},
+    data: {},
   }),
   computed: {
     ...mapState(["credentialInfo"]),
   },
   beforeMount() {
-    console.log(this.credentialInfo);
+    if (this.credentialInfo?.verifiableCredential) {
+      this.data = this.credentialInfo.verifiableCredential.credentialSubject;
+      this.schema = this.credentialInfo.schemaSpec;
+    }
   },
   methods: {
     toggleView() {

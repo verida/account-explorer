@@ -2,8 +2,10 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 import ProfileDetails from "../views/ProfileDetails.vue";
 import Credential from "../views/Credential.vue";
+import Connect from "../views/Connect.vue";
 
-import { USER_PROFILE } from "../constant/index";
+import { CONNECT, CREDENTIAL, USER_PROFILE } from "../constant/index";
+import { LocalRouteGuard } from "@/helpers/RouteGuard";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,8 +20,15 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/credential",
-    name: "credential",
+    name: CREDENTIAL,
+    meta: { field: "info" },
+    beforeEnter: LocalRouteGuard,
     component: Credential,
+  },
+  {
+    path: "/connect",
+    name: CONNECT,
+    component: Connect,
   },
 ];
 

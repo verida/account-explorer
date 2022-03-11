@@ -220,9 +220,7 @@
     display: flex;
 
     @include mediaMd {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      display: block;
     }
 
     &-section {
