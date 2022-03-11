@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
 import { USER_PROFILE } from "../constant/index";
+import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,7 +9,12 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/:did",
+    path: "/did",
+    name: "Redirect",
+    redirect: "/"
+  },
+  {
+    path: "/did/:did",
     name: USER_PROFILE,
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ProfileDetails.vue"),
