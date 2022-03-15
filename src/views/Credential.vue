@@ -2,14 +2,16 @@
   <div class="credential mt-5 mx-1">
     <h3>Credential Verification</h3>
     <pulse-loader
-      class="loading my-5"
+      class="credential-loader my-5"
       v-if="loading"
       color="#5761D7"
       :loading="loading"
     />
     <div v-else>
-      <error-panel type="success" />
-      <credential-details />
+      <error-panel :type="type" />
+      <div class="mr-2">
+        <credential-details />
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +29,7 @@ export default defineComponent({
   data: () => ({
     path: "",
     loading: false,
-    errorType: "",
+    type: "",
   }),
   computed: {
     ...mapState(["credentialInfo"]),
@@ -43,8 +45,10 @@ export default defineComponent({
         const uri = this.$route.query.uri as string;
         const res = await VeridaHelper.readVerifiedCredential(uri);
         this.setCredential(res);
+        this.type = "success";
       } catch (error) {
         this.handleError("error");
+        this.type = "invalid";
       } finally {
         this.loading = false;
       }

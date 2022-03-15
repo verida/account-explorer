@@ -2148,6 +2148,13 @@
     store "^2.0.12"
     vue-clipboard2 "^0.3.3"
 
+"@verida/vue-credentials-view@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@verida/vue-credentials-view/-/vue-credentials-view-0.1.0.tgz#91225370ad232c8ddc3847222d2958d566ba77d7"
+  integrity sha512-aRSph1YHlhLa0maIuR9Mp+vwRzfqlm+L35892fneWicCzRs26+nXTjj96+OUvkBorcevJQK4IYk37ZkFaiSM+w==
+  dependencies:
+    underscore "^1.13.2"
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.2.1.tgz#31624a7a505fb14da1d58023725a4c5f270e6a81"
@@ -12422,13 +12429,6 @@ vue-toast-notification@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/vue-toast-notification/-/vue-toast-notification-3.0.0.tgz#616d314051eafbdae93195718e13c56eb46d474c"
   integrity sha512-qaC38T//mksVXzLRiK36LTypxouLMEnaQ1w8sLpiyJRFI6aVcVi3amGrz3hiODiYThy3v0F73ayQwwTtxSVF0A==
-
-vue-vc-display@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/vue-vc-display/-/vue-vc-display-1.0.2.tgz#3616c170c65a412666762c1260d926beab56a631"
-  integrity sha512-aUaPO113ozhz3hUMIF9fRzmtQ0F60ueknyLXmgtQun5PG9HNpzBOeTjUB1yNzJLZFsjW7ZSRhSxByd2NhEKEAw==
-  dependencies:
-    underscore "^1.13.2"
 
 vue@^3.0.0:
   version "3.2.26"

@@ -190,30 +190,28 @@
 
   &.warning {
     background: rgba(255, 138, 34, 0.1);
-    border: 1px solid #FF8A22;
+    border: 1px solid $warning;
   }
 
   &.success {
     background: rgba(55, 213, 199, 0.1);
-    border: 1px solid #37D5C7;
+    border: 1px solid $success;
   }
 
   &.invalid {
     background: rgba(249, 60, 53, 0.1);
-
-    border: 1px solid #F93C35;
+    border: 1px solid $invalid;
   }
 }
 
 
 .vc-details {
+  position: relative;
   display: flex;
   justify-content: space-between;
 
   @include mediaMd {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
   }
 
   .vc-block {
@@ -221,14 +219,19 @@
 
     @include mediaMd {
       display: block;
+      text-align: left;
     }
 
     &-section {
+
+      @include mediaMd {
+        margin: 1rem 0 0 0;
+      }
+
       a {
         display: flex;
-        width: 100%;
-        justify-content: center;
         align-items: center;
+        width: 100%;
         font-weight: 600;
         font-size: 14px;
         line-height: 18px;
@@ -238,6 +241,7 @@
         img {
           height: 1.4rem;
           width: 1.4rem;
+          margin: 0 0.8rem;
         }
 
       }

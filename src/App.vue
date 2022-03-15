@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <app-header />
-    <router-view />
+    <router-view class="main" />
     <app-footer />
   </div>
 </template>
@@ -19,3 +19,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+// .main {
+//   flex-grow: 1;
+// }
+</style>

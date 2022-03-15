@@ -31,7 +31,6 @@
             <img
               height="50"
               alt="user-avatar"
-              class="mx-1"
               src="../../assets/images/arrow.svg"
           /></a>
         </p>
@@ -141,7 +140,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VerifiableCredentialDisplay from "vue-vc-display/";
+import VerifiableCredentialDisplay from "@verida/vue-credentials-view";
 import QrcodeVue from "qrcode.vue";
 import { mapState } from "vuex";
 

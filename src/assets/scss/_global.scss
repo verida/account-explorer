@@ -8,5 +8,11 @@
 
 body {
     font-family: "Sora", sans-serif;
-    height: 100vh;
+}
+
+
+// Overrides @verida/verifiable-credential-view packages
+
+.vda-vc-display h2{
+    margin: 1rem 0;
 }
