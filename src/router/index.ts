@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/did",
     name: "Redirect",
-    redirect: "/"
+    redirect: "/",
   },
   {
     path: "/did/:did",
