@@ -1,4 +1,11 @@
 <template>
+  <accordion class="mt-2 qr-mobile" title="Re-Verify Credential">
+    <qrcode-vue
+      class="qr-img ml-1 my-1"
+      :value="credentialInfo.publicUri"
+      :size="150"
+    />
+  </accordion>
   <div class="vc-details mt-3">
     <div class="vc-block">
       <div class="mr-2 vc-block-section">
@@ -82,64 +89,20 @@
       </div>
     </div>
   </div>
-  <div class="mr-2">
+  <div class="mr-3">
     <verifiable-credential-display :schema="schema" :data="data" />
   </div>
-  <div class="code-view">
-    <div class="code-view-header px-1">
-      <span>More Info</span>
-      <div>
-        <img
-          v-if="isCodePreview"
-          height="100"
-          alt="user-avatar"
-          @click="toggleView"
-          src="../../assets/images/icon_up_arrow.svg"
-        />
-        <img
-          v-else
-          height="100"
-          alt="user-avatar"
-          @click="toggleView"
-          src="../../assets/images/icon_down_arrow.svg"
-        />
-      </div>
-    </div>
-    <div v-show="isCodePreview" class="code-view-body">
-      <pre>
-          const CONTEXT_NAME = 'Verida: Sandbox Demo'
-          const VERIDA_TESTNET_DEFAULT_SERVER = 'https://db.testnet.verida.io:5002/'
-
-          const account = new window.VaultAccount({
-            defaultDatabaseServer: {
-                type: 'VeridaDatabase',
-                endpointUri: VERIDA_TESTNET_DEFAULT_SERVER
-            },
-            defaultMessageServer: {
-                type: 'VeridaMessage',
-                endpointUri: VERIDA_TESTNET_DEFAULT_SERVER
-            },
-          })
-
-          const context = await window.Network.connect({
-            client: {
-                environment: 'testnet'
-            },
-            account: account,
-            context: {
-                name: CONTEXT_NAME
-            }
-          })
-
-          const did = await account.did()
-          console.log("User is connected with DID: " + did)
-      </pre>
-    </div>
-  </div>
+  <accordion title="More Info">
+    <pre>
+          {{ JSON.stringify(credentialInfo, null, 2) }}
+      </pre
+    >
+  </accordion>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Accordion from "../Accordion.vue";
 import VerifiableCredentialDisplay from "@verida/vue-credentials-view";
 import QrcodeVue from "qrcode.vue";
 import { mapState } from "vuex";
@@ -149,7 +112,7 @@ export default defineComponent({
   props: {
     profile: {},
   },
-  components: { QrcodeVue, VerifiableCredentialDisplay },
+  components: { QrcodeVue, VerifiableCredentialDisplay, Accordion },
   data: () => ({
     isCodePreview: false,
     schema: {},

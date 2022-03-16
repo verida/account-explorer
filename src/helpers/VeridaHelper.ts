@@ -110,16 +110,12 @@ class VeridaHelper extends EventEmitter {
 
     const verifiableCredential =
       decodedPresentation.verifiablePresentation.verifiableCredential[0];
-    // const issuerProfile = await this.getProfile(verifiableCredential.issuer.id);
 
-    // const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
-    const issuerProfile = await this.getProfile(
-      "did:vda:0x798aCB521757ffd91622c78a9bB119f416de993C"
-    );
+    const issuerProfile = await this.getProfile(verifiableCredential.vc.sub);
 
-    const subjectProfile = await this.getProfile(
-      "did:vda:0x798aCB521757ffd91622c78a9bB119f416de993C"
-    );
+    const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
+
+    console.log(subjectProfile);
 
     const schemaSpec = await this.getSchemaSpecs(
       verifiableCredential.credentialSubject.schema

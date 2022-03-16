@@ -205,6 +205,14 @@
 }
 
 
+.qr-mobile {
+  display: none;
+
+  @include mediaMd {
+    display: block;
+  }
+}
+
 .vc-details {
   position: relative;
   display: flex;
@@ -298,6 +306,13 @@
     img {
       height: 1.5rem;
       width: 1.5rem;
+
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        background: rgb(187, 184, 184);
+      }
     }
   }
 }
