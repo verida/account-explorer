@@ -115,8 +115,6 @@ class VeridaHelper extends EventEmitter {
 
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
-    console.log(subjectProfile);
-
     const schemaSpec = await this.getSchemaSpecs(
       verifiableCredential.credentialSubject.schema
     );

@@ -3,8 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
+		"serve": "vue-cli-service serve  --mode sample",
+		"build": "vue-cli-service build  --mode sample",
 		"test:unit": "vue-cli-service test:unit",
 		"lint": "vue-cli-service lint"
 	},
@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@verida/client-ts": "^1.1.13",
+		"@verida/verifiable-credentials": "^0.1.4",
 		"@verida/vue-account": "^0.1.19",
 		"@verida/vue-credentials-view": "^0.1.0",
 		"buffer": "^6.0.3",
