@@ -18,6 +18,7 @@
 		"@verida/vue-credentials-view": "^0.1.0",
 		"buffer": "^6.0.3",
 		"core-js": "^3.21.0",
+		"dayjs": "^1.11.0",
 		"qrcode.vue": "^3.3.3",
 		"vee-validate": "^4.5.7",
 		"vue": "^3.0.0",

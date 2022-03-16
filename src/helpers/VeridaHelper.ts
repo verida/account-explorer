@@ -5,6 +5,9 @@ import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 import { Buffer } from "buffer";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 const {
   VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
@@ -76,6 +79,21 @@ class VeridaHelper extends EventEmitter {
     const json = await schemas.getSpecification();
 
     return json;
+  }
+
+  hasCredentialExpired(credentials: any): boolean {
+    const vc = credentials.verifiableCredential;
+    if (vc.expirationDate) {
+      // Ensure credential hasn't expired
+      const now = dayjs(new Date().toISOString()).utc(true);
+      const expDate = dayjs(vc.expirationDate).utc(true);
+
+      if (expDate.diff(now) < 0) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   async readVerifiedCredential(uri: string) {
