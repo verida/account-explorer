@@ -12,7 +12,7 @@
         v-else-if="profile.name"
         :profile="profile"
         :path="path"
-        :url="[`/${profile.did}`]"
+        :url="[`/did/${profile.did}`]"
       />
     </div>
     <div class="landing-image">

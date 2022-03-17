@@ -29,8 +29,15 @@ export default defineComponent({
       await this.fetchProfile(did);
     },
   },
-
   async beforeMount() {
+    console.log("log.");
+
+    if (!this.$route.params.did) {
+      console.log("dsdd");
+
+      this.$router.push({ path: "/" });
+    }
+
     if (!this.profile.name) {
       await this.loadProfile();
     }
