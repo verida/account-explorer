@@ -19,9 +19,12 @@ header {
 
 footer {
     font-size: 0.875rem;
+    position: absolute;
     bottom: 0;
-    margin: 0.4rem auto;
-    width: 92%;
+    width: 100%;
+    margin: auto;
+    height: 1.5rem;
+
 
     hr {
         opacity: 0.1;

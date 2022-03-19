@@ -7,6 +7,7 @@
       color="#5761D7"
       :loading="loading"
     />
+    <error-panel v-else-if="error" :type="type" />
     <div v-else>
       <error-panel :type="type" />
       <div class="mr-2">
@@ -30,6 +31,7 @@ export default defineComponent({
     path: "",
     loading: false,
     type: "",
+    error: false,
   }),
   computed: {
     ...mapState(["credentialInfo"]),
@@ -47,22 +49,26 @@ export default defineComponent({
         this.setCredential(res);
         const isExpired = VeridaHelper.hasCredentialExpired(res);
         if (isExpired) {
-          this.type = "invalid";
+          this.type = "warning";
         } else {
           this.type = "success";
         }
       } catch (error) {
-        this.handleError("error");
+        this.handleError();
         this.type = "invalid";
       } finally {
         this.loading = false;
       }
     },
-    handleError(e: string) {
-      setTimeout(() => {
-        this.$toast.error(e);
-        this.$router.push({ name: "Home" });
-      }, 2500);
+    handleError() {
+      this.error = true;
+      this.type = "invalid";
+      // setTimeout(() => {
+      //   this.error = true;
+      //   this.type = "invalid";
+      //   // this.$toast.error(e);
+      //   // this.$router.push({ name: "Home" });
+      // }, 2500);
     },
   },
 });

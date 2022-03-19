@@ -6,8 +6,6 @@ import Connect from "../views/Connect.vue";
 
 import { CONNECT, CREDENTIAL, USER_PROFILE } from "../constant/index";
 import { LocalRouteGuard } from "@/helpers/RouteGuard";
-import { USER_PROFILE } from "../constant/index";
-import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
