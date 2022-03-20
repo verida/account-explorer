@@ -29,7 +29,11 @@ import SearchInput from "@/components/SearchInput.vue";
 
 export default defineComponent({
   name: "Home",
-  components: { SearchList, SearchInput, PulseLoader },
+  components: {
+    SearchList,
+    SearchInput,
+    PulseLoader,
+  },
   data: () => ({
     path: "",
   }),

@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { USER_PROFILE } from "../constant/index";
 import Home from "../views/Home.vue";
+import ProfileDetails from "../views/ProfileDetails.vue";
+import Credential from "../views/Credential.vue";
+import Connect from "../views/Connect.vue";
+
+import { CONNECT, CREDENTIAL, USER_PROFILE } from "../constant/index";
+import { LocalRouteGuard } from "@/helpers/RouteGuard";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,14 +21,19 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/did/:did",
     name: USER_PROFILE,
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ProfileDetails.vue"),
+    component: ProfileDetails,
   },
   {
-    path: "/(.*)*",
-    name: "NotFound",
-    component: () =>
-      import(/* webpackChunkName: "notfound" */ "../views/ProfileDetails.vue"),
+    path: "/credential",
+    name: CREDENTIAL,
+    meta: { field: "info" },
+    beforeEnter: LocalRouteGuard,
+    component: Credential,
+  },
+  {
+    path: "/connect",
+    name: CONNECT,
+    component: Connect,
   },
 ];
 

@@ -42,7 +42,7 @@
 
 .profile-card {
   padding: 1.5rem;
-  width: 100%; 
+  width: 100%;
 
   @include mediaLg {
     display: flex;
@@ -120,6 +120,7 @@
         display: none;
       }
     }
+
     p {
       word-break: break-all;
       font-weight: 300;
@@ -154,7 +155,6 @@
 
   textarea {
     border: none;
-    // padding: 0.3rem 0.7rem;
     font-size: 0.8rem;
     line-height: 150%;
     letter-spacing: -0.03em;
@@ -166,5 +166,159 @@
 
 .not-found {
   @include centerWithDirection(column);
+}
 
+
+.status-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.2rem 1rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+
+  span {
+    font-size: 14px;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 150%;
+    color: $text-color;
+  }
+
+  &.warning {
+    background: rgba(255, 138, 34, 0.1);
+    border: 1px solid $warning;
+  }
+
+  &.success {
+    background: rgba(55, 213, 199, 0.1);
+    border: 1px solid $success;
+  }
+
+  &.invalid {
+    background: rgba(249, 60, 53, 0.1);
+    border: 1px solid $invalid;
+  }
+}
+
+
+.qr-mobile {
+  display: none;
+
+  @include mediaMd {
+    display: block;
+  }
+}
+
+
+.vc-credential{
+//  height: 100vh;
+ margin: 2rem 0;
+}
+
+.vc-details {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  @include mediaMd {
+    display: block;
+  }
+
+  .vc-block {
+    display: flex;
+
+    @include mediaMd {
+      display: block;
+      text-align: left;
+    }
+
+    &-section {
+
+      @include mediaMd {
+        margin: 1rem 0 0 0;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        color: $primary;
+
+        img {
+          height: 1.4rem;
+          width: 1.4rem;
+          margin: 0 0.8rem;
+        }
+
+      }
+    }
+
+  }
+
+  .vc-content {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 3.15rem;
+      width: 3.15rem;
+      border-radius: $border-radius;
+    }
+
+    &-details {
+      margin-top: -1rem;
+
+      p span {
+        font-size: 12px;
+        line-height: 150%;
+
+        text-transform: uppercase;
+
+        color: rgba(6, 5, 32, 0.51);
+      }
+    }
+  }
+}
+
+
+.code-view {
+  width: 100%;
+  border: 1px solid rgba(6, 5, 32, 0.2);
+  border-radius: $border-radius;
+
+
+  pre {
+    padding: 10px;
+    background: #F4F7F9;
+    margin: 0px;
+    overflow-x: scroll;
+  }
+
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 3.5rem;
+
+    img {
+      height: 1.5rem;
+      width: 1.5rem;
+
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        background: rgb(187, 184, 184);
+      }
+    }
+  }
 }

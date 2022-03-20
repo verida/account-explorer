@@ -33,7 +33,7 @@ export default defineComponent({
     ...mapState(["connected"]),
   },
   methods: {
-    ...mapMutations(["setStatus", "setError"]),
+    ...mapMutations(["setStatus", "setCredential", "setError"]),
     async onSuccess(response: Context) {
       this.setStatus(true);
       await VeridaHelper.connect(response);

@@ -1,5 +1,6 @@
 .container {
-    padding: 0 1rem;
+    position: relative;
+    min-height: 90vh;
     margin: 1rem 2rem;
 
     @include mediaMd {
@@ -7,9 +8,13 @@
     }
 }
 
+.content-wrap {
+    padding-bottom: 2.5rem;
+}
 
-.text-danger{
- color: rgb(199, 31, 31);
+
+.text-danger {
+    color: rgb(199, 31, 31);
 }
 
 
@@ -17,7 +22,6 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
 
 // Margin & Padding
 $spaceamounts: (1, 2, 3, 4, 5);
@@ -85,4 +89,9 @@ $spaceamounts: (1, 2, 3, 4, 5);
     .py-#{$space} {
         padding: #{$space}rem 0;
     }
+}
+
+
+.m-auto {
+    margin: auto;
 }
