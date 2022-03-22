@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :key="connected">
     <router-link to="/">
       <img alt="Vue logo" src="../assets/images/logoverida.svg"
     /></router-link>
