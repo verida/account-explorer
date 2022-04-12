@@ -48,6 +48,8 @@ export default defineComponent({
         const res = await VeridaHelper.readVerifiedCredential(uri);
         this.setCredential(res);
         const isExpired = VeridaHelper.hasCredentialExpired(res);
+        console.log(res);
+
         if (isExpired) {
           this.type = "warning";
         } else {
@@ -63,12 +65,6 @@ export default defineComponent({
     handleError() {
       this.error = true;
       this.type = "invalid";
-      // setTimeout(() => {
-      //   this.error = true;
-      //   this.type = "invalid";
-      //   // this.$toast.error(e);
-      //   // this.$router.push({ name: "Home" });
-      // }, 2500);
     },
   },
 });

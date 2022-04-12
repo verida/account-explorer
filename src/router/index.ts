@@ -5,7 +5,6 @@ import Credential from "../views/Credential.vue";
 import Connect from "../views/Connect.vue";
 
 import { CONNECT, CREDENTIAL, USER_PROFILE } from "../constant/index";
-import { LocalRouteGuard } from "@/helpers/RouteGuard";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,7 +26,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/credential",
     name: CREDENTIAL,
     meta: { field: "info" },
-    beforeEnter: LocalRouteGuard,
     component: Credential,
   },
   {

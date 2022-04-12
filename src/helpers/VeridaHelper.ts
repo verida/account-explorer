@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
+import { getClientContext } from "@verida/verifiable-credentials/dist/utils";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { ClientConfig } from "@verida/client-ts/dist/interfaces";
@@ -73,8 +74,8 @@ class VeridaHelper extends EventEmitter {
     return true;
   }
 
-  public async getSchemaSpecs(schema: string): Promise<any> {
-    const schemas = await this.context.getClient().getSchema(schema);
+  public async getSchemaSpecs(schema: string, context: Context): Promise<any> {
+    const schemas = await context.getClient().getSchema(schema);
 
     const json = await schemas.getSpecification();
 
@@ -97,17 +98,18 @@ class VeridaHelper extends EventEmitter {
   }
 
   async readVerifiedCredential(uri: string) {
-    this.credentials = new Credentials(this.context);
-    // Fetch and decode the presentation
-
     const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
-    const jwt = await Utils.fetchVeridaUri(decodedURI, this.context);
+    const context = await getClientContext(decodedURI, EnvironmentType.TESTNET);
 
-    const decodedPresentation = await this.credentials.verifyPresentation(jwt);
+    const jwt = await Utils.fetchVeridaUri(decodedURI, context);
+
+    const decodedPresentation = await Credentials.verifyPresentation(
+      jwt as any,
+      EnvironmentType.TESTNET
+    );
 
     // Retrieve the verifiable credential within the presentation
-
     const verifiableCredential =
       decodedPresentation.verifiablePresentation.verifiableCredential[0];
 
@@ -116,7 +118,8 @@ class VeridaHelper extends EventEmitter {
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
-      verifiableCredential.credentialSubject.schema
+      verifiableCredential.credentialSubject.schema,
+      context
     );
 
     const publicUri = `${window.origin}/credential?uri=${uri}`;
