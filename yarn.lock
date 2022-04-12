@@ -2020,19 +2020,19 @@
     "@verida/encryption-utils" "^1.1.3"
     "@verida/keyring" "^1.1.3"
 
-"@verida/account-web-vault@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@verida/account-web-vault/-/account-web-vault-1.1.9.tgz#84ece2a1ef3bff0733dd1105a3dee6b47743dde1"
-  integrity sha512-mSm0gOPtneD/5tOmPQoF5Fw4U9nDt9BOrUU8VMGp4ISxIoFRd1F9i3tDQkd5RPXqVqA0fYsAUUlqjNi3T/uzug==
+"@verida/account-web-vault@^1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@verida/account-web-vault/-/account-web-vault-1.1.11.tgz#8ded22d7faafdb61101203a503d922494ca7738f"
+  integrity sha512-eHkbBq2oerHqHBEI4kZNqNV+s2AdhiMyCiQOAfO5hTcFA9dtH64YGCbfdsQlS3t/USvYVKxM55cAIthM7rOJvw==
   dependencies:
-    "@verida/account" "^1.1.8"
-    "@verida/encryption-utils" "^1.1.2"
-    "@verida/keyring" "^1.1.2"
+    "@verida/account" "^1.1.9"
+    "@verida/encryption-utils" "^1.1.3"
+    "@verida/keyring" "^1.1.3"
     lodash "^4.17.21"
     qrcode-with-logos "^1.0.3"
     store "^2.0.12"
 
-"@verida/account@^1.1.8", "@verida/account@^1.1.9":
+"@verida/account@^1.1.9":
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/@verida/account/-/account-1.1.9.tgz#7c21fb7711ff9d5f554544e22fdfef1782229dd7"
   integrity sha512-AfXhd2C4VT0D5uoUGYnLv2rBHv7Uds98P5wx/7cWehoFAVXitBrAmhoEDrO1DN8HZEO+m2vpgMCaswCUQ5xzsA==
@@ -2043,10 +2043,10 @@
     lodash "^4.17.21"
     tweetnacl-util "^0.15.1"
 
-"@verida/client-ts@^1.1.12", "@verida/client-ts@^1.1.13":
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/@verida/client-ts/-/client-ts-1.1.13.tgz#b467b1c5ee6f7ab0a8843ce75dbf22610b3708ca"
-  integrity sha512-RZnUQIelHmrGxzwWZctWh+k6dv1BNJXYIj0GgsCIbrqCJYjBF37ITpUherfvIKiEkBSgZsfu1TkHAuZMF42ZJw==
+"@verida/client-ts@^1.1.14":
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/@verida/client-ts/-/client-ts-1.1.14.tgz#fcda895d285e0c79fd5938e6e34a386509906815"
+  integrity sha512-oYM02XdYatJrRTcKpA9IS0emXP63nO7I3OxVQKGUoDteOiYjfJ5Q99yj7JVDhMpFm4XzDxetn8ZfPNXdBB9Ieg==
   dependencies:
     "@verida/account" "^1.1.9"
     "@verida/account-node" "^1.1.9"
@@ -2086,15 +2086,15 @@
     "@verida/keyring" "^1.1.3"
     did-resolver "^3.1.2"
 
-"@verida/did-resolver@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@verida/did-resolver/-/did-resolver-0.1.8.tgz#0a30a33eedb3f564b3bd5b943ed9b1111c9859b3"
-  integrity sha512-yUrURVnNmsElSxOnyxs/wINUpAKccrXzzd84Ryq/iHETUxsmOlsSP1Bxxgbnwj4Ci1YQ+KyAY9il/Ycp/lwn/w==
+"@verida/did-resolver@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@verida/did-resolver/-/did-resolver-0.1.9.tgz#7f97cfdeddab52751f9e393f67cba319da79e160"
+  integrity sha512-zuGmfmLizOnaFkg9Sa22Zgc6nH+gP7G2/GPq8PxXPT+JxALMRsjRVKBlLrcL24kieHhGoEkYuqkVdBY1H1xwTQ==
   dependencies:
     "@verida/did-client" "^0.1.8"
     did-resolver "^3.1.2"
 
-"@verida/encryption-utils@^1.1.2", "@verida/encryption-utils@^1.1.3":
+"@verida/encryption-utils@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@verida/encryption-utils/-/encryption-utils-1.1.3.tgz#e2c2f4918027f3e53d938fb3bc3966ebf1571249"
   integrity sha512-qxLH0Tt4ufgE0I3aJFZfwjS2jACROy+X9oocUtvMInTTZNshHCt0uoyr7BVsnY6Ihifk6lkf9jjs18y9wN2xyA==
@@ -2103,7 +2103,7 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@verida/keyring@^1.1.2", "@verida/keyring@^1.1.3":
+"@verida/keyring@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@verida/keyring/-/keyring-1.1.3.tgz#26e827f2877c3be0ba0dfdedc761a1c6a1ad905d"
   integrity sha512-qeXBMRMxU3BW7UtGsJD5rd2ZOc9j8C68iWnGOqfFsHt8aSg8uR9d24E6scDb/KX7mK6Jcp0xSKd0meRzLBmy4g==
@@ -2124,13 +2124,13 @@
     "@verida/keyring" "^1.1.3"
     url-parse "^1.5.3"
 
-"@verida/verifiable-credentials@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-0.1.4.tgz#adbdd4d6212e18a9f50adc8abbe21c33e6b8581f"
-  integrity sha512-uPylyR864X1kxLcmc98JO88bqsZkMV3ATWEqKFreA17+/SefxJ4wWS1WbxDc8L0Mx/IiedOjhB6HTcuySQYE4Q==
+"@verida/verifiable-credentials@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-0.1.5.tgz#7ecdd29b73e65c7fa076591ca1e7a0c629927d58"
+  integrity sha512-9C9yJYm0Ikxbt+KpkowWrRBhdIqonVoCubHXn7fH8uZGVcE3cKZHZSggm7v6mRyleFRVT6I7LK+W3/Vyt9+7og==
   dependencies:
-    "@verida/client-ts" "^1.1.13"
-    "@verida/did-resolver" "^0.1.8"
+    "@verida/client-ts" "^1.1.14"
+    "@verida/did-resolver" "^0.1.9"
     "@verida/encryption-utils" "^1.1.3"
     dayjs "^1.10.7"
     did-jwt "^5.12.1"
@@ -2139,13 +2139,13 @@
     tweetnacl-util "^0.15.1"
     url "^0.11.0"
 
-"@verida/vue-account@^0.1.22":
-  version "0.1.22"
-  resolved "https://registry.yarnpkg.com/@verida/vue-account/-/vue-account-0.1.22.tgz#f12e220e8ef2c83992a0fa22676bd325bcf67da3"
-  integrity sha512-maDau7oAEmxSn8tR7XQUeChOk6ZmrAOjywsKvhFcH/mWDZWLQsaEijGFC4BTADikYzXyiTJghUDHlDPplpESag==
+"@verida/vue-account@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@verida/vue-account/-/vue-account-0.1.26.tgz#5f0e9fad8446bda1e987c7b34dde7aac78b677c5"
+  integrity sha512-nhMtDm37tUcbVpcMiZ0BebPP0Tfvupd8lx6AFxeFZl5dgWD7EpMPQUqB69dGsnU7XGzcpbdMABvfA1X+opmE/w==
   dependencies:
-    "@verida/account-web-vault" "^1.1.9"
-    "@verida/client-ts" "^1.1.12"
+    "@verida/account-web-vault" "^1.1.11"
+    "@verida/client-ts" "^1.1.14"
     store "^2.0.12"
     vue-clipboard2 "^0.3.3"
 
@@ -4948,10 +4948,15 @@ did-jwt@^5.12.1, did-jwt@^5.12.3:
     multiformats "^9.4.10"
     uint8arrays "^3.0.0"
 
-did-resolver@^3.1.0, did-resolver@^3.1.2, did-resolver@^3.1.5:
+did-resolver@^3.1.0, did-resolver@^3.1.2:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/did-resolver/-/did-resolver-3.1.5.tgz#1a82a00fa96d64085676183bff40ebc13c88cd6a"
   integrity sha512-/4lM1vK5osnWVZ2oN9QhlWV5xOwssuLSL1MvueBc8LQWotbD5kM9XQMe7h4GydYpbh3JaWMFkOWwc9jvSZ+qgg==
+
+did-resolver@^3.1.5:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/did-resolver/-/did-resolver-3.2.0.tgz#b89edd0dd70ad6f1c65ca1285472e021c2239707"
+  integrity sha512-8YiTRitfGt9hJYDIzjc254gXgJptO4zq6Q2BMZMNqkbCf9EFkV6BD4QIh5BUF4YjBglBgJY+duQRzO3UZAlZsw==
 
 diff-sequences@^24.9.0:
   version "24.9.0"
