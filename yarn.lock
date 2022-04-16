@@ -2149,10 +2149,10 @@
     store "^2.0.12"
     vue-clipboard2 "^0.3.3"
 
-"@verida/vue-credentials-view@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@verida/vue-credentials-view/-/vue-credentials-view-0.1.0.tgz#91225370ad232c8ddc3847222d2958d566ba77d7"
-  integrity sha512-aRSph1YHlhLa0maIuR9Mp+vwRzfqlm+L35892fneWicCzRs26+nXTjj96+OUvkBorcevJQK4IYk37ZkFaiSM+w==
+"@verida/vue-credentials-view@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@verida/vue-credentials-view/-/vue-credentials-view-0.1.3.tgz#5d8b857992bdb14540e21ec21332fec558831fbd"
+  integrity sha512-OusqK/UX6p1NfnYvK4glhQyYH8dlPMXSXqJR1egtyejfx1bNufL60tIYAAnk1460wTLYAHXbrdbpUlDXj1pWuQ==
   dependencies:
     underscore "^1.13.2"
 
