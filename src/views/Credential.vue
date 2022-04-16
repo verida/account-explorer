@@ -46,16 +46,18 @@ export default defineComponent({
       try {
         const uri = this.$route.query.uri as string;
         const res = await VeridaHelper.readVerifiedCredential(uri);
-        this.setCredential(res);
-        const isExpired = VeridaHelper.hasCredentialExpired(res);
         console.log(res);
 
+        // this.setCredential(res);
+        const isExpired = VeridaHelper.hasCredentialExpired(res);
         if (isExpired) {
           this.type = "warning";
         } else {
           this.type = "success";
         }
       } catch (error) {
+        console.log({ error });
+
         this.handleError();
         this.type = "invalid";
       } finally {

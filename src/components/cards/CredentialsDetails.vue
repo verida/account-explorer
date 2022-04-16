@@ -11,12 +11,12 @@
       <div class="vc-block">
         <div class="mr-2 vc-block-section">
           <h4 class="my-1">Credential Issued By</h4>
-          <div class="vc-content">
+          <!-- <div class="vc-content">
             <div>
               <img
-                v-if="credentialInfo.issuerProfile.avatar?.uri"
+                v-if="credentialInfo.issuerProfile?.avatar?.uri"
                 alt="user-avatar"
-                :src="credentialInfo.issuerProfile.avatar?.uri"
+                :src="credentialInfo.issuerProfile?.avatar?.uri"
               />
               <img
                 v-else
@@ -32,7 +32,7 @@
                 {{ truncateDID(credentialInfo.issuerProfile.did) }}
               </p>
             </div>
-          </div>
+          </div> -->
           <p class="mt-1">
             <a :href="`/did/${credentialInfo.issuerProfile.did}`">
               Issuer Profile

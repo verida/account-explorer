@@ -37,6 +37,8 @@ export default createStore({
         await veridaHelper.getProfile(did);
         commit("setProfile", veridaHelper.profile);
       } catch (error) {
+        console.log(error);
+
         commit("setError", "DID not found");
       }
     },

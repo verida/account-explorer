@@ -43,10 +43,10 @@ class VeridaHelper extends EventEmitter {
     }
   }
 
-  async getProfile(did: string): Promise<any> {
+  async getProfile(did: string, contextName?: string): Promise<any> {
     const profileInstance = await this.client.openPublicProfile(
       did,
-      VUE_APP_VAULT_CONTEXT_NAME,
+      contextName || VUE_APP_VAULT_CONTEXT_NAME,
       "basicProfile"
     );
 
@@ -56,6 +56,7 @@ class VeridaHelper extends EventEmitter {
         this.profile.did = did;
       }
     }
+
     return this.profile;
   }
 
@@ -104,6 +105,8 @@ class VeridaHelper extends EventEmitter {
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
 
+    const url = Utils.explodeVeridaUri(decodedURI);
+
     const decodedPresentation = await Credentials.verifyPresentation(
       jwt as any,
       EnvironmentType.TESTNET
@@ -113,9 +116,15 @@ class VeridaHelper extends EventEmitter {
     const verifiableCredential =
       decodedPresentation.verifiablePresentation.verifiableCredential[0];
 
-    const issuerProfile = await this.getProfile(verifiableCredential.vc.sub);
+    const issuerProfile = await this.getProfile(
+      verifiableCredential.vc.issuer,
+      url.contextName
+    );
 
-    const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
+    const subjectProfile = await this.getProfile(
+      verifiableCredential.vc.sub,
+      url.contextName
+    );
 
     const schemaSpec = await this.getSchemaSpecs(
       verifiableCredential.credentialSubject.schema,
