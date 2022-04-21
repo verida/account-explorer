@@ -1,0 +1,45 @@
+<template>
+  <div
+    class="modal"
+    role="dialog"
+    aria-labelledby="modalTitle"
+    aria-describedby="modalDescription"
+  >
+    <header class="modal-header" id="modalTitle">
+      <slot name="header"> </slot>
+      <button type="button" @click="close" aria-label="Close modal">
+        <img src="../../assets/images/icon_close.svg" alt="arrow_icon" />
+      </button>
+    </header>
+
+    <section class="modal-body" id="modalDescription">
+      <slot name="body"> </slot>
+    </section>
+
+    <footer class="modal-footer">
+      <slot name="footer"> </slot>
+    </footer>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+const { VUE_APP_BASE_URL } = process.env;
+
+export default defineComponent({
+  name: "Modal",
+  props: {
+    profile: {},
+  },
+  data: () => ({
+    url: VUE_APP_BASE_URL,
+  }),
+  components: {},
+  methods: {
+    close() {
+      this.$emit("close");
+    },
+  },
+});
+</script>

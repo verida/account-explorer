@@ -1,5 +1,7 @@
 header {
     @include center-item;
+    margin-top: 1rem;
+    padding: 1rem 0;
 
     .login-section {
         @include center-item;
@@ -12,18 +14,91 @@ header {
         outline: hidden;
         background: $white;
         cursor: pointer;
+    }
+}
 
+.header-nav {
+    display: flex;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        &>* {
+            margin: 0 0.5rem;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 18px;
+                text-align: center;
+                color: #060520;
+                margin: 0px 8px;
+            }
+
+            &>* {
+                margin: 0 0.2rem;
+            }
+        }
     }
 }
 
 
+// Reward NavBar
+
+.rewardNavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 12rem;
+    width: 1440px;
+    height: 36px;
+
+    background: #FFFFFF;
+    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.04), 0px 1px 0px rgba(0, 0, 0, 0.05);
+
+    &-item {
+        ul {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            /* identical to box height */
+
+            text-align: center;
+
+            /* Dark/100 */
+
+            color: #060520;
+
+            a {
+                margin: 0.3rem 2.5rem
+            }
+
+            a:hover {
+                border-bottom: 3px solid $primary;
+                padding: 0.7rem 0;
+            }
+        }
+    }
+
+}
+
+
+
 footer {
     font-size: 0.875rem;
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     width: 100%;
     margin: auto;
-    height: 1.5rem;
+    height: 6.5rem;
 
 
     hr {
@@ -37,6 +112,57 @@ footer {
         a {
             text-decoration: none;
             color: $text-color;
+        }
+    }
+}
+
+
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mediaXl {
+        flex-direction: row;
+    }
+
+}
+
+.content {
+    margin-top: 4rem;
+
+    h1 {
+        font-weight: bold;
+        font-size: 2rem;
+        color: $text-color;
+
+        @include mediaXl {
+            font-size: 4rem;
+        }
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 150%;
+        letter-spacing: -0.03em;
+
+    }
+
+    &-button {
+        display: flex;
+    }
+}
+
+.landing-image {
+    img {
+        height: 20rem;
+        width: 20rem;
+
+        @include mediaXl {
+            height: 87%;
+            width: 87%;
         }
     }
 }

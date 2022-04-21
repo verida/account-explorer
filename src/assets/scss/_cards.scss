@@ -214,9 +214,9 @@
 }
 
 
-.vc-credential{
-//  height: 100vh;
- margin: 2rem 0;
+.vc-credential {
+  //  height: 100vh;
+  margin: 2rem 0;
 }
 
 .vc-details {
@@ -320,5 +320,17 @@
         background: rgb(187, 184, 184);
       }
     }
+  }
+}
+
+
+.profile-account {
+  margin-bottom: 10rem;
+
+  h5 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: $text-color;
+    opacity: 0.6;
   }
 }

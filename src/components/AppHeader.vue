@@ -3,12 +3,35 @@
     <router-link to="/">
       <img alt="Vue logo" src="../assets/images/logoverida.svg"
     /></router-link>
-    <vda-account
-      :logo="logo"
-      :contextName="contextName"
-      :onLogout="onLogout"
-      :onSuccess="onSuccess"
-    />
+    <div class="header-nav">
+      <ul>
+        <li>
+          <img
+            alt="Account Explorer"
+            src="../assets/images/icon_accountExplorer.svg"
+          /><a href="/">Account Explorer</a>
+        </li>
+        <li>
+          <img alt="Manage Tokens" src="../assets/images/icon_coin.svg" /><a
+            href="/"
+            >Manage Tokens</a
+          >
+        </li>
+        <li>
+          <img alt="Verida Rewards" src="../assets/images/icon_star.svg" /><a
+            href="/"
+            >Verida Rewards</a
+          >
+        </li>
+      </ul>
+
+      <vda-account
+        :logo="logo"
+        :contextName="contextName"
+        :onLogout="onLogout"
+        :onSuccess="onSuccess"
+      />
+    </div>
   </header>
 </template>
 

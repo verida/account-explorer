@@ -1,16 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
-import ProfileDetails from "../views/ProfileDetails.vue";
-import Credential from "../views/Credential.vue";
-import Connect from "../views/Connect.vue";
+import HomeUI from "../views/Home.vue";
+import ProfileUI from "../views/ProfileDetails.vue";
+import RewardsUI from "../views/Rewards.vue";
+import CredentialUI from "../views/Credential.vue";
+import ConnectUI from "../views/Connect.vue";
+// import SkillsAccountSetup from "../components/cards/SkillsAccountSetup.vue";
 
-import { CONNECT, CREDENTIAL, USER_PROFILE } from "../constant/index";
+import { CONNECT, CREDENTIAL, REWARDS, USER_PROFILE } from "../constant/index";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomeUI,
   },
   {
     path: "/did",
@@ -20,18 +22,24 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/did/:did",
     name: USER_PROFILE,
-    component: ProfileDetails,
+    component: ProfileUI,
+  },
+  {
+    path: "/rewards",
+    name: REWARDS,
+    // component: SkillsAccountSetup,
+    component: RewardsUI,
   },
   {
     path: "/credential",
     name: CREDENTIAL,
     meta: { field: "info" },
-    component: Credential,
+    component: CredentialUI,
   },
   {
     path: "/connect",
     name: CONNECT,
-    component: Connect,
+    component: ConnectUI,
   },
 ];
 
