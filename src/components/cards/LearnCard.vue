@@ -1,29 +1,27 @@
 <template>
   <div class="learn">
     <div class="learn-img">
-      <img src="../../assets/images/bg_ipfs.png" alt="bg_ipfs" />
+      <img :src="item.img" :alt="item.title" />
     </div>
     <div class="learn-title">
-      <h4>Lectus neque, facilisi sit. Etiam dolor sit amer morfius tema</h4>
+      <h4>{{ item.title }}</h4>
       <div class="learn-title-icons">
         <div>
           <img src="../../assets/images/icon_stack.svg" alt="icon_stack" />
-          <span>6 Lesson</span>
+          <span>{{ item.noOfLesson }} Lesson</span>
         </div>
         <div>
           <img src="../../assets/images/icon_clock.svg" alt="icon_clock" />
-          <span>- 50min</span>
+          <span>- {{ item.duration }}min</span>
         </div>
       </div>
     </div>
     <p>
-      Ut imperdiet nisi, turpis scelerisque sed. Euismod diam mi aliquam non ac.
-      Tincidunt et, in ac non scelerisque dictum pharetra id amet. Netus a
-      vestibulum felis mi lorem
+      {{ item.description }}
     </p>
     <div class="learn-chip">
-      <span class="chip chip-secondary">NOT STARTED</span>
-      <span class="chip chip-primary ml-2">100 XP</span>
+      <span class="chip chip-secondary">{{ item.status }}</span>
+      <span class="chip chip-primary ml-2">{{ item.points }} XP</span>
     </div>
     <div class="border-line" />
     <div class="learn-button">
@@ -40,7 +38,7 @@ const { VUE_APP_BASE_URL } = process.env;
 
 export default defineComponent({
   name: "LearnCard",
-  props: {},
+  props: ["item"],
   data: () => ({
     url: VUE_APP_BASE_URL,
   }),

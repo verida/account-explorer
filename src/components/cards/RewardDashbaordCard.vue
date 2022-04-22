@@ -1,11 +1,12 @@
 <template>
-  <div :class="[`rewards rewards-${type}`]">
+  <div :class="[`rewards rewards-${item.color}`]">
     <div class="rewards-icon">
-      <img alt="union" src="../../assets/images/icon_union.svg" />
+      <img alt="union" :src="item.img" />
     </div>
     <div class="rewards-text">
-      <span>0</span>/ <span>800</span>
-      <p>Number of XP earned</p>
+      <span>{{ item.completed }}</span
+      >/ <span>{{ item.total }}</span>
+      <p>{{ item.title }}</p>
     </div>
   </div>
 </template>
@@ -14,10 +15,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "RewardDashbaordCard",
-  props: ["type"],
+  props: ["item"],
   components: {},
-  beforeMount() {
-    console.log(this.type);
-  },
 });
 </script>

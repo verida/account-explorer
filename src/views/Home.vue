@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout mx-5">
     <div class="content">
       <h1>Account Explorer</h1>
       <p class="mt-1">

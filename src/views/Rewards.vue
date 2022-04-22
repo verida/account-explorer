@@ -1,50 +1,50 @@
 <template>
   <div>
     <reward-nav-bar />
-    <div class="layout">
+    <div v-if="isLoggedIn" class="reward-bg">
+      <h2 class="content-title">Progress</h2>
+      <div class="reward-wrapper">
+        <div v-for="item in progressData" :key="item.title">
+          <reward-dashbaord-card :item="item" />
+        </div>
+      </div>
+    </div>
+    <div class="layout" v-else>
       <div class="content">
         <h1>Verida XP Rewards Program</h1>
         <p class="mt-1">
           Gain XP learning about web3 and exploring the Verida ecosystem
         </p>
         <div class="content-button">
-          <button class="button button-block my-2 mr-4">Get Started</button>
-          <button class="button button-outlined my-2 ml-2">
-            Explorer Skills
-          </button>
+          <button class="button button-block my-2">Get Started</button>
+          <button class="button button-outlined my-2">Explorer Skills</button>
         </div>
       </div>
       <div class="landing-image">
         <img src="../assets/images/rewards_ui.svg" alt="reward_ui" />
       </div>
     </div>
-    <div>
-      <h2 class="content-title">Progress</h2>
-      <div class="reward-dashboard">
-        <reward-dashbaord-card type="dark" />
-        <reward-dashbaord-card type="default" />
-        <reward-dashbaord-card type="light" />
+    <div id="learn" class="learn-bg">
+      <h2 class="content-title">Learn</h2>
+      <div class="learn-wrapper">
+        <div class="learnContainer" v-for="item in learnData" :key="item.img">
+          <learn-card :item="item" />
+        </div>
       </div>
     </div>
-    <div id="learn">
-      <h2 class="content-title">Learn</h2>
-      <learn-card />
-    </div>
-    <div id="Skills">
+    <div id="skills" class="skills-bg">
       <h2 class="content-title">skills</h2>
-      <skill-card />
+      <div class="skills-wrapper">
+        <div v-for="item in skillsData" :key="item.img">
+          <skill-card :item="item" />
+        </div>
+      </div>
     </div>
-    <modal v-show="isModalVisible" @close="closeModal">
-      <template v-slot:header>
-        <h2 class="content-title">Set up your Verida Vault account</h2>
-      </template>
-      <template v-slot:body>
-        <skills-description />
-      </template>
-    </modal>
-    <div id="FAQs">
+    <div id="faqs">
       <h2 class="content-title content-title-center">FAQS</h2>
-      <faqs-card />
+      <div v-for="(item, index) in faqsData" :key="index">
+        <faqs-card :item="item" />
+      </div>
     </div>
   </div>
 </template>
@@ -52,11 +52,10 @@
 import { defineComponent } from "vue";
 import SkillCard from "@/components/cards/SkillCard.vue";
 import RewardDashbaordCard from "@/components/cards/RewardDashbaordCard.vue";
-import SkillsDescription from "@/components/SkillsDescription.vue";
 import LearnCard from "@/components/cards/LearnCard.vue";
-import Modal from "@/components/modal/Modal.vue";
 import FaqsCard from "@/components/FAQs.vue";
 import RewardNavBar from "@/components/RewardNavBar.vue";
+import { FAQS, LEARN, PROGRESS, SKILLS } from "../mock/";
 
 export default defineComponent({
   name: "Home",
@@ -64,14 +63,18 @@ export default defineComponent({
     LearnCard,
     SkillCard,
     RewardDashbaordCard,
-    SkillsDescription,
-    Modal,
     RewardNavBar,
     FaqsCard,
   },
   data: () => ({
-    path: "",
+    randomKey: Math.random(),
+    isLoggedIn: true,
+    // isLoggedIn: veridaHelper.connected,
     isModalVisible: true,
+    faqsData: FAQS,
+    learnData: LEARN,
+    skillsData: SKILLS,
+    progressData: PROGRESS,
   }),
   methods: {
     showModal() {

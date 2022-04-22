@@ -7,9 +7,12 @@
   >
     <header class="modal-header" id="modalTitle">
       <slot name="header"> </slot>
-      <button type="button" @click="close" aria-label="Close modal">
-        <img src="../../assets/images/icon_close.svg" alt="arrow_icon" />
-      </button>
+      <img
+        @click="close"
+        aria-label="Close modal"
+        src="../../assets/images/icon_close.svg"
+        alt="arrow_icon"
+      />
     </header>
 
     <section class="modal-body" id="modalDescription">

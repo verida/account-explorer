@@ -4,8 +4,8 @@
     <div class="rewardNavBar-item">
       <ul>
         <a href="#learn">Learn</a>
-        <a href="#Skills">Skills</a>
-        <a href="#FAQs">FAQs</a>
+        <a href="#skills">Skills</a>
+        <a href="#faqs">FAQs</a>
       </ul>
     </div>
   </div>

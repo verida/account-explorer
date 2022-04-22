@@ -1,5 +1,5 @@
 <template>
-  <div class="credential mt-5 mx-1">
+  <div class="credential mt-5 mx-5">
     <h3>Credential Verification</h3>
     <pulse-loader
       class="credential-loader my-5"

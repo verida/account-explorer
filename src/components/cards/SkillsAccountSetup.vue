@@ -1,9 +1,5 @@
 <template>
   <div class="skillcard">
-    <!-- <div class="skillcard-header">
-      <h2 class="content-title">Set up your Verida Vault account</h2>
-      <img src="../../assets/images/icon_close.svg" alt="arrow_icon" />
-    </div> -->
     <div class="skillcard-content">
       <div>
         <p>Project</p>
