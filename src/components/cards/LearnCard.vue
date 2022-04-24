@@ -20,8 +20,12 @@
       {{ item.description }}
     </p>
     <div class="learn-chip">
-      <span class="chip chip-secondary">{{ item.status }}</span>
-      <span class="chip chip-primary ml-2">{{ item.points }} XP</span>
+      <div class="chip chip-secondary">
+        <img src="../../assets/images/icon_close_circle.svg" alt="icon_clock" />
+        <span>{{ item.status }}</span>
+      </div>
+
+      <div class="chip chip-primary ml-2">{{ item.points }} XP</div>
     </div>
     <div class="border-line" />
     <div class="learn-button">

@@ -6,10 +6,18 @@
 }
 
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 body {
     font-family: "Sora", sans-serif;
     font-style: normal;
 }
+
+
 
 // Overrides @verida/verifiable-credential-view packages
 .vda-vc-display h2 {

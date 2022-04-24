@@ -8,13 +8,25 @@
       <h4>{{ item.title }}</h4>
     </div>
     <div class="skills-bottom-bar">
-      <span class="chip chip-secondary">{{ item.status }}</span>
+      <div class="chip chip-secondary">
+        <img src="../../assets/images/icon_close_circle.svg" alt="icon_clock" />
+        <span>{{ item.status }}</span>
+      </div>
       <span class="chip chip-primary ml-2">{{ item.reward }} XP</span>
     </div>
   </div>
   <modal v-show="isModalVisible" @close="closeModal">
     <template v-slot:header>
-      <h2 class="content-title">Set up your Verida Vault account</h2>
+      <div class="skill-setup-title-mobile">
+        <img
+          height="15"
+          alt="Vue logo"
+          src="../../assets/images/logoverida.svg"
+        />
+      </div>
+      <h2 class="content-title skill-setup-title">
+        Set up your Verida Vault account
+      </h2>
     </template>
     <template v-slot:body>
       <skills-description />
@@ -23,7 +35,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Modal from "@/components/modal/Modal.vue";
+import Modal from "@/components/common/Modal.vue";
 import SkillsDescription from "@/components/SkillsDescription.vue";
 
 export default defineComponent({
@@ -41,9 +53,6 @@ export default defineComponent({
     openModal() {
       this.isModalVisible = true;
     },
-  },
-  beforeMount() {
-    console.log(this.item);
   },
 });
 </script>

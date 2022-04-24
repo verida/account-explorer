@@ -2,27 +2,27 @@
   <div class="header-wrapper">
     <header class="header" :key="connected">
       <router-link to="/">
-        <img alt="Vue logo" src="../assets/images/logoverida.svg"
+        <img alt="Vue logo" src="../../assets/images/logoverida.svg"
       /></router-link>
       <div class="header-nav">
         <ul>
           <li>
             <img
               alt="Account Explorer"
-              src="../assets/images/icon_accountExplorer.svg"
+              src="../../assets/images/icon_accountExplorer.svg"
             /><a href="/">Account Explorer</a>
           </li>
           <li>
-            <img alt="Manage Tokens" src="../assets/images/icon_coin.svg" /><a
-              href="/"
-              >Manage Tokens</a
-            >
+            <img
+              alt="Manage Tokens"
+              src="../../assets/images/icon_coin.svg"
+            /><a href="/">Manage Tokens</a>
           </li>
           <li>
-            <img alt="Verida Rewards" src="../assets/images/icon_star.svg" /><a
-              href="/"
-              >Verida Rewards</a
-            >
+            <img
+              alt="Verida Rewards"
+              src="../../assets/images/icon_star.svg"
+            /><a href="/rewards">Verida Rewards</a>
           </li>
         </ul>
 
@@ -32,6 +32,7 @@
           :onLogout="onLogout"
           :onSuccess="onSuccess"
         />
+        <MyIcon />
       </div>
     </header>
   </div>

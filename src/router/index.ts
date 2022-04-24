@@ -4,7 +4,6 @@ import ProfileUI from "../views/ProfileDetails.vue";
 import RewardsUI from "../views/Rewards.vue";
 import CredentialUI from "../views/Credential.vue";
 import ConnectUI from "../views/Connect.vue";
-// import SkillsAccountSetup from "../components/cards/SkillsAccountSetup.vue";
 
 import { CONNECT, CREDENTIAL, REWARDS, USER_PROFILE } from "../constant/index";
 
@@ -27,7 +26,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/rewards",
     name: REWARDS,
-    // component: SkillsAccountSetup,
     component: RewardsUI,
   },
   {

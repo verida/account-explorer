@@ -10,7 +10,7 @@
       <img
         @click="close"
         aria-label="Close modal"
-        src="../../assets/images/icon_close.svg"
+        src="../../assets/images/icon_round_close.svg"
         alt="arrow_icon"
       />
     </header>
@@ -32,9 +32,6 @@ const { VUE_APP_BASE_URL } = process.env;
 
 export default defineComponent({
   name: "Modal",
-  props: {
-    profile: {},
-  },
   data: () => ({
     url: VUE_APP_BASE_URL,
   }),

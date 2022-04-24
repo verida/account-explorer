@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div id="faqs">
+    <div id="faqs" class="faqs-wrapper">
       <h2 class="content-title content-title-center">FAQS</h2>
       <div v-for="(item, index) in faqsData" :key="index">
         <faqs-card :item="item" />
@@ -68,8 +68,7 @@ export default defineComponent({
   },
   data: () => ({
     randomKey: Math.random(),
-    isLoggedIn: true,
-    // isLoggedIn: veridaHelper.connected,
+    isLoggedIn: false,
     isModalVisible: true,
     faqsData: FAQS,
     learnData: LEARN,

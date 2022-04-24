@@ -1,15 +1,11 @@
 .container {
     position: relative;
-    min-height: 90vh;
-    // margin: 1rem 7rem;
-
-    @include mediaMd {
-        // margin: 1rem 2rem;
-    }
+    height: 100%;
+    overflow: hidden;
 }
 
 .text-danger {
-    color: rgb(199, 31, 31);
+    color: $invalid;
 }
 
 
@@ -20,10 +16,22 @@
 }
 
 
-a {
-    text-decoration: none;
-    color: inherit;
+//content title
+.content-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    color: $black;
+    margin: 1.5rem 0;
+    text-transform: capitalize;
+
+    &-center {
+        text-align: center;
+    }
 }
+
+
+
 
 // Margin & Padding
 $spaceamounts: (1, 2, 3, 4, 5);

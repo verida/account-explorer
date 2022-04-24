@@ -1,9 +1,15 @@
 <template>
   <div class="skillcard">
+    <h4 class="skill-setup-title-mobile">Set up your Verida Vault account</h4>
     <div class="skillcard-content">
-      <div>
+      <div class="skillcard-content-project">
         <p>Project</p>
-        <span class="chip chip-outlined">Verida</span>
+        <span class=""
+          ><img
+            height="15"
+            alt="Vue logo"
+            src="../../assets/images/logoverida.svg"
+        /></span>
       </div>
       <div>
         <p>Status</p>
@@ -13,7 +19,7 @@
         <p>Rewards</p>
         <span class="chip chip-primary">300XP</span>
       </div>
-      <button class="button button-primary">
+      <button class="button button-primary skillcard-content-button">
         <img src="../../assets/images/icon_check.svg" alt="arrow_icon" />
         Complete
       </button>
