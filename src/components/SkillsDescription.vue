@@ -30,7 +30,7 @@
       <div>
         <img src="../assets/images/skill_desc_image.png" alt="skills-desc" />
       </div>
-      <button class="button button-primary button-fw skill-desc-desktop-button">
+      <button class="button button-primary skill-desc-desktop-button">
         <img src="../assets/images/icon_check.svg" alt="arrow_icon" />
         Complete
       </button>

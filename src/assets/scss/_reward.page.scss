@@ -115,6 +115,8 @@
 }
 
 .skillsdescription {
+    position: relative;
+
     div {
         display: flex;
         flex-direction: column;
@@ -145,9 +147,13 @@
 
     button {
         display: none;
-
         @include mediaMd {
-            display: block;
+            display: flex;
+            position: fixed;
+            left: 0;
+            width: 80%;
+            margin: 0 2.5rem;
+            bottom: 0;
         }
     }
 }
@@ -160,6 +166,7 @@
     }
 
 }
+
 
 //Learn Card
 
