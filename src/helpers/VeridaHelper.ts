@@ -105,8 +105,6 @@ class VeridaHelper extends EventEmitter {
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
 
-    const url = Utils.explodeVeridaUri(decodedURI);
-
     const decodedPresentation = await Credentials.verifyPresentation(
       jwt as any,
       EnvironmentType.TESTNET
@@ -118,13 +116,10 @@ class VeridaHelper extends EventEmitter {
 
     const issuerProfile = await this.getProfile(
       verifiableCredential.vc.issuer,
-      url.contextName
+      verifiableCredential.vc.veridaContextName
     );
 
-    const subjectProfile = await this.getProfile(
-      verifiableCredential.vc.sub,
-      url.contextName
-    );
+    const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
       verifiableCredential.credentialSubject.schema,

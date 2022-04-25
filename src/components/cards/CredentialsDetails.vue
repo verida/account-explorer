@@ -11,7 +11,7 @@
       <div class="vc-block">
         <div class="mr-2 vc-block-section">
           <h4 class="my-1">Credential Issued By</h4>
-          <!-- <div class="vc-content">
+          <div class="vc-content">
             <div>
               <img
                 v-if="credentialInfo.issuerProfile?.avatar?.uri"
@@ -32,7 +32,7 @@
                 {{ truncateDID(credentialInfo.issuerProfile.did) }}
               </p>
             </div>
-          </div> -->
+          </div>
           <p class="mt-1">
             <a :href="`/did/${credentialInfo.issuerProfile.did}`">
               Issuer Profile
@@ -95,7 +95,7 @@
     </div>
     <accordion title="More Info">
       <pre>
-          {{ JSON.stringify(credentialInfo, null, 2) }}
+          {{ JSON.stringify(credentialInfo.verifiableCredential, null, 2) }}
       </pre>
     </accordion>
   </div>
