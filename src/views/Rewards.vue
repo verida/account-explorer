@@ -1,15 +1,15 @@
 <template>
   <div>
     <reward-nav-bar />
-    <div v-if="isLoggedIn" class="reward-bg">
+    <section v-if="isLoggedIn" class="reward-bg">
       <h2 class="content-title">Progress</h2>
       <div class="reward-wrapper">
         <div v-for="item in progressData" :key="item.title">
           <reward-dashbaord-card :item="item" />
         </div>
       </div>
-    </div>
-    <div class="layout" v-else>
+    </section>
+    <section class="layout" v-else>
       <div class="content">
         <h1>Verida XP Rewards Program</h1>
         <p class="mt-1">
@@ -23,29 +23,29 @@
       <div class="landing-image">
         <img src="../assets/images/rewards_ui.svg" alt="reward_ui" />
       </div>
-    </div>
-    <div id="learn" class="learn-bg">
+    </section>
+    <section id="learn" class="learn-bg">
       <h2 class="content-title">Learn</h2>
       <div class="learn-wrapper">
         <div class="learnContainer" v-for="item in learnData" :key="item.img">
           <learn-card :item="item" />
         </div>
       </div>
-    </div>
-    <div id="skills" class="skills-bg">
+    </section>
+    <section id="skills" class="skills-bg">
       <h2 class="content-title">skills</h2>
       <div class="skills-wrapper">
         <div v-for="item in skillsData" :key="item.img">
           <skill-card :item="item" />
         </div>
       </div>
-    </div>
-    <div id="faqs" class="faqs-wrapper">
+    </section>
+    <section id="faqs" class="faqs-wrapper">
       <h2 class="content-title content-title-center">FAQS</h2>
       <div v-for="(item, index) in faqsData" :key="index">
         <faqs-card :item="item" />
       </div>
-    </div>
+    </section>
   </div>
 </template>
 <script lang="ts">

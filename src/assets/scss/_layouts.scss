@@ -1,9 +1,5 @@
 .header-wrapper {
     background-color: $white;
-
-    @include mediaMd {
-        display: none;
-    }
 }
 
 header {
@@ -11,6 +7,11 @@ header {
     margin-top: 1rem;
     padding: 1rem 0;
     margin: 1.25rem 7rem;
+
+
+    @include mediaMd {
+        margin: 1.25rem 1rem;
+    }
 
     .login-section {
         @include center-item;
@@ -29,10 +30,16 @@ header {
 .header-nav {
     display: flex;
 
+
+
     ul {
         display: flex;
         justify-content: space-around;
         align-items: center;
+
+        @include mediaMd {
+            display: none;
+        }
 
         &>* {
             margin: 0 0.5rem;
@@ -63,12 +70,6 @@ header {
 
 footer {
     font-size: 0.875rem;
-    // position: absolute;
-    // bottom: 0;
-    // width: 100%;
-    margin: auto;
-    height: 6.5rem;
-
 
     hr {
         opacity: 0.1;
@@ -92,7 +93,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 1.5rem ;
+    margin: 0 1.5rem;
 
     @include mediaXl {
         display: flex;

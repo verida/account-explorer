@@ -4,7 +4,7 @@
       <router-link to="/">
         <img alt="Vue logo" src="../../assets/images/logoverida.svg"
       /></router-link>
-      <div class="header-nav">
+      <nav class="header-nav">
         <ul>
           <li>
             <img
@@ -25,15 +25,14 @@
             /><a href="/rewards">Verida Rewards</a>
           </li>
         </ul>
-
         <vda-account
           :logo="logo"
           :contextName="contextName"
           :onLogout="onLogout"
           :onSuccess="onSuccess"
         />
-        <MyIcon />
-      </div>
+        <app-side-nav-bar />
+      </nav>
     </header>
   </div>
 </template>
@@ -41,6 +40,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapMutations, mapState } from "vuex";
+import AppSideNavBar from "@/components/layouts/AppSideNavBar.vue";
 import VeridaHelper from "@/helpers/VeridaHelper";
 import { Context } from "@verida/client-ts";
 
@@ -54,7 +54,7 @@ export default defineComponent({
     contextName: VUE_APP_CONTEXT_NAME,
     logo: VUE_APP_LOGO_URL,
   }),
-  components: {},
+  components: { AppSideNavBar },
   computed: {
     ...mapState(["connected"]),
   },
