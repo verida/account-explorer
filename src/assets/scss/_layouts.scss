@@ -29,9 +29,13 @@ header {
 
 .header-nav {
     display: flex;
+    &-menu {
+        display: none;
 
-
-
+        @include mediaMd {
+            display: block;
+        }
+    }
     ul {
         display: flex;
         justify-content: space-around;
@@ -66,6 +70,62 @@ header {
     }
 }
 
+.appDropdown {
+    text-transform: capitalize;
+
+    &-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px 24px;
+        justify-content: space-between;
+        height: 52px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &-list {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+
+        ul {
+
+
+            li {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0px 24px;
+                height: 52px;
+                margin: 1px 0px;
+            }
+        }
+    }
+
+}
+
+.sideNavBar {
+    transition: background-color 2s ease-out;
+
+    &-content {
+        background: $white;
+        z-index: 9999;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        display: none;
+
+        @include mediaMd {
+            display: block;
+        }
+    }
+
+}
 
 
 footer {

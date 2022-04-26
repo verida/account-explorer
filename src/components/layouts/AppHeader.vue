@@ -31,7 +31,20 @@
           :onLogout="onLogout"
           :onSuccess="onSuccess"
         />
-        <app-side-nav-bar />
+        <div class="header-nav-menu">
+          <img
+            v-if="openSideNav"
+            src="../../assets/images/icon_close.svg"
+            @click="$emit('toggleSideNav')"
+            alt="arrow_icon"
+          />
+          <img
+            v-else
+            src="../../assets/images/icon_menu.svg"
+            @click="$emit('toggleSideNav')"
+            alt="arrow_icon"
+          />
+        </div>
       </nav>
     </header>
   </div>
@@ -40,7 +53,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapMutations, mapState } from "vuex";
-import AppSideNavBar from "@/components/layouts/AppSideNavBar.vue";
 import VeridaHelper from "@/helpers/VeridaHelper";
 import { Context } from "@verida/client-ts";
 
@@ -48,13 +60,15 @@ const { VUE_APP_CONTEXT_NAME, VUE_APP_LOGO_URL } = process.env;
 
 export default defineComponent({
   name: "Header",
+  props: ["toggleSideNav", "openSideNav"],
+  emits: ["toggleSideNav"],
   data: () => ({
     error: null,
     loading: false,
     contextName: VUE_APP_CONTEXT_NAME,
     logo: VUE_APP_LOGO_URL,
   }),
-  components: { AppSideNavBar },
+  components: {},
   computed: {
     ...mapState(["connected"]),
   },

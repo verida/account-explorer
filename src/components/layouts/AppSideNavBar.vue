@@ -1,40 +1,38 @@
 <template>
-  <div class="side-nav">
-    <img src="../../assets/images/icon_close.svg" alt="arrow_icon" />
-    <div class="">
-      <div class="" @click="toggle" role="button">
-        <h5>{{ "item.title" }}</h5>
-        <img
-          src="../../assets/images/icon_down_arrow.svg"
-          alt="arrow_icon"
-          v-if="open"
-        />
-        <img
-          v-else
-          role="button"
-          src="../../assets/images/icon_up_arrow.svg"
-          alt="arrow_icon"
-          @click="toggle"
-        />
-      </div>
-      <div v-if="open" class="faqs-content">
-        <p>
-          {{ "item.description" }}
-        </p>
-      </div>
+  <div class="sideNavBar" v-if="openSideNav">
+    <div class="sideNavBar-content">
+      <drop-down-nav :data="accountExplorer" :hideToggleButton="true" />
+      <drop-down-nav :data="manageTokens" />
+      <drop-down-nav :data="veridaRewards" />
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import DropDownNav from "@/components/common/DropDownNav.vue";
 
 export default defineComponent({
   name: "AppSideNavBar",
-  props: ["item"],
+  props: ["item", "openSideNav"],
   data: () => ({
     open: false,
+    manageTokens: {
+      title: "Manage Tokens",
+      icon: require("../../assets/images/icon_coin.svg"),
+      items: ["dashboard", "claim Token", "Stake Token"],
+    },
+    accountExplorer: {
+      title: "Account Explorer",
+      icon: require("../../assets/images/icon_accountExplorer.svg"),
+      items: [],
+    },
+    veridaRewards: {
+      title: "Verida Rewards",
+      icon: require("../../assets/images/icon_star.svg"),
+      items: [],
+    },
   }),
-  components: {},
+  components: { DropDownNav },
   methods: {
     toggle() {
       this.open = !this.open;
