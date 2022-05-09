@@ -1,27 +1,37 @@
 .container {
     position: relative;
-    min-height: 90vh;
-    margin: 1rem 2rem;
+    height: 100%;
+    overflow: hidden;
+}
 
-    @include mediaMd {
-        margin: 1rem 0rem;
+.text-danger {
+    color: $invalid;
+}
+
+
+.border-line {
+    border: 0.2px solid #f1f1f1;
+    width: 100%;
+    margin: 0.4rem 0;
+}
+
+
+//content title
+.content-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    color: $black;
+    margin: 1.5rem 0;
+    text-transform: capitalize;
+
+    &-center {
+        text-align: center;
     }
 }
 
-.content-wrap {
-    padding-bottom: 2.5rem;
-}
 
 
-.text-danger {
-    color: rgb(199, 31, 31);
-}
-
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
 
 // Margin & Padding
 $spaceamounts: (1, 2, 3, 4, 5);

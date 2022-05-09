@@ -37,9 +37,7 @@
     }
 }
 
-
 // Search input field
-
 .search-input {
     display: flex;
     justify-content: space-between;
@@ -88,11 +86,80 @@
     }
 }
 
-
-
+//credential components
 .credential-loader {
     margin: auto;
     min-height: 70vh;
     text-align: center;
     margin: 5rem 0 0 0;
+}
+
+
+// Modal Component
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    margin: 2rem auto 0 auto;
+    overflow: scroll;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0px -4px 30px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    background: $white;
+    cursor: zoom-out;
+
+    @include mediaMd {
+        width: 100%;
+        border-radius: 20px;
+        padding: 0;
+    }
+
+    &-body {
+        padding: 0.5rem 2.5rem;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+
+        &:nth-child(2) {
+            margin-left: 3rem;
+        }
+    }
+}
+
+//chip-card
+
+.chip {
+    font-weight: 600;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &>* {
+        margin: 0 0.2rem 0 0;
+    }
+
+    &-primary {
+        padding: 0.5rem;
+        background: #F5F4FF;
+        border-radius: $border-radius-chip;
+        color: $primary;
+    }
+
+    &-outlined {
+        padding: 0.5rem;
+        border: 1px solid #CCCCCC;
+        border-radius: $border-radius-chip;
+    }
+
+    &-secondary {
+        padding: 0.5rem;
+        background: #F2F2F2;
+        border-radius: $border-radius-chip;
+    }
 }

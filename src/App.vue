@@ -1,23 +1,36 @@
 <template>
   <div class="container">
-    <div class="content-wrap">
-      <app-header />
+    <app-header @toggleSideNav="toggle" :openSideNav="open" />
+    <main>
+      <app-side-nav-bar :openSideNav="open" />
       <router-view />
-    </div>
-    <app-footer />
+    </main>
   </div>
+  <app-footer />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AppHeader from "@/components/AppHeader.vue";
-import AppFooter from "@/components/AppFooter.vue";
+import AppHeader from "@/components/layouts/AppHeader.vue";
+import AppFooter from "@/components/layouts/AppFooter.vue";
+import AppSideNavBar from "@/components/layouts/AppSideNavBar.vue";
 
 export default defineComponent({
   name: "Header",
   components: {
     AppHeader,
     AppFooter,
+    AppSideNavBar,
+  },
+  data: () => ({
+    open: false,
+  }),
+  methods: {
+    toggle() {
+      console.log("toglle");
+
+      this.open = !this.open;
+    },
   },
 });
 </script>

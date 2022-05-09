@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer mx-5">
     <hr class="my-1" />
     <div class="footer-section">
       <span>&copy; Verida {{ currentYear }}</span>

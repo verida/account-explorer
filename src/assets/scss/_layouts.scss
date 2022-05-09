@@ -1,5 +1,17 @@
+.header-wrapper {
+    background-color: $white;
+}
+
 header {
     @include center-item;
+    margin-top: 1rem;
+    padding: 1rem 0;
+    margin: 1.25rem 7rem;
+
+
+    @include mediaMd {
+        margin: 1.25rem 1rem;
+    }
 
     .login-section {
         @include center-item;
@@ -12,19 +24,112 @@ header {
         outline: hidden;
         background: $white;
         cursor: pointer;
-
     }
+}
+
+.header-nav {
+    display: flex;
+    &-menu {
+        display: none;
+
+        @include mediaMd {
+            display: block;
+        }
+    }
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        @include mediaMd {
+            display: none;
+        }
+
+        &>* {
+            margin: 0 0.5rem;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 18px;
+                text-align: center;
+                color: #060520;
+                margin: 0px 8px;
+            }
+
+            &>* {
+                margin: 0 0.2rem;
+            }
+        }
+    }
+}
+
+.appDropdown {
+    text-transform: capitalize;
+
+    &-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px 24px;
+        justify-content: space-between;
+        height: 52px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &-list {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+
+        ul {
+
+
+            li {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0px 24px;
+                height: 52px;
+                margin: 1px 0px;
+            }
+        }
+    }
+
+}
+
+.sideNavBar {
+    transition: background-color 2s ease-out;
+
+    &-content {
+        background: $white;
+        z-index: 9999;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        display: none;
+
+        @include mediaMd {
+            display: block;
+        }
+    }
+
 }
 
 
 footer {
     font-size: 0.875rem;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin: auto;
-    height: 1.5rem;
-
 
     hr {
         opacity: 0.1;
@@ -37,6 +142,81 @@ footer {
         a {
             text-decoration: none;
             color: $text-color;
+        }
+    }
+}
+
+
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1.5rem;
+
+    @include mediaXl {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 2.5rem 7rem 3rem;
+        background: #FAFAFA;
+        width: 100%;
+    }
+
+
+
+}
+
+.content {
+    margin-top: 4rem;
+
+    h1 {
+        font-weight: bold;
+        font-size: 2rem;
+        color: $text-color;
+
+        @include mediaXl {
+            font-size: 4rem;
+        }
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 150%;
+        letter-spacing: -0.03em;
+
+    }
+
+    &-button {
+        display: flex;
+        align-items: center;
+        // justify-content:center;
+
+        button {
+            margin: 1.5rem 2rem 0 0;
+        }
+
+        @include mediaXl {}
+
+    }
+}
+
+.landing-image {
+    margin: auto;
+
+    img {
+        height: 90%;
+        width: 90%;
+
+        @include mediaXl {
+            img {
+                height: 20rem;
+                width: 20rem;
+            }
+
         }
     }
 }
