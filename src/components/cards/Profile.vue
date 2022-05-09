@@ -14,7 +14,7 @@
         <add-contact />
         <qrcode-vue
           class="qr-img"
-          :value="`${url}/${profile.did}`"
+          :value="`${url}/did/${profile.did}`"
           :size="150"
         />
       </div>
