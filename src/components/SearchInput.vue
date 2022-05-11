@@ -48,7 +48,7 @@ import { defineComponent } from "vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
-import { validateDid } from "@/utils/utils";
+import { CommonUtils } from "@/helpers";
 
 export default defineComponent({
   name: "SearchInput",
@@ -85,7 +85,7 @@ export default defineComponent({
       if (this.didError) {
         return;
       }
-      const isAddressValid = validateDid(this.did as string);
+      const isAddressValid = CommonUtils.validateDid(this.did as string);
       if (!isAddressValid) {
         this.didError = "Verida vault address is invalid";
         return;

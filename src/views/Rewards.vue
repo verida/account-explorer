@@ -68,7 +68,7 @@ export default defineComponent({
   },
   data: () => ({
     randomKey: Math.random(),
-    isLoggedIn: false,
+    isLoggedIn: true,
     isModalVisible: true,
     faqsData: FAQS,
     learnData: LEARN,

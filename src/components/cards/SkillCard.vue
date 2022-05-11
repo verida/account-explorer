@@ -29,11 +29,12 @@
       </h2>
     </template>
     <template v-slot:body>
-      <skills-description />
+      <skills-description :rewardType="item.type" />
     </template>
   </modal>
 </template>
 <script lang="ts">
+1;
 import { defineComponent } from "vue";
 import Modal from "@/components/common/Modal.vue";
 import SkillsDescription from "@/components/SkillsDescription.vue";
@@ -51,6 +52,12 @@ export default defineComponent({
       this.isModalVisible = false;
     },
     openModal() {
+      this.$router.push({
+        path: this.$route.path,
+        query: {
+          type: this.item.type,
+        },
+      });
       this.isModalVisible = true;
     },
   },

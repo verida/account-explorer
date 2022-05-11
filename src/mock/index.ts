@@ -5,6 +5,7 @@ export const SKILLS = [
     reward: "300 XP",
     status: "NOT STARTED",
     isComplete: false,
+    type: "account_setup",
   },
   {
     img: require("../assets/images/icon_skill_avatar.svg"),
@@ -12,6 +13,7 @@ export const SKILLS = [
     reward: "100 XP",
     status: "NOT STARTED",
     isComplete: false,
+    type: "avatar_uploaded",
   },
   {
     img: require("../assets/images/icon_skill_document.svg"),
@@ -19,6 +21,7 @@ export const SKILLS = [
     reward: "200 XP",
     status: "NOT STARTED",
     isComplete: false,
+    type: "markdown_note",
   },
   {
     img: require("../assets/images/icon_skill_user_plus.svg"),
@@ -26,6 +29,7 @@ export const SKILLS = [
     reward: "200 XP",
     status: "NOT STARTED",
     isComplete: false,
+    type: "add_contact",
   },
 ];
 

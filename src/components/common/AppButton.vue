@@ -5,7 +5,7 @@
   >
     <img v-if="startIcon && !isLoading" :src="startIcon" :alt="title" />
     <pulse-loader v-if="isLoading" :color="color" :loading="isLoading" />
-    <slot v-else> {{ text }}</slot>
+    {{ text }}<slot> </slot>
     <img v-if="endIcon && !isLoading" :src="endIcon" :alt="title" />
   </button>
 </template>
@@ -15,10 +15,10 @@ import { defineComponent } from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default defineComponent({
-  name: "Accordion",
+  name: "AppButton",
   props: {
     text: {
-      required: true,
+      required: false,
     },
     variant: {
       required: true,
