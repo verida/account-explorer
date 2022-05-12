@@ -18,7 +18,6 @@
           :size="150"
         />
       </div>
-
       <div class="profile-card-details">
         <h4>{{ profile.name }}</h4>
         <p>
@@ -35,6 +34,16 @@
           <span>DESCRIPTION:</span> <br />
           {{ profile?.description }}
         </p>
+        <div>
+          <button class="button button-outlined mb-1 my-1" @click="toggleView">
+            {{ isCodePreview ? "Close DID Document" : "Show DID Document" }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="code-view">
+      <div v-show="isCodePreview" class="code-view-body">
+        <pre v-html="JSON.stringify(profile, null, 2)"></pre>
       </div>
     </div>
   </div>
@@ -53,6 +62,7 @@ export default defineComponent({
   props: {
     profile: {},
   },
+  components: { QrcodeVue, AddContact },
   setup() {
     const { toClipboard } = useClipboard();
 
@@ -68,8 +78,15 @@ export default defineComponent({
   },
   data: () => ({
     url: VUE_APP_BASE_URL,
+    isCodePreview: false,
+    schema: {},
+    data: {},
   }),
-  components: { QrcodeVue, AddContact },
-  methods: {},
+
+  methods: {
+    toggleView() {
+      this.isCodePreview = !this.isCodePreview;
+    },
+  },
 });
 </script>
