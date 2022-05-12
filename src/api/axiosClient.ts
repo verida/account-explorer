@@ -5,7 +5,8 @@ const { VUE_APP_API_BASE_URL } = process.env;
 console.log(VUE_APP_API_BASE_URL);
 
 const axiosClient = axios.create({
-  baseURL: VUE_APP_API_BASE_URL,
+  baseURL: 'https://obb1yjzibj.execute-api.us-east-1.amazonaws.com/latest',
+  // baseURL: VUE_APP_API_BASE_URL,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
