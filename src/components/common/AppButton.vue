@@ -3,10 +3,10 @@
     :style="styles"
     :class="[`button button-${variant} ${fullWidth && 'button-fw'}`]"
   >
-    <img v-if="startIcon && !isLoading" :src="startIcon" :alt="title" />
+    <img v-if="startIcon && !isLoading" :src="startIcon" :alt="text" />
     <pulse-loader v-if="isLoading" :color="color" :loading="isLoading" />
     {{ text }}<slot> </slot>
-    <img v-if="endIcon && !isLoading" :src="endIcon" :alt="title" />
+    <img v-if="endIcon && !isLoading" :src="endIcon" :alt="text" />
   </button>
 </template>
 
@@ -19,6 +19,7 @@ export default defineComponent({
   props: {
     text: {
       required: false,
+      default: "btn-logo",
     },
     variant: {
       required: true,

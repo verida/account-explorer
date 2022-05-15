@@ -23,8 +23,13 @@
         class="button button-primary skillcard-content-button"
         @click="$emit('claimPoints', (did, rewardType))"
       >
-        <img src="../../assets/images/icon_check.svg" alt="arrow_icon" />
-        Complete
+        <pulse-loader color="#fff" :loading="isLoading" />
+        <img
+          v-if="!isLoading"
+          src="../../assets/images/icon_check.svg"
+          alt="arrow_icon"
+        />
+        <span v-if="!isLoading"> Complete</span>
       </button>
     </div>
   </div>
@@ -32,6 +37,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 const { VUE_APP_BASE_URL } = process.env;
 
@@ -40,12 +46,13 @@ export default defineComponent({
   emits: ["claimPoints"],
   props: {
     rewardType: String,
+    isLoading: Boolean,
   },
   data: () => ({
     url: VUE_APP_BASE_URL,
     did: "did:vda:0x991546Ee69f83076c70aAdA37B04e5a10a004B4b",
   }),
-  components: {},
+  components: { PulseLoader },
   methods: {},
 });
 </script>

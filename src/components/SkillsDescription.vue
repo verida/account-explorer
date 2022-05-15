@@ -1,6 +1,10 @@
 <template>
   <div>
-    <skills-account-setup :rewardType="rewardType" @claimPoints="claimPoints" />
+    <skills-account-setup
+      :rewardType="rewardType"
+      @claimPoints="claimPoints"
+      :isLoading="isLoading"
+    />
     <div class="skillsdescription">
       <div>
         <p>
@@ -37,6 +41,7 @@
       <app-button
         :isLoading="isLoading"
         :startIcon="btnIcon"
+        :fullWidth="true"
         variant="primary"
         @click="claimPoints"
         >Complete</app-button
@@ -76,9 +81,12 @@ export default defineComponent({
           this.did,
           this.rewardType
         );
-        console.log(res);
+        this.$toast.success(res.data?.message);
+        console.log(res.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        this.isLoading = false;
       }
     },
   },
