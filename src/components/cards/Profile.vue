@@ -43,7 +43,7 @@
     </div>
     <div class="code-view">
       <div v-show="isCodePreview" class="code-view-body">
-        <pre v-html="JSON.stringify(profile, null, 2)"></pre>
+        <pre v-html="JSON.stringify(this.didDocument, null, 2)"></pre>
       </div>
     </div>
   </div>
@@ -54,6 +54,7 @@ import { defineComponent } from "vue";
 import useClipboard from "vue-clipboard3";
 import QrcodeVue from "qrcode.vue";
 import AddContact from "@/components/AddContact.vue";
+import veridaHelper from "@/helpers/VeridaHelper";
 
 const { VUE_APP_BASE_URL } = process.env;
 
@@ -81,6 +82,7 @@ export default defineComponent({
     isCodePreview: false,
     schema: {},
     data: {},
+    didDocument: veridaHelper.didDocument,
   }),
 
   methods: {
