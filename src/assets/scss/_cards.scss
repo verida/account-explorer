@@ -214,9 +214,9 @@
 }
 
 
-.vc-credential{
-//  height: 100vh;
- margin: 2rem 0;
+.vc-credential {
+  //  height: 100vh;
+  margin: 2rem 0;
 }
 
 .vc-details {
@@ -293,6 +293,10 @@
   width: 100%;
   border: 1px solid rgba(6, 5, 32, 0.2);
   border-radius: $border-radius;
+
+  &-body {
+    transition: width 2s;
+  }
 
 
   pre {
