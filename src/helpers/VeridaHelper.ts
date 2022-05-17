@@ -53,7 +53,6 @@ class VeridaHelper extends EventEmitter {
       VUE_APP_VAULT_CONTEXT_NAME,
       "basicProfile"
     );
-
     if (profileInstance) {
       this.profile = await profileInstance.getMany({}, {});
       if (this.profile) {
@@ -141,9 +140,6 @@ class VeridaHelper extends EventEmitter {
     );
     const didDocument = await didClient.get(did);
     const doc = didDocument?.export();
-
-    console.log(doc);
-
     this.didDocument = doc;
   }
 
