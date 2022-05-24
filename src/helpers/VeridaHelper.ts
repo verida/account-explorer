@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
-import { getClientContext } from "@verida/verifiable-credentials/dist/utils";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
-import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -21,15 +19,15 @@ const userConfig = {
 };
 
 class VeridaHelper extends EventEmitter {
-  private client: any;
+  private client: Client;
   public profile?: Profile;
-  public context: any;
+  public context?: Context | any;
   private did?: string;
   public connected?: boolean;
   public credentials: any;
   on: any;
 
-  constructor(config: ClientConfig) {
+  constructor(config: any) {
     super();
     this.client = new Client(config);
   }
@@ -101,7 +99,12 @@ class VeridaHelper extends EventEmitter {
   async readVerifiedCredential(uri: string) {
     const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
-    const context = await getClientContext(decodedURI, EnvironmentType.TESTNET);
+    const url = Utils.explodeVeridaUri(decodedURI);
+
+    const context = await this.client.openExternalContext(
+      url.contextName,
+      url.did
+    );
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
 
