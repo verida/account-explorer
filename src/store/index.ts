@@ -35,6 +35,7 @@ export default createStore({
       commit("setLoader", true);
       try {
         await veridaHelper.getProfile(did);
+        await veridaHelper.getDidDocument(did);
         commit("setProfile", veridaHelper.profile);
       } catch (error) {
         console.log(error);

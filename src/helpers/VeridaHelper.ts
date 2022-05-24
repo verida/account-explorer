@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
+import { DIDClient } from "@verida/did-client";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { config } from "@/config/config";
+
 dayjs.extend(utc);
 
 const {
@@ -25,6 +28,7 @@ class VeridaHelper extends EventEmitter {
   private did?: string;
   public connected?: boolean;
   public credentials: any;
+  public didDocument: any;
   on: any;
 
   constructor(config: any) {
@@ -92,7 +96,6 @@ class VeridaHelper extends EventEmitter {
         return true;
       }
     }
-
     return false;
   }
 
@@ -138,6 +141,17 @@ class VeridaHelper extends EventEmitter {
       subjectProfile,
       verifiableCredential,
     };
+  }
+  async getDidDocument(did: string): Promise<void> {
+    const didClient = new DIDClient(
+      config.environments[EnvironmentType.TESTNET].didServerUrl
+    );
+    const didDocument = await didClient.get(did);
+    const doc = didDocument?.export();
+
+    console.log(doc);
+
+    this.didDocument = doc;
   }
 
   logout() {

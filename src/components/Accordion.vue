@@ -34,6 +34,10 @@ export default defineComponent({
     title: {
       required: true,
     },
+    view: {
+      type: Boolean,
+      required: false,
+    },
   },
   data: () => ({
     isCodePreview: false,
