@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "tests/unit/VeridaHelper.spec.js", "tests/unit/VeridaHelper.spec.js"  ],
   "exclude": [
     "node_modules"
   ]

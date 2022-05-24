@@ -3,7 +3,6 @@ import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
 import { DIDClient } from "@verida/did-client";
 import { getClientContext } from "@verida/verifiable-credentials/dist/utils";
-import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 import { Buffer } from "buffer";
@@ -23,18 +22,16 @@ const userConfig = {
   didServerUrl: VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
 };
 
-class VeridaHelper extends EventEmitter {
-  private client: any;
+class VeridaHelper {
+  private client: Client;
   public profile?: Profile;
   public context: any;
   private did?: string;
   public connected?: boolean;
-  public credentials: any;
   public didDocument: any;
   on: any;
 
   constructor(config: ClientConfig) {
-    super();
     this.client = new Client(config);
   }
 
@@ -47,10 +44,10 @@ class VeridaHelper extends EventEmitter {
     }
   }
 
-  async getProfile(did: string): Promise<any> {
+  async getProfile(did: string, contextName?: string): Promise<Profile> {
     const profileInstance = await this.client.openPublicProfile(
       did,
-      VUE_APP_VAULT_CONTEXT_NAME,
+      VUE_APP_VAULT_CONTEXT_NAME || contextName,
       "basicProfile"
     );
 
@@ -60,7 +57,8 @@ class VeridaHelper extends EventEmitter {
         this.profile.did = did;
       }
     }
-    return this.profile;
+
+    return this.profile as Profile;
   }
 
   public async sendMessage(messageData: any): Promise<boolean> {
@@ -80,18 +78,16 @@ class VeridaHelper extends EventEmitter {
 
   public async getSchemaSpecs(schema: string, context: Context): Promise<any> {
     const schemas = await context.getClient().getSchema(schema);
-
     const json = await schemas.getSpecification();
 
     return json;
   }
 
-  hasCredentialExpired(credentials: any): boolean {
-    const vc = credentials.verifiableCredential;
-    if (vc.expirationDate) {
+  hasCredentialExpired(credential: any): boolean {
+    if (credential.expirationDate) {
       // Ensure credential hasn't expired
       const now = dayjs(new Date().toISOString()).utc(true);
-      const expDate = dayjs(vc.expirationDate).utc(true);
+      const expDate = dayjs(credential.expirationDate).utc(true);
 
       if (expDate.diff(now) < 0) {
         return true;
@@ -103,9 +99,15 @@ class VeridaHelper extends EventEmitter {
   async readVerifiedCredential(uri: string) {
     const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
+    console.log(decodedURI);
+
     const context = await getClientContext(decodedURI, EnvironmentType.TESTNET);
 
+    console.log(context);
+
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
+
+    console.log(jwt);
 
     const decodedPresentation = await Credentials.verifyPresentation(
       jwt as any,
@@ -118,12 +120,16 @@ class VeridaHelper extends EventEmitter {
 
     const issuerProfile = await this.getProfile(verifiableCredential.vc.sub);
 
+    console.log(verifiableCredential);
+
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
       verifiableCredential.credentialSubject.schema,
       context
     );
+
+    console.log(schemaSpec);
 
     const publicUri = `${window.origin}/credential?uri=${uri}`;
 
@@ -142,8 +148,6 @@ class VeridaHelper extends EventEmitter {
     const didDocument = await didClient.get(did);
     const doc = didDocument?.export();
 
-    console.log(doc);
-
     this.didDocument = doc;
   }
 
@@ -154,6 +158,6 @@ class VeridaHelper extends EventEmitter {
   }
 }
 
-const veridaHelper = new VeridaHelper(userConfig);
+const VeridaClient = new VeridaHelper(userConfig);
 
-export default veridaHelper;
+export default VeridaClient;
