@@ -99,8 +99,6 @@ class VeridaHelper {
   async readVerifiedCredential(uri: string) {
     const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
-    console.log(decodedURI);
-
     const context = await getClientContext(decodedURI, EnvironmentType.TESTNET);
 
     console.log(context);
