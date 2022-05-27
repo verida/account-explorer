@@ -46,9 +46,12 @@ class VeridaHelper extends EventEmitter {
   }
 
   async getProfile(did: string, contextName?: string): Promise<any> {
+    const profileContextName =
+      contextName || (VUE_APP_VAULT_CONTEXT_NAME as string);
+
     const profileInstance = await this.client.openPublicProfile(
       did,
-      contextName || VUE_APP_VAULT_CONTEXT_NAME,
+      profileContextName,
       "basicProfile"
     );
 
