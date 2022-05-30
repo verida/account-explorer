@@ -38,6 +38,8 @@ export default createStore({
         await veridaHelper.getDidDocument(did);
         commit("setProfile", veridaHelper.profile);
       } catch (error) {
+        console.log(error);
+
         commit("setError", "DID not found");
       }
     },

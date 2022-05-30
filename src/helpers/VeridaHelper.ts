@@ -2,10 +2,8 @@
 import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
 import { DIDClient } from "@verida/did-client";
-import { getClientContext } from "@verida/verifiable-credentials/dist/utils";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
-import { ClientConfig } from "@verida/client-ts/dist/interfaces";
 import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -24,16 +22,16 @@ const userConfig = {
 };
 
 class VeridaHelper extends EventEmitter {
-  private client: any;
+  private client: Client;
   public profile?: Profile;
-  public context: any;
+  public context?: Context | any;
   private did?: string;
   public connected?: boolean;
   public credentials: any;
   public didDocument: any;
   on: any;
 
-  constructor(config: ClientConfig) {
+  constructor(config: any) {
     super();
     this.client = new Client(config);
   }
@@ -47,10 +45,13 @@ class VeridaHelper extends EventEmitter {
     }
   }
 
-  async getProfile(did: string): Promise<any> {
+  async getProfile(did: string, contextName?: string): Promise<any> {
+    const profileContextName =
+      contextName || (VUE_APP_VAULT_CONTEXT_NAME as string);
+
     const profileInstance = await this.client.openPublicProfile(
       did,
-      VUE_APP_VAULT_CONTEXT_NAME,
+      profileContextName,
       "basicProfile"
     );
 
@@ -60,6 +61,7 @@ class VeridaHelper extends EventEmitter {
         this.profile.did = did;
       }
     }
+
     return this.profile;
   }
 
@@ -103,7 +105,12 @@ class VeridaHelper extends EventEmitter {
   async readVerifiedCredential(uri: string) {
     const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
-    const context = await getClientContext(decodedURI, EnvironmentType.TESTNET);
+    const url = Utils.explodeVeridaUri(decodedURI);
+
+    const context = await this.client.openExternalContext(
+      url.contextName,
+      url.did
+    );
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
 
@@ -116,7 +123,10 @@ class VeridaHelper extends EventEmitter {
     const verifiableCredential =
       decodedPresentation.verifiablePresentation.verifiableCredential[0];
 
-    const issuerProfile = await this.getProfile(verifiableCredential.vc.sub);
+    const issuerProfile = await this.getProfile(
+      verifiableCredential.vc.issuer,
+      verifiableCredential.vc.veridaContextName
+    );
 
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 

@@ -14,9 +14,9 @@
           <div class="vc-content">
             <div>
               <img
-                v-if="credentialInfo.issuerProfile.avatar?.uri"
+                v-if="credentialInfo.issuerProfile?.avatar?.uri"
                 alt="user-avatar"
-                :src="credentialInfo.issuerProfile.avatar?.uri"
+                :src="credentialInfo.issuerProfile?.avatar?.uri"
               />
               <img
                 v-else
@@ -95,7 +95,7 @@
     </div>
     <accordion title="More Info">
       <pre>
-          {{ JSON.stringify(credentialInfo, null, 2) }}
+          {{ JSON.stringify(credentialInfo.verifiableCredential, null, 2) }}
       </pre>
     </accordion>
   </div>
