@@ -48,14 +48,14 @@ export default defineComponent({
         const res = await VeridaHelper.readVerifiedCredential(uri);
         this.setCredential(res);
         const isExpired = VeridaHelper.hasCredentialExpired(res);
-        console.log(res);
-
         if (isExpired) {
           this.type = "warning";
         } else {
           this.type = "success";
         }
       } catch (error) {
+        console.log({ error });
+
         this.handleError();
         this.type = "invalid";
       } finally {
