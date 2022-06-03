@@ -122,9 +122,19 @@ class VeridaHelper extends EventEmitter {
     const verifiableCredential =
       decodedPresentation.verifiablePresentation.verifiableCredential[0];
 
+    let veridaContextName;
+
+    // This is a temporal fix because this see ticket  https://github.com/verida/verida-js/issues/207
+
+    if (
+      verifiableCredential.vc.veridaContextName === "Verida: Credential Manager"
+    ) {
+      veridaContextName = verifiableCredential.vc.veridaContextName;
+    }
+
     const issuerProfile = await this.getProfile(
       verifiableCredential.vc.issuer,
-      verifiableCredential.vc.veridaContextName
+      veridaContextName
     );
 
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
