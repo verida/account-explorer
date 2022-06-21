@@ -124,7 +124,7 @@ class VeridaHelper extends EventEmitter {
 
     let veridaContextName;
 
-    // This is a temporal fix because this see ticket  https://github.com/verida/verida-js/issues/207
+    // This is a temporary fix , see reference ticket  https://github.com/verida/verida-js/issues/207
 
     if (
       verifiableCredential.vc.veridaContextName === "Verida: Credential Manager"
