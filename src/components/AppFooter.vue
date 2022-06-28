@@ -3,7 +3,9 @@
     <hr class="my-1" />
     <div class="footer-section">
       <span>&copy; Verida {{ currentYear }}</span>
-      <a href="##">Terms & Conditions</a>
+      <a href="https://www.verida.io/terms-and-conditions"
+        >Terms & Conditions</a
+      >
     </div>
   </footer>
 </template>
