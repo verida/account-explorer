@@ -15,7 +15,8 @@
         <qrcode-vue
           class="qr-img"
           :value="`${url}/did/${profile.did}`"
-          :size="150"
+          :size="200"
+          level="H"
         />
       </div>
       <div class="profile-card-details">
