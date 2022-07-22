@@ -85,7 +85,8 @@
           <qrcode-vue
             class="qr-img"
             :value="credentialInfo.publicUri"
-            :size="150"
+            :size="200"
+            level="H"
           />
         </div>
       </div>
