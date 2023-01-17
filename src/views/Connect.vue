@@ -9,10 +9,10 @@
 </template>
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { config } from "@/config";
 import VeridaHelper from "@/helpers/VeridaHelper";
 import { defineComponent } from "vue";
-const { VUE_APP_CONTEXT_NAME, VUE_APP_LOGO_URL, VUE_APP_LOGIN_TEXT } =
-  process.env;
+
 export default defineComponent({
   name: "Connect",
   props: {},
@@ -21,9 +21,9 @@ export default defineComponent({
     return {
       isLoading: false,
       error: null,
-      contextName: VUE_APP_CONTEXT_NAME,
-      logo: VUE_APP_LOGO_URL,
-      loginText: VUE_APP_LOGIN_TEXT,
+      contextName: config.veridaContextName,
+      logo: config.veridaLogoUrl,
+      loginText: config.veridaLoginText,
     };
   },
   methods: {
@@ -45,7 +45,6 @@ export default defineComponent({
           query: { uri },
         });
       } else {
-        console.log("home");
         this.$router.push({ name: "Home" });
       }
     },
