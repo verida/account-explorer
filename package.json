@@ -12,7 +12,7 @@
 		"acorn": "8.0.1"
 	},
 	"dependencies": {
-		"@verida/client-ts": "^1.1.15",
+		"@verida/client-ts": "^2.0.1",
 		"@verida/did-client": "^0.1.8",
 		"@verida/verifiable-credentials": "^0.1.6",
 		"@verida/vue-account": "^0.1.35",
