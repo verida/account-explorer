@@ -11,6 +11,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { config } from "@/config";
 import VeridaHelper from "@/helpers/VeridaHelper";
+import { Context } from "@verida/client-ts";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -27,7 +28,7 @@ export default defineComponent({
     };
   },
   methods: {
-    async onSuccess(context: any) {
+    async onSuccess(context: Context) {
       await VeridaHelper.connect(context);
       this.handlePrevRoute();
     },

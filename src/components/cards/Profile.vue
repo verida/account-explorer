@@ -14,7 +14,7 @@
         <add-contact />
         <qrcode-vue
           class="qr-img"
-          :value="`${url}/did/${profile.did}`"
+          :value="`${appBaseURL}/did/${profile.did}`"
           :size="200"
           level="H"
         />
@@ -56,8 +56,7 @@ import useClipboard from "vue-clipboard3";
 import QrcodeVue from "qrcode.vue";
 import AddContact from "@/components/AddContact.vue";
 import veridaHelper from "@/helpers/VeridaHelper";
-
-const { VUE_APP_BASE_URL } = process.env;
+import { config } from "@/config";
 
 export default defineComponent({
   name: "Profile",
@@ -79,7 +78,7 @@ export default defineComponent({
     return { onCopy };
   },
   data: () => ({
-    url: VUE_APP_BASE_URL,
+    appBaseURL: config.appBaseURL,
     isCodePreview: false,
     schema: {},
     data: {},

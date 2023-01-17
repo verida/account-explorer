@@ -60,17 +60,15 @@ class VeridaHelper extends EventEmitter {
 
     return this.profile;
   }
-
   private async initialiseMessagingInstance(): Promise<Messaging> {
+    if (!this.context) {
+      throw new Error("No app context");
+    }
     if (this._messagingInstance) {
       return this._messagingInstance;
     }
-
-    if (this.context) {
-      this._messagingInstance = await this.context.getMessaging();
-    }
-
-    throw new Error("No app context");
+    this._messagingInstance = await this.context.getMessaging();
+    return this._messagingInstance;
   }
 
   public async sendMessage(messageData: any): Promise<boolean> {
