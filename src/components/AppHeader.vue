@@ -5,7 +5,6 @@
     /></router-link>
     <vda-account
       :logo="logo"
-      :openUrl="openUrl"
       :contextName="contextName"
       @onLogout="onLogout"
       @onConnected="onSuccess"
@@ -27,7 +26,6 @@ export default defineComponent({
   data: () => ({
     error: null,
     loading: false,
-    openUrl: window.origin,
     contextName: VUE_APP_CONTEXT_NAME,
     logo: VUE_APP_LOGO_URL,
   }),

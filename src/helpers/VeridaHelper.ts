@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
-import { DIDClient } from "@verida/did-client";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { config } from "@/config/config";
 
 dayjs.extend(utc);
 
@@ -124,8 +122,7 @@ class VeridaHelper extends EventEmitter {
 
     let veridaContextName;
 
-    // This is a temporary fix , see reference ticket  https://github.com/verida/verida-js/issues/207
-
+    //TODO:  This is a temporary fix , see reference ticket  https://github.com/verida/verida-js/issues/207
     if (
       verifiableCredential.vc.veridaContextName === "Verida: Credential Manager"
     ) {
@@ -155,12 +152,9 @@ class VeridaHelper extends EventEmitter {
     };
   }
   async getDidDocument(did: string): Promise<void> {
-    const didClient = new DIDClient(
-      config.environments[EnvironmentType.TESTNET].didServerUrl
-    );
-    const didDocument = await didClient.get(did);
-    const doc = didDocument?.export();
-    this.didDocument = doc;
+    const didClient = this.client.didClient;
+    const document = await didClient.get(did);
+    this.didDocument = document;
   }
 
   logout() {
