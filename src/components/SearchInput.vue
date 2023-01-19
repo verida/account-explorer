@@ -48,7 +48,6 @@ import { defineComponent } from "vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
-import { validateDid } from "@/utils/utils";
 
 export default defineComponent({
   name: "SearchInput",
@@ -60,7 +59,13 @@ export default defineComponent({
   },
   setup() {
     const schema = yup.object({
-      did: yup.string().trim().required().min(50).max(50),
+      did: yup
+        .string()
+        .matches(/^did:vda:testnet:.+$/)
+        .trim()
+        .required()
+        .min(58)
+        .max(58),
     });
     useForm({
       validationSchema: schema,
@@ -83,11 +88,6 @@ export default defineComponent({
     ...mapMutations(["setLoader"]),
     async search() {
       if (this.didError) {
-        return;
-      }
-      const isAddressValid = validateDid(this.did as string);
-      if (!isAddressValid) {
-        this.didError = "Verida vault address is invalid";
         return;
       }
       await this.fetchProfile(this.did);

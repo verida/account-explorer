@@ -5,7 +5,6 @@
     /></router-link>
     <vda-account
       :logo="logo"
-      :openUrl="openUrl"
       :contextName="contextName"
       @onLogout="onLogout"
       @onConnected="onSuccess"
@@ -19,17 +18,15 @@ import { defineComponent } from "vue";
 import { mapMutations, mapState } from "vuex";
 import VeridaHelper from "@/helpers/VeridaHelper";
 import { Context } from "@verida/client-ts";
-
-const { VUE_APP_CONTEXT_NAME, VUE_APP_LOGO_URL } = process.env;
+import { config } from "@/config";
 
 export default defineComponent({
   name: "Header",
   data: () => ({
     error: null,
     loading: false,
-    openUrl: window.origin,
-    contextName: VUE_APP_CONTEXT_NAME,
-    logo: VUE_APP_LOGO_URL,
+    contextName: config.veridaContextName,
+    logo: config.veridaLogoUrl,
   }),
   components: {},
   computed: {

@@ -18,9 +18,9 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import ErrorPanel from "../components/cards/StatusPanel.vue";
+import ErrorPanel from "@/components/cards/StatusPanel.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-import CredentialDetails from "../components/cards/CredentialsDetails.vue";
+import CredentialDetails from "@/components/cards/CredentialsDetails.vue";
 import { mapMutations, mapState } from "vuex";
 import VeridaHelper from "@/helpers/VeridaHelper";
 
@@ -54,8 +54,6 @@ export default defineComponent({
           this.type = "success";
         }
       } catch (error) {
-        console.log({ error });
-
         this.handleError();
         this.type = "invalid";
       } finally {

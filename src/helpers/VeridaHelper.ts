@@ -1,39 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context, EnvironmentType, Utils } from "@verida/client-ts";
+import { Client, Context, Utils, Messaging } from "@verida/client-ts";
 import { Credentials } from "@verida/verifiable-credentials";
-import { DIDClient } from "@verida/did-client";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
 import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { config } from "@/config/config";
+import { config } from "@/config";
 
 dayjs.extend(utc);
 
-const {
-  VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
-  VUE_APP_VAULT_CONTEXT_NAME,
-} = process.env;
-
 const userConfig = {
-  environment: EnvironmentType.TESTNET,
-  didServerUrl: VUE_APP_VERIDA_TESTNET_DEFAULT_DID_SERVER,
+  environment: config.veridaEnv,
+  didServerUrl: config.veridaTestnetDefaultDidServerUrl,
 };
 
 class VeridaHelper extends EventEmitter {
   private client: Client;
   public profile?: Profile;
-  public context?: Context | any;
-  private did?: string;
+  public context: Context | undefined;
+  private did: string;
   public connected?: boolean;
   public credentials: any;
   public didDocument: any;
+  private _messagingInstance: Messaging | undefined;
   on: any;
 
   constructor(config: any) {
     super();
     this.client = new Client(config);
+    this.did = "";
+    this.context = undefined;
   }
 
   public async connect(context: Context): Promise<void> {
@@ -47,7 +44,7 @@ class VeridaHelper extends EventEmitter {
 
   async getProfile(did: string, contextName?: string): Promise<any> {
     const profileContextName =
-      contextName || (VUE_APP_VAULT_CONTEXT_NAME as string);
+      contextName || (config.veridaVaulContextName as string);
 
     const profileInstance = await this.client.openPublicProfile(
       did,
@@ -63,6 +60,16 @@ class VeridaHelper extends EventEmitter {
 
     return this.profile;
   }
+  private async initialiseMessagingInstance(): Promise<Messaging> {
+    if (!this.context) {
+      throw new Error("No app context");
+    }
+    if (this._messagingInstance) {
+      return this._messagingInstance;
+    }
+    this._messagingInstance = await this.context.getMessaging();
+    return this._messagingInstance;
+  }
 
   public async sendMessage(messageData: any): Promise<boolean> {
     const type = "inbox/type/dataSend";
@@ -70,10 +77,11 @@ class VeridaHelper extends EventEmitter {
       data: [messageData],
     };
     const config = {
+      did: this.did,
       recipientContextName: "Verida: Vault",
     };
 
-    const messaging = await this.context.getMessaging();
+    const messaging = await this.initialiseMessagingInstance();
     const subject = `New Contact: ${messageData.firstName}`;
     await messaging.send(this.did, type, data, subject, config);
     return true;
@@ -113,10 +121,7 @@ class VeridaHelper extends EventEmitter {
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
 
-    const decodedPresentation = await Credentials.verifyPresentation(
-      jwt as any,
-      EnvironmentType.TESTNET
-    );
+    const decodedPresentation = await Credentials.verifyPresentation(jwt, {});
 
     // Retrieve the verifiable credential within the presentation
     const verifiableCredential =
@@ -124,8 +129,7 @@ class VeridaHelper extends EventEmitter {
 
     let veridaContextName;
 
-    // This is a temporary fix , see reference ticket  https://github.com/verida/verida-js/issues/207
-
+    //TODO:  This is a temporary fix , see reference ticket  https://github.com/verida/verida-js/issues/207
     if (
       verifiableCredential.vc.veridaContextName === "Verida: Credential Manager"
     ) {
@@ -155,18 +159,16 @@ class VeridaHelper extends EventEmitter {
     };
   }
   async getDidDocument(did: string): Promise<void> {
-    const didClient = new DIDClient(
-      config.environments[EnvironmentType.TESTNET].didServerUrl
-    );
-    const didDocument = await didClient.get(did);
-    const doc = didDocument?.export();
-    this.didDocument = doc;
+    const didClient = this.client.didClient;
+    const document = await didClient.get(did);
+    this.didDocument = document;
   }
 
-  logout() {
-    this.context = null;
+  logout(): void {
+    this.context = undefined;
     this.connected = false;
     this.did = "";
+    this._messagingInstance = undefined;
   }
 }
 

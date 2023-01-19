@@ -49,7 +49,6 @@ export default createStore({
           });
         } else {
           commit("setError", error.message);
-          console.log(error);
         }
       }
     },
