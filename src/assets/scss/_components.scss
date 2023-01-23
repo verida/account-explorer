@@ -1,98 +1,94 @@
 .button {
-    @include centerItem(center);
-    padding: 0.75rem 1.25rem 0.75rem 1.5rem;
-    background: $primary;
-    border: none;
+  @include centerItem(center);
+  padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+  background: $primary;
+  border: none;
+  border-radius: $border-radius;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  & > * {
+    margin: 0 0.3rem;
+  }
+
+  &-fw {
+    width: 100%;
+  }
+
+  &-outlined {
+    background: $white;
+    color: $text-color;
+    border: 1px solid rgba(6, 5, 32, 0.2);
     border-radius: $border-radius;
-    color: $white;
-    cursor: pointer;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 
     &:hover {
-        transform: translateY(-2px);
+      box-shadow: 0 0 40px 40px rgb(228, 228, 228) inset;
     }
-
-    &:active {
-        transform: translateY(2px);
-    }
-
-    &>* {
-        margin: 0 0.3rem;
-    }
-
-    &-fw {
-        width: 100%;
-    }
-
-    &-outlined {
-        background: $white;
-        color: $text-color;
-        border: 1px solid rgba(6, 5, 32, 0.2);
-        border-radius: $border-radius;
-        transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-
-        &:hover {
-            box-shadow: 0 0 40px 40px rgb(228, 228, 228) inset;
-        }
-
-    }
+  }
 }
-
 
 // Search input field
 
 .search-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.2rem 0.2rem;
+  border-bottom: 1px solid $text-color;
+
+  &-section {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    flex-basis: 70%;
+  }
+
+  &-button {
+    display: none;
+    flex-basis: 10%;
+    margin-bottom: 0.5rem;
+
+    @include mediaLg {
+      display: flex;
+    }
+  }
+
+  img {
+    margin-right: 0.4rem;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    font-weight: 400;
+    color: $text-color;
+    font-size: 1rem;
     width: 100%;
-    padding: 0.2rem 0.2rem;
-    border-bottom: 1px solid $text-color;
+  }
 
-    &-section {
-        display: flex;
-        align-items: center;
-        flex-basis: 70%;
-    }
-
-    &-button {
-        display: none;
-        flex-basis: 10%;
-        margin-bottom: 0.5rem;
-
-        @include mediaLg {
-            display: flex;
-        }
-    }
-
-    img {
-        margin-right: 0.4rem;
-    }
-
-    input {
-        border: none;
-        outline: none;
-        font-weight: 400;
-        color: $text-color;
-        font-size: 1rem;
-        width: 100%;
-    }
-
-    span {
-        display: block;
-    }
+  span {
+    display: block;
+  }
 }
 
 .search-btn {
-    @include mediaLg {
-        display: none;
-    }
+  @include mediaLg {
+    display: none;
+  }
 }
 
-
-
 .credential-loader {
-    margin: auto;
-    min-height: 70vh;
-    text-align: center;
-    margin: 5rem 0 0 0;
+  margin: auto;
+  min-height: 70vh;
+  text-align: center;
+  margin: 5rem 0 0 0;
 }
