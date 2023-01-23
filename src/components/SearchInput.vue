@@ -25,7 +25,6 @@
         class="button search-input-button"
       >
         <span>Search</span>
-        <img src="@/assets/icons/icon_arrow.svg" alt="arrow_icon" />
       </button>
     </div>
     <button
@@ -35,7 +34,6 @@
       class="search-btn button button-block button-fw my-1"
     >
       <span>Search</span>
-      <img src="@/assets/icons/icon_arrow.svg" alt="arrow_icon" />
     </button>
     <p class="text-danger mt-1">{{ didError }}</p>
     <p class="text-danger mt-1">{{ error }}</p>

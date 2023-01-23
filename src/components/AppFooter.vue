@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <hr class="my-1" />
+    <hr class="mb-1" />
     <div class="footer-section">
       <span>&copy; Verida {{ currentYear }}</span>
       <a :href="termsAndConditionLink">Terms & Conditions</a>

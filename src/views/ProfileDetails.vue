@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-account mt-5 mx-1">
+  <div class="profile-account mt-5">
     <div class="content-search"><search-input :didSearch="true" /></div>
     <h5 class="my-1">RESULTS:</h5>
     <pulse-loader v-if="loader" />

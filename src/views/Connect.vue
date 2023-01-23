@@ -33,7 +33,7 @@ export default defineComponent({
       await VeridaHelper.connect(context);
       this.handlePrevRoute();
     },
-    onError(error: unknown) {
+    onError(error: any) {
       this.error = error;
     },
     handlePrevRoute() {
