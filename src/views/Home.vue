@@ -6,8 +6,10 @@
         Use this to search through your account. Search what account you have
         access to, and find the DIDs that you need.
       </p>
-      <div class="content-search my-3"><search-input /></div>
-      <pulse-loader v-if="loader" color="#5761D7" :loading="loader" />
+      <div class="content-search my-3">
+        <search-input />
+      </div>
+      <pulse-loader v-if="loader" />
       <search-list
         v-else-if="profile.name"
         :profile="profile"
@@ -16,16 +18,14 @@
       />
     </div>
     <div class="landing-image">
-      <img src="../assets/images/Illustration_desktop.svg" alt="desktop" />
+      <img src="@/assets/images/Illustration_desktop.svg" alt="desktop" />
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState } from "vuex";
-import SearchList from "@/components/cards/SearchList.vue";
-import SearchInput from "@/components/SearchInput.vue";
+import { SearchList, SearchInput, PulseLoader } from "@/components";
 
 export default defineComponent({
   name: "Home",

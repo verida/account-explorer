@@ -1,32 +1,25 @@
 <template>
   <div class="credential mt-5 mx-1">
     <h3>Credential Verification</h3>
-    <pulse-loader
-      class="credential-loader my-5"
-      v-if="loading"
-      color="#5761D7"
-      :loading="loading"
-    />
-    <error-panel v-else-if="error" :type="type" />
+    <pulse-loader v-if="loading" />
+    <status-panel v-else-if="error" :type="type" />
     <div v-else>
       <error-panel :type="type" />
       <div class="mr-2">
-        <credential-details />
+        <credentials-details />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import ErrorPanel from "@/components/cards/StatusPanel.vue";
-import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-import CredentialDetails from "@/components/cards/CredentialsDetails.vue";
+import { StatusPanel, CredentialsDetails, PulseLoader } from "@/components";
 import { mapMutations, mapState } from "vuex";
-import VeridaHelper from "@/helpers/VeridaHelper";
+import { VeridaHelper } from "@/helpers";
 
 export default defineComponent({
   name: "Home",
-  components: { ErrorPanel, CredentialDetails, PulseLoader },
+  components: { StatusPanel, CredentialsDetails, PulseLoader },
   data: () => ({
     path: "",
     loading: false,
