@@ -1,7 +1,7 @@
 <template>
   <header class="header" :key="connected">
     <router-link to="/">
-      <img alt="Vue logo" src="../assets/images/logoverida.svg"
+      <img alt="Vue logo" src="@/assets/images/logoverida.svg"
     /></router-link>
     <vda-account
       :logo="logo"
@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapMutations, mapState } from "vuex";
-import VeridaHelper from "@/helpers/VeridaHelper";
+import { VeridaHelper } from "@/helpers";
 import { Context } from "@verida/client-ts";
 import { config } from "@/config";
 

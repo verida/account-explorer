@@ -2,7 +2,7 @@
   <form @submit.prevent="search">
     <div class="search-input">
       <div class="search-input-section">
-        <img src="../assets/images/icon_search.svg" alt="icon_search" />
+        <img src="@/assets/icons/icon_search.svg" alt="icon_search" />
         <input
           required
           type="text"
@@ -13,7 +13,7 @@
       </div>
       <img
         class="search-input-close"
-        src="../assets/images/icon_close.svg"
+        src="@/assets/icons/icon_close.svg"
         alt="arrow_icon"
         v-show="did"
         @click="clearInput"
@@ -25,7 +25,7 @@
         class="button search-input-button"
       >
         <span>Search</span>
-        <img src="../assets/images/arrow.svg" alt="arrow_icon" />
+        <img src="@/assets/icons/icon_arrow.svg" alt="arrow_icon" />
       </button>
     </div>
     <button
@@ -35,7 +35,7 @@
       class="search-btn button button-block button-fw my-1"
     >
       <span>Search</span>
-      <img src="../assets/images/arrow.svg" alt="arrow_icon" />
+      <img src="@/assets/icons/icon_arrow.svg" alt="arrow_icon" />
     </button>
     <p class="text-danger mt-1">{{ didError }}</p>
     <p class="text-danger mt-1">{{ error }}</p>
@@ -43,7 +43,6 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineComponent } from "vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import { useField, useForm } from "vee-validate";
