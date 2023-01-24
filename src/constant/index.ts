@@ -13,3 +13,6 @@ export const BASIC_PROFILE_SCHEMA =
 
 /** Constant for the verifiable credential URI  */
 export const CREDENTIAL_URI = "uri_state";
+
+/** Application base url */
+export const APP_BASE_URL = window.origin;

@@ -11,7 +11,6 @@ const veridaEnv: EnvironmentType =
 
 const veridaLogoUrl = process.env.VUE_APP_VERIDA_LOGO_URL;
 const veridaLoginText = process.env.VUE_APP_VERIDA_LOGO_URL;
-const appBaseURL = process.env.VUE_APP_BASE_URL;
 const veridaContextName = process.env.VUE_APP_VERIDA_CONTEXT_NAME;
 const veridaVaultContextName = process.env.VUE_APP_VERIDA_VAULT_CONTEXT_NAME;
 const veridaTestnetDefaultDidServerUrl =
@@ -20,7 +19,6 @@ const veridaTestnetDefaultDidServerUrl =
 export const config = {
   nodeEnv,
   veridaEnv,
-  appBaseURL,
   veridaLogoUrl,
   veridaLoginText,
   veridaContextName,

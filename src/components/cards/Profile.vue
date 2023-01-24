@@ -56,7 +56,7 @@ import useClipboard from "vue-clipboard3";
 import QrcodeVue from "qrcode.vue";
 import { AddContact } from "@/components";
 import { VeridaHelper } from "@/helpers";
-import { config } from "@/config";
+import { APP_BASE_URL } from "@/constant";
 
 export default defineComponent({
   name: "Profile",
@@ -78,7 +78,7 @@ export default defineComponent({
     return { onCopy };
   },
   data: () => ({
-    appBaseURL: config.appBaseURL,
+    appBaseURL: APP_BASE_URL,
     isCodePreview: false,
     schema: {},
     data: {},
