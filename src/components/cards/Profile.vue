@@ -7,7 +7,7 @@
           alt="user-avatar"
           :src="profile.avatar.uri"
         />
-        <img v-else alt="user-avatar" src="../../assets/images/avatar.svg" />
+        <img v-else alt="user-avatar" src="@/assets/icons/icon_avatar.svg" />
         <h4 class="ml-1">{{ profile.name }}</h4>
       </div>
       <div class="profile-card-button mb-2">
@@ -27,7 +27,7 @@
             title="copy"
             @click="onCopy(profile.did)"
             alt="user-avatar"
-            src="../../assets/images/icon_copy.svg"
+            src="@/assets/icons/icon_copy.svg"
           />
         </p>
         <p><span>COUNTRY:</span> {{ profile.country }}</p>
@@ -54,9 +54,9 @@
 import { defineComponent } from "vue";
 import useClipboard from "vue-clipboard3";
 import QrcodeVue from "qrcode.vue";
-import AddContact from "@/components/AddContact.vue";
-import veridaHelper from "@/helpers/VeridaHelper";
-import { config } from "@/config";
+import { AddContact } from "@/components";
+import { VeridaHelper } from "@/helpers";
+import { APP_BASE_URL } from "@/constant";
 
 export default defineComponent({
   name: "Profile",
@@ -78,11 +78,11 @@ export default defineComponent({
     return { onCopy };
   },
   data: () => ({
-    appBaseURL: config.appBaseURL,
+    appBaseURL: APP_BASE_URL,
     isCodePreview: false,
     schema: {},
     data: {},
-    didDocument: veridaHelper.didDocument,
+    didDocument: VeridaHelper.didDocument,
   }),
 
   methods: {

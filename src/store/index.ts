@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import veridaHelper from "@/helpers/VeridaHelper";
+import { VeridaHelper } from "@/helpers";
 import { createStore } from "vuex";
 
 export default createStore({
@@ -35,12 +35,12 @@ export default createStore({
     async fetchProfile({ commit }, did: string) {
       commit("setLoader", true);
       try {
-        await veridaHelper.getDidDocument(did);
-        await veridaHelper.getProfile(did);
-        commit("setProfile", veridaHelper.profile);
+        await VeridaHelper.getDidDocument(did);
+        await VeridaHelper.getProfile(did);
+        commit("setProfile", VeridaHelper.profile);
       } catch (error: any) {
         // Check if DID document was found
-        if (veridaHelper.didDocument) {
+        if (VeridaHelper.didDocument) {
           commit("setProfile", {
             name: "unknown",
             avatar: { uri: "" },

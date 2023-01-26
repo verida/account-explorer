@@ -1,42 +1,22 @@
 header {
-    @include center-item;
+  @include centerItem(space-between);
 
-    .login-section {
-        @include center-item;
-
-        &>* {
-            margin: 0 0.3rem;
-        }
-
-        border: none;
-        outline: hidden;
-        background: $white;
-        cursor: pointer;
-
-    }
 }
 
-
 footer {
-    font-size: 0.875rem;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin: auto;
-    height: 1.5rem;
+  font-size: 0.875rem;
 
+  hr {
+    opacity: 0.1;
+    border: 1px solid $text-color;
+  }
 
-    hr {
-        opacity: 0.1;
-        border: 1px solid $text-color
+  .footer-section {
+    @include centerItem(space-between);
+
+    a {
+      text-decoration: none;
+      color: $text-color;
     }
-
-    .footer-section {
-        @include center-item;
-
-        a {
-            text-decoration: none;
-            color: $text-color;
-        }
-    }
+  }
 }

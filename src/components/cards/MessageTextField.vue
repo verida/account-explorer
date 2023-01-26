@@ -7,7 +7,7 @@
       cols="30"
       rows="0"
     ></textarea>
-    <img src="../../assets/images/icon_send.svg" alt="message-icon" />
+    <img src="@/assets/icons/icon_send.svg" alt="message-icon" />
   </div>
 </template>
 

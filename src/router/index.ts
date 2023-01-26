@@ -1,25 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
-import ProfileDetails from "../views/ProfileDetails.vue";
-import Credential from "../views/Credential.vue";
-import Connect from "../views/Connect.vue";
+import { Home, ProfileDetails, Credential, Connect } from "@/views";
 
-import { CONNECT, CREDENTIAL, USER_PROFILE } from "../constant/index";
+import { CONNECT, CREDENTIAL, HOME, USER_PROFILE_REDIRECT } from "@/constant";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
+    name: HOME,
     component: Home,
   },
   {
-    path: "/did",
-    name: "Redirect",
-    redirect: "/",
-  },
-  {
     path: "/did/:did",
-    name: USER_PROFILE,
+    name: USER_PROFILE_REDIRECT,
     component: ProfileDetails,
   },
   {

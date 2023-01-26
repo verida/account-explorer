@@ -26,7 +26,6 @@
   }
 }
 
-
 .profile {
   background: $white;
   border: 1px solid rgba(6, 5, 32, 0.1);
@@ -37,7 +36,6 @@
     opacity: 0.1;
     border: 1px solid $text-color;
   }
-
 }
 
 .profile-card {
@@ -48,7 +46,7 @@
     display: flex;
     justify-content: space-between;
 
-    &>* {
+    & > * {
       margin: 0 0.4rem;
     }
   }
@@ -68,7 +66,6 @@
     }
 
     @include mediaMd {
-
       button {
         width: 100%;
       }
@@ -79,8 +76,6 @@
     @include mediaMd {
       display: flex;
     }
-
-
 
     h4 {
       display: none;
@@ -103,7 +98,6 @@
       }
     }
   }
-
 
   &-details {
     @include mediaLg {
@@ -139,12 +133,11 @@
 
       img {
         margin: 0 0 -0.3rem 0.4rem;
-        cursor: pointer
+        cursor: pointer;
       }
     }
   }
 }
-
 
 .message-card {
   @include centerItem(space-between);
@@ -167,7 +160,6 @@
 .not-found {
   @include centerWithDirection(column);
 }
-
 
 .status-card {
   display: flex;
@@ -204,7 +196,6 @@
   }
 }
 
-
 .qr-mobile {
   display: none;
 
@@ -212,7 +203,6 @@
     display: block;
   }
 }
-
 
 .vc-credential {
   //  height: 100vh;
@@ -237,7 +227,6 @@
     }
 
     &-section {
-
       @include mediaMd {
         margin: 1rem 0 0 0;
       }
@@ -257,10 +246,8 @@
           width: 1.4rem;
           margin: 0 0.8rem;
         }
-
       }
     }
-
   }
 
   .vc-content {
@@ -288,7 +275,6 @@
   }
 }
 
-
 .code-view {
   width: 100%;
   border: 1px solid rgba(6, 5, 32, 0.2);
@@ -298,14 +284,12 @@
     transition: width 2s;
   }
 
-
   pre {
     padding: 10px;
-    background: #F4F7F9;
+    background: #f4f7f9;
     margin: 0px;
     overflow-x: scroll;
   }
-
 
   &-header {
     display: flex;
