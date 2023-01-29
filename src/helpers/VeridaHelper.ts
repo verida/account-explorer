@@ -13,7 +13,7 @@ dayjs.extend(utc);
 
 const userConfig = {
   environment: config.veridaEnv,
-  didServerUrl: config.veridaTestnetDefaultDidServerUrl,
+  didServerUrl: config.veridaDidServerUrl,
 };
 
 class VeridaClient extends EventEmitter {

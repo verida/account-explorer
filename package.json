@@ -8,7 +8,7 @@
 		"test:unit": "vue-cli-service test:unit",
 		"lint": "vue-cli-service lint",
 		"format:check": "npx prettier src/ --check",
-    "format": "npx prettier src/ --write"
+		"format": "npx prettier src/ --write"
 	},
 	"resolutions": {
 		"acorn": "8.0.1"

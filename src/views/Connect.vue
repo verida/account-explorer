@@ -4,7 +4,7 @@
     :onSuccess="onSuccess"
     :contextName="contextName"
     :logo="logo"
-    :loginText="loginText"
+    :loginText="contextName"
   />
 </template>
 <script lang="ts">
@@ -25,7 +25,6 @@ export default defineComponent({
       error: null,
       contextName: config.veridaContextName,
       logo: config.veridaLogoUrl,
-      loginText: config.veridaLoginText,
     };
   },
   methods: {
