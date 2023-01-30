@@ -8,7 +8,6 @@
   />
 </template>
 <script lang="ts">
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineComponent } from "vue";
 import { config } from "@/config";
 import { VeridaHelper } from "@/helpers";
@@ -23,8 +22,9 @@ export default defineComponent({
     return {
       isLoading: false,
       error: null,
-      contextName: config.veridaContextName,
       logo: config.veridaLogoUrl,
+      contextName: config.veridaContextName,
+      loginText: config.veridaLoginText,
     };
   },
   methods: {
@@ -32,7 +32,7 @@ export default defineComponent({
       await VeridaHelper.connect(context);
       this.handlePrevRoute();
     },
-    onError(error: any) {
+    onError(error: null) {
       this.error = error;
     },
     handlePrevRoute() {
