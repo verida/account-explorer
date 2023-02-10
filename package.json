@@ -15,7 +15,7 @@
 	},
 	"dependencies": {
 		"@verida/account-web-vault": "^2.0.1",
-		"@verida/client-ts": "^2.0.1",
+		"@verida/client-ts": "^2.0.5",
 		"@verida/verifiable-credentials": "^2.0.1",
 		"@verida/vue-account": "^0.1.38",
 		"@verida/vue-credentials-view": "^0.1.3",
