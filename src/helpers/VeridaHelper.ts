@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context, Utils, Messaging } from "@verida/client-ts";
+import { Client, Context, Utils } from "@verida/client-ts";
+import { IMessaging } from "@verida/types";
 import { Credentials } from "@verida/verifiable-credentials";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
@@ -24,7 +25,7 @@ class VeridaClient extends EventEmitter {
   public connected?: boolean;
   public credentials: any;
   public didDocument: any;
-  private _messagingInstance: Messaging | undefined;
+  private _messagingInstance: IMessaging | undefined;
   on: any;
 
   constructor(config: typeof userConfig) {
@@ -61,7 +62,7 @@ class VeridaClient extends EventEmitter {
 
     return this.profile;
   }
-  private async initialiseMessagingInstance(): Promise<Messaging> {
+  private async initialiseMessagingInstance(): Promise<IMessaging> {
     if (!this.context) {
       throw new Error("No app context");
     }
@@ -115,9 +116,8 @@ class VeridaClient extends EventEmitter {
 
     const url = Utils.explodeVeridaUri(decodedURI);
 
-    const context = await this.client.openExternalContext(
-      url.contextName,
-      url.did
+    const context = <Context>(
+      await this.client.openExternalContext(url.contextName, url.did)
     );
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
@@ -145,7 +145,7 @@ class VeridaClient extends EventEmitter {
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
-      verifiableCredential.credentialSubject.schema,
+      verifiableCredential.credentialSchema.id,
       context
     );
 
