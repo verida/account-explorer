@@ -7,7 +7,7 @@
         v-if="profile?.avatar?.uri"
         :src="profile?.avatar?.uri"
       />
-      <img alt="user-avatar" v-else src="../../assets/images/avatar.svg" />
+      <img alt="user-avatar" v-else src="@/assets/icons/icon_avatar.svg" />
       <div class="details">
         <h4>{{ profile.name }}</h4>
         <p>{{ profile.did }}</p>

@@ -1,16 +1,14 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-
 body {
-    font-family: "Sora", sans-serif;
+  font-family: "Sora", sans-serif;
 }
 
 // Overrides @verida/verifiable-credential-view packages
 .vda-vc-display h2 {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }

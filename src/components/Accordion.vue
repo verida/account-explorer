@@ -8,14 +8,14 @@
           height="100"
           alt="user-avatar"
           @click="toggleView"
-          src="../assets/images/icon_up_arrow.svg"
+          src="@/assets/icons/icon_up_arrow.svg"
         />
         <img
           v-else
           height="100"
           alt="user-avatar"
           @click="toggleView"
-          src="../assets/images/icon_down_arrow.svg"
+          src="@/assets/icons/icon_down_arrow.svg"
         />
       </div>
     </div>

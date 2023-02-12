@@ -1,8 +1,12 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import VeridaHelper from "./VeridaHelper";
+import { CREDENTIAL_URI } from "@/constant";
+import { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
+import { VeridaHelper } from "./VeridaHelper";
 
-const initialized = (to: any, next: any) => {
+export const RouteGuard = (
+  to: RouteLocationNormalized,
+  _from: RouteLocationNormalized,
+  next: NavigationGuardNext
+): void => {
   if (VeridaHelper.connected && to.meta.field === "info" && to.query.uri) {
     return next();
   } else {
@@ -11,15 +15,11 @@ const initialized = (to: any, next: any) => {
     } else {
       if (to.query.uri) {
         localStorage.setItem(
-          "uri_state",
+          CREDENTIAL_URI,
           JSON.stringify({ uri: to.query.uri, path: to.path })
         );
       }
       next("/connect");
     }
   }
-};
-
-export const LocalRouteGuard = (to: any, from: any, next: unknown): any => {
-  return initialized(to, next);
 };

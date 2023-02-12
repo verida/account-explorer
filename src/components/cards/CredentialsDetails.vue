@@ -22,7 +22,7 @@
                 v-else
                 height="100"
                 alt="user-avatar"
-                src="../../assets/images/avatar.svg"
+                src="@/assets/icons/icon_avatar.svg"
               />
             </div>
             <div class="vc-content-details mx-1">
@@ -39,7 +39,7 @@
               <img
                 height="50"
                 alt="user-avatar"
-                src="../../assets/images/arrow.svg"
+                src="@/assets/icons/icon_arrow.svg"
             /></a>
           </p>
         </div>
@@ -56,7 +56,7 @@
                 v-else
                 height="100"
                 alt="user-avatar"
-                src="../../assets/images/avatar.svg"
+                src="@/assets/icons/icon_avatar.svg"
               />
             </div>
             <div class="vc-content-details mx-1">
@@ -74,7 +74,7 @@
                 height="50"
                 alt="user-avatar"
                 class="mx-1"
-                src="../../assets/images/arrow.svg"
+                src="@/assets/icons/icon_arrow.svg"
             /></a>
           </p>
         </div>
@@ -104,8 +104,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Accordion from "../Accordion.vue";
 import VerifiableCredentialDisplay from "@verida/vue-credentials-view";
+import { Accordion } from "@/components";
 import QrcodeVue from "qrcode.vue";
 import { mapState } from "vuex";
 

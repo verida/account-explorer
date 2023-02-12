@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context, Utils, Messaging } from "@verida/client-ts";
+import { Client, Context, Utils } from "@verida/client-ts";
+import { IMessaging } from "@verida/types";
 import { Credentials } from "@verida/verifiable-credentials";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
@@ -7,6 +8,7 @@ import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { config } from "@/config";
+import { CREDENTIAL } from "@/constant";
 
 dayjs.extend(utc);
 
@@ -15,7 +17,7 @@ const userConfig = {
   didServerUrl: config.veridaTestnetDefaultDidServerUrl,
 };
 
-class VeridaHelper extends EventEmitter {
+class VeridaClient extends EventEmitter {
   private client: Client;
   public profile?: Profile;
   public context: Context | undefined;
@@ -23,10 +25,10 @@ class VeridaHelper extends EventEmitter {
   public connected?: boolean;
   public credentials: any;
   public didDocument: any;
-  private _messagingInstance: Messaging | undefined;
+  private _messagingInstance: IMessaging | undefined;
   on: any;
 
-  constructor(config: any) {
+  constructor(config: typeof userConfig) {
     super();
     this.client = new Client(config);
     this.did = "";
@@ -44,7 +46,7 @@ class VeridaHelper extends EventEmitter {
 
   async getProfile(did: string, contextName?: string): Promise<any> {
     const profileContextName =
-      contextName || (config.veridaVaulContextName as string);
+      contextName || (config.veridaVaultContextName as string);
 
     const profileInstance = await this.client.openPublicProfile(
       did,
@@ -60,7 +62,7 @@ class VeridaHelper extends EventEmitter {
 
     return this.profile;
   }
-  private async initialiseMessagingInstance(): Promise<Messaging> {
+  private async initialiseMessagingInstance(): Promise<IMessaging> {
     if (!this.context) {
       throw new Error("No app context");
     }
@@ -76,14 +78,14 @@ class VeridaHelper extends EventEmitter {
     const data = {
       data: [messageData],
     };
-    const config = {
+    const messageConfig = {
       did: this.did,
-      recipientContextName: "Verida: Vault",
+      recipientContextName: config.veridaVaultContextName,
     };
 
     const messaging = await this.initialiseMessagingInstance();
     const subject = `New Contact: ${messageData.firstName}`;
-    await messaging.send(this.did, type, data, subject, config);
+    await messaging.send(this.did, type, data, subject, messageConfig);
     return true;
   }
 
@@ -114,9 +116,8 @@ class VeridaHelper extends EventEmitter {
 
     const url = Utils.explodeVeridaUri(decodedURI);
 
-    const context = await this.client.openExternalContext(
-      url.contextName,
-      url.did
+    const context = <Context>(
+      await this.client.openExternalContext(url.contextName, url.did)
     );
 
     const jwt = await Utils.fetchVeridaUri(decodedURI, context);
@@ -144,11 +145,11 @@ class VeridaHelper extends EventEmitter {
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
-      verifiableCredential.credentialSubject.schema,
+      verifiableCredential.credentialSchema.id,
       context
     );
 
-    const publicUri = `${window.origin}/credential?uri=${uri}`;
+    const publicUri = `${window.origin}/${CREDENTIAL}?uri=${uri}`;
 
     return {
       publicUri,
@@ -172,6 +173,6 @@ class VeridaHelper extends EventEmitter {
   }
 }
 
-const veridaHelper = new VeridaHelper(userConfig);
+const VeridaHelper = new VeridaClient(userConfig);
 
-export default veridaHelper;
+export { VeridaHelper };

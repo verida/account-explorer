@@ -9,10 +9,11 @@
 </template>
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { config } from "@/config";
-import VeridaHelper from "@/helpers/VeridaHelper";
-import { Context } from "@verida/client-ts";
 import { defineComponent } from "vue";
+import { config } from "@/config";
+import { VeridaHelper } from "@/helpers";
+import { Context } from "@verida/client-ts";
+import { CREDENTIAL, CREDENTIAL_URI, HOME } from "@/constant";
 
 export default defineComponent({
   name: "Connect",
@@ -36,17 +37,19 @@ export default defineComponent({
       this.error = error;
     },
     handlePrevRoute() {
-      const URIState = JSON.parse(localStorage.getItem("uri_state") as any);
+      const URIState = JSON.parse(
+        localStorage.getItem(CREDENTIAL_URI) as string
+      );
       let uri;
       if (URIState) {
         uri = URIState.uri;
-        localStorage.removeItem("uri_state");
+        localStorage.removeItem(CREDENTIAL_URI);
         this.$router.push({
-          name: `Credential`,
+          name: CREDENTIAL,
           query: { uri },
         });
       } else {
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: HOME });
       }
     },
   },

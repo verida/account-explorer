@@ -5,11 +5,7 @@
       class="button button-outlined mb-1"
       @click="addContact"
     >
-      <pulse-loader
-        v-if="isSubmitting"
-        color="#5761D7"
-        :loading="isSubmitting"
-      />
+      <pulse-loader v-if="isSubmitting" />
       <span v-else> Add as Contact</span>
     </button>
   </div>
@@ -17,10 +13,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-import veridaHelper from "@/helpers/VeridaHelper";
-import { BASIC_PROFILE_SCHEMA } from "@/constant";
 import { mapState } from "vuex";
+import { PulseLoader } from "@/components";
+import { VeridaHelper } from "@/helpers";
+import { BASIC_PROFILE_SCHEMA } from "@/constant";
 
 export default defineComponent({
   name: "AddContact",
@@ -48,7 +44,7 @@ export default defineComponent({
       };
       this.isSubmitting = true;
       try {
-        await veridaHelper.sendMessage(data);
+        await VeridaHelper.sendMessage(data);
         this.$toast.success(
           "Contact details sent. Please accept this contact in the Verida Vault"
         );

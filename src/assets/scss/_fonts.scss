@@ -1,12 +1,11 @@
 @font-face {
-    font-family: '';
-    src:
-        url('~@/assets/fonts/static/Sora-Bold.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-ExtraBold.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-ExtraLight.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-Light.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-Medium.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-Regular.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-SemiBold.ttf') format('truetype'),
-        url('~@/assets/fonts/static/Sora-Thin.ttf') format('truetype'), ;
+  font-family: "Sora", sans-serif;
+  src: url("../fonts/Sora-Bold.ttf") format("truetype"),
+    url("../fonts/Sora-ExtraBold.ttf") format("truetype"),
+    url("../fonts/Sora-ExtraLight.ttf") format("truetype"),
+    url("../fonts/Sora-Light.ttf") format("truetype"),
+    url("../fonts/Sora-Medium.ttf") format("truetype"),
+    url("../fonts/Sora-Regular.ttf") format("truetype"),
+    url("../fonts/Sora-SemiBold.ttf") format("truetype"),
+    url("../fonts/Sora-Thin.ttf") format("truetype");
 }
