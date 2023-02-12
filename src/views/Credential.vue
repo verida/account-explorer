@@ -47,13 +47,14 @@ export default defineComponent({
           this.type = "success";
         }
       } catch (error) {
-        this.handleError();
+        this.handleError(error);
         this.type = "invalid";
       } finally {
         this.loading = false;
       }
     },
-    handleError() {
+    handleError(error: any) {
+      console.log(error)
       this.error = true;
       this.type = "invalid";
     },
