@@ -1,4 +1,4 @@
-import { EnvironmentType } from "@verida/client-ts";
+import { EnvironmentType } from "@verida/types";
 
 const nodeEnv = process.env.NODE_ENV || "development";
 
