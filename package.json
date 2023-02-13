@@ -14,7 +14,7 @@
 		"acorn": "8.0.1"
 	},
 	"dependencies": {
-		"@verida/account-web-vault": "^2.0.5",
+		"@verida/account-web-vault": "^2.0.6",
 		"@verida/client-ts": "^2.0.5",
 		"@verida/types": "^2.0.5",
 		"@verida/verifiable-credentials": "^2.0.5",

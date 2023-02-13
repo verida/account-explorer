@@ -2098,10 +2098,10 @@
     axios "^0.27.2"
     did-resolver "^4.0.1"
 
-"@verida/account-web-vault@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@verida/account-web-vault/-/account-web-vault-2.0.5.tgz#57cec4c0c7100cbc2bdd5b96d146fa2f1ea1483d"
-  integrity sha512-Sx3JL8hoDiuts9Kn6gwJt/2VV7MJfZU1QprymcHUNr/33eUxVTgUfk0iAqbErQ6PXqKDR5s9ZVEmD5so/irjGw==
+"@verida/account-web-vault@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@verida/account-web-vault/-/account-web-vault-2.0.6.tgz#28bdb3da6f95d914e297e369209f314e606b41dc"
+  integrity sha512-bcAkBn2MIPGgq2rweAteAVESHret3HFp3xJSgbbKG6+/s9IkkOmymBIDPNUHtvOjNuhoHDxMspr5hvvNEYa/2g==
   dependencies:
     "@verida/account" "^2.0.5"
     "@verida/encryption-utils" "^2.0.4"
