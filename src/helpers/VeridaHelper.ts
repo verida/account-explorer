@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context, Utils } from "@verida/client-ts";
+import { Client, Context } from "@verida/client-ts";
 import { IMessaging } from "@verida/types";
 import { Credentials } from "@verida/verifiable-credentials";
 import { EventEmitter } from "events";
@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { config } from "@/config";
 import { CREDENTIAL } from "@/constant";
+import { explodeVeridaUri, fetchVeridaUri } from '@verida/helpers'
 
 dayjs.extend(utc);
 
@@ -114,13 +115,13 @@ class VeridaClient extends EventEmitter {
   async readVerifiedCredential(uri: string) {
     const decodedURI = Buffer.from(uri, "base64").toString("utf8");
 
-    const url = Utils.explodeVeridaUri(decodedURI);
+    const url = explodeVeridaUri(decodedURI);
 
     const context = <Context>(
       await this.client.openExternalContext(url.contextName, url.did)
     );
 
-    const jwt = await Utils.fetchVeridaUri(decodedURI, context);
+    const jwt = await fetchVeridaUri(decodedURI, context);
 
     const decodedPresentation = await Credentials.verifyPresentation(jwt, {});
 
