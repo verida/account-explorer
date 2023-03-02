@@ -2182,9 +2182,9 @@
     lodash "^4.17.21"
 
 "@verida/encryption-utils@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@verida/encryption-utils/-/encryption-utils-2.0.4.tgz#10b3a8547f6608e21302d701a40c4ecf88d1d1e5"
-  integrity sha512-ISkf8cDnC/4Nw/QVMTdrt7KKjeTayqVD888wEhGbd3PRXDHXcJ/imTzsXEVwfS18nmtgkD//dpKyuQP9g5+21A==
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@verida/encryption-utils/-/encryption-utils-2.1.3.tgz#7e98ad6400d8e83875d5c8682b778e828c65ae15"
+  integrity sha512-tFDxVNxIv1mFylm1CCeCNAT2F7hAKXcQeDJc0sJZqzzBZXeQMslAx9yVsD2Fh3tFstqc3E7ov2n3MjojlveuHQ==
   dependencies:
     ethers "^5.5.1"
     json.sortify "^2.2.2"
