@@ -90,8 +90,8 @@ class VeridaClient extends EventEmitter {
     return true;
   }
 
-  public async getSchemaSpecs(schema: string, context: Context): Promise<any> {
-    const schemas = await context.getClient().getSchema(schema);
+  public async getSchemaSpecs(schema: string): Promise<any> {
+    const schemas = await this.client.getSchema(schema);
 
     const json = await schemas.getSpecification();
 
@@ -117,11 +117,7 @@ class VeridaClient extends EventEmitter {
 
     const url = explodeVeridaUri(decodedURI);
 
-    const context = <Context>(
-      await this.client.openExternalContext(url.contextName, url.did)
-    );
-
-    const jwt = await fetchVeridaUri(decodedURI, context);
+    const jwt = await fetchVeridaUri(decodedURI, this.client);
 
     const decodedPresentation = await Credentials.verifyPresentation(jwt, {});
 
@@ -146,8 +142,7 @@ class VeridaClient extends EventEmitter {
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
-      verifiableCredential.credentialSchema.id,
-      context
+      verifiableCredential.credentialSchema.id
     );
 
     const publicUri = `${window.origin}/${CREDENTIAL}?uri=${uri}`;
