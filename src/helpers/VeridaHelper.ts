@@ -4,12 +4,11 @@ import { IMessaging } from "@verida/types";
 import { Credentials } from "@verida/verifiable-credentials";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
-import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { config } from "@/config";
 import { CREDENTIAL } from "@/constant";
-import { explodeVeridaUri, fetchVeridaUri } from '@verida/helpers'
+import { fetchVeridaUri, decodeUri} from '@verida/helpers'
 
 dayjs.extend(utc);
 
@@ -112,12 +111,9 @@ class VeridaClient extends EventEmitter {
     return false;
   }
 
-  async readVerifiedCredential(uri: string) {
-    const decodedURI = Buffer.from(uri, "base64").toString("utf8");
-
-    const url = explodeVeridaUri(decodedURI);
-
-    const jwt = await fetchVeridaUri(decodedURI, this.client);
+  async readVerifiedCredential(encodedUri: string) {
+    const veridaUri = decodeUri(encodedUri);
+    const jwt = await fetchVeridaUri(veridaUri, this.client);
 
     const decodedPresentation = await Credentials.verifyPresentation(jwt, {});
 
@@ -145,7 +141,7 @@ class VeridaClient extends EventEmitter {
       verifiableCredential.credentialSchema.id
     );
 
-    const publicUri = `${window.origin}/${CREDENTIAL}?uri=${uri}`;
+    const publicUri = `${window.origin}/${CREDENTIAL}?uri=${encodedUri}`;
 
     return {
       publicUri,
