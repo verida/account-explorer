@@ -53,8 +53,8 @@ export default defineComponent({
         this.loading = false;
       }
     },
-    handleError(error: any) {
-      console.log(error)
+    handleError(error: unknown) {
+      console.log(error);
       this.error = true;
       this.type = "invalid";
     },
