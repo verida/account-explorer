@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { config } from "@/config";
 import { CREDENTIAL } from "@/constant";
-import { fetchVeridaUri, decodeUri} from '@verida/helpers'
+import { fetchVeridaUri, decodeUri } from "@verida/helpers";
 
 dayjs.extend(utc);
 

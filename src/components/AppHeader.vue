@@ -3,13 +3,13 @@
     <router-link to="/">
       <img alt="Vue logo" src="@/assets/images/logoverida.svg"
     /></router-link>
-    <vda-account
+    <!-- <vda-account
       :logo="logo"
       :contextName="contextName"
       @onLogout="onLogout"
       @onConnected="onSuccess"
       @onError="onError"
-    />
+    /> -->
   </header>
 </template>
 
