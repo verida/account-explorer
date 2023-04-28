@@ -2596,10 +2596,11 @@
     tweetnacl "^1.0.3"
 
 "@verida/vda-common@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@verida/vda-common/-/vda-common-2.3.2.tgz#1ad5c611770d70ab16e0c7ea203b515a83eca392"
-  integrity sha512-F67HL24kesY9oaG9NqP3SE3PXYMrhvIFzgCbrAUs1X3/+dbe0Az7CFZ8FhpHnsEWbQ1olHw/wlTK9J+bFdFiZg==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@verida/vda-common/-/vda-common-2.3.3.tgz#165787d7f9b4f3faec9e6f790fc22a6b1977d97e"
+  integrity sha512-gI2DQX87nbpfDl4nbNSAZpFvfVJOnelxMuwvlXP40PD/S9uU3uKfI/5OgXxGMwf3gjT77QO69IsTuiZrmJURwA==
   dependencies:
+    "@verida/encryption-utils" "^2.2.1"
     copyfiles "^2.4.1"
     ethers "5.5.1"
 
