@@ -2603,6 +2603,15 @@
     copyfiles "^2.4.1"
     ethers "5.5.1"
 
+"@verida/vda-common@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@verida/vda-common/-/vda-common-2.3.3.tgz#165787d7f9b4f3faec9e6f790fc22a6b1977d97e"
+  integrity sha512-gI2DQX87nbpfDl4nbNSAZpFvfVJOnelxMuwvlXP40PD/S9uU3uKfI/5OgXxGMwf3gjT77QO69IsTuiZrmJURwA==
+  dependencies:
+    "@verida/encryption-utils" "^2.2.1"
+    copyfiles "^2.4.1"
+    ethers "5.5.1"
+
 "@verida/vda-did-resolver@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.1.tgz#57235cdf65626f0afa6c08753177c69d913243b9"
@@ -2617,14 +2626,14 @@
     lodash "^4.17.21"
 
 "@verida/vda-did@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@verida/vda-did/-/vda-did-2.3.1.tgz#5d72d5fadeee4a0ae7f6f1dbf7a7d445693e78bd"
-  integrity sha512-bjZnizkds621vdZBMcpxVRwiGnmYbLgdet3sUg6AKwmjbOaJ6KnUsIsyUAcamBj6RfdXd2IIsGkw3D6Z0l6JBw==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@verida/vda-did/-/vda-did-2.3.3.tgz#f1a1301d97a3a3117c62c1e1e50f78b6e6bb3933"
+  integrity sha512-C3SX9shi5+0N3vwm0qaOtcPe7ucBm7GMRs8M60hEqMUjkPL3WMgemo3cjhDSQa6DtEK4G48DCzjwbsaRCh+98g==
   dependencies:
     "@verida/did-document" "^2.3.1"
     "@verida/encryption-utils" "^2.2.1"
     "@verida/types" "^2.3.1"
-    "@verida/web3" "^2.3.1"
+    "@verida/web3" "^2.3.3"
     axios "1.2.0-alpha.1"
     lodash "^4.17.21"
 
@@ -2677,6 +2686,16 @@
   resolved "https://registry.yarnpkg.com/@verida/web3/-/web3-2.3.1.tgz#f48cf68f91124bc9b26a4d3fe37f686034331766"
   integrity sha512-ZEbcWO3bMs7dfKOal89ky6zWvGmgu1vZ5AYw/stU8+/0Vf5hAP19lczqmu1apKrRBnBibm9Ew77d5vTQs921fA==
   dependencies:
+    axios "^1.2.3"
+    ethers "^5.7.0"
+
+"@verida/web3@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@verida/web3/-/web3-2.3.3.tgz#edee928cd8ba25f828404f476af4e48990a8dff5"
+  integrity sha512-SVBEJoxgH2Qepqu30sPhzlMOjD63N0zs3NOBDbAf2iZC44cXNRY9bMMKCf7xDf4b/Q1rjDBZ4nuBntPlHgrKpw==
+  dependencies:
+    "@verida/types" "^2.3.1"
+    "@verida/vda-common" "^2.3.3"
     axios "^1.2.3"
     ethers "^5.7.0"
 
