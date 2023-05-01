@@ -2603,6 +2603,15 @@
     copyfiles "^2.4.1"
     ethers "5.5.1"
 
+"@verida/vda-common@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@verida/vda-common/-/vda-common-2.3.4.tgz#06e910151c7d10f266d7dc829325810c92a56795"
+  integrity sha512-NFkeXt2kAHpcwdBydibxXr/iMDbFi4vFUAGmcuNTwiKKDUmf/G+vXvJkta5+kt71ca3otwddZJYG+EN5maSpRg==
+  dependencies:
+    "@verida/encryption-utils" "^2.2.1"
+    copyfiles "^2.4.1"
+    ethers "5.5.1"
+
 "@verida/vda-did-resolver@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.1.tgz#57235cdf65626f0afa6c08753177c69d913243b9"
@@ -2629,14 +2638,14 @@
     lodash "^4.17.21"
 
 "@verida/vda-name-client@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@verida/vda-name-client/-/vda-name-client-2.3.1.tgz#e82804aff6d3623d88598bc813bc13a2866e928c"
-  integrity sha512-ET0rFj2br343S7CaiYdgRux1vY/k2f+7atggMgtjMKFTkiFUB0H8zVpFyROzaYpft/wG/6xu/V/CFCrBO20I8Q==
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@verida/vda-name-client/-/vda-name-client-2.3.4.tgz#a0440a2e70b1ca2cef16720f07bbfa26533adb7d"
+  integrity sha512-gzYQZZhSzLpLk+hs0uVcskEpszr+sn2zY3TMJi3+oAYCZXlZhXG3gKS8jtMxkc7QPL8KN65g6ku+U9reZB2/tA==
   dependencies:
     "@ethersproject/providers" "^5.7.2"
     "@verida/helpers" "^2.3.1"
     "@verida/types" "^2.3.1"
-    "@verida/web3" "^2.3.1"
+    "@verida/web3" "^2.3.4"
     axios "^0.27.2"
     ethers "^5.7.0"
 
@@ -2677,6 +2686,16 @@
   resolved "https://registry.yarnpkg.com/@verida/web3/-/web3-2.3.1.tgz#f48cf68f91124bc9b26a4d3fe37f686034331766"
   integrity sha512-ZEbcWO3bMs7dfKOal89ky6zWvGmgu1vZ5AYw/stU8+/0Vf5hAP19lczqmu1apKrRBnBibm9Ew77d5vTQs921fA==
   dependencies:
+    axios "^1.2.3"
+    ethers "^5.7.0"
+
+"@verida/web3@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@verida/web3/-/web3-2.3.4.tgz#f948d8efd811c9157cb458cfe9ef9be0d983794d"
+  integrity sha512-irxQdSSBlC3h5rwjAt2Bh1mk3jdVJffxG1+a4yAxXeW/AYXqoJmvNrpNhGQ7BgWJYEDqVyhSt57sNS12bMCBrg==
+  dependencies:
+    "@verida/types" "^2.3.1"
+    "@verida/vda-common" "^2.3.4"
     axios "^1.2.3"
     ethers "^5.7.0"
 
