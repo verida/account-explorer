@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context, Utils } from "@verida/client-ts";
+import { Client, Context } from "@verida/client-ts";
 import { IMessaging } from "@verida/types";
 import { Credentials } from "@verida/verifiable-credentials";
 import { EventEmitter } from "events";
 import { Profile } from "@/interface";
-import { Buffer } from "buffer";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { config } from "@/config";
 import { CREDENTIAL } from "@/constant";
+import { fetchVeridaUri, decodeUri } from "@verida/helpers";
 
 dayjs.extend(utc);
 
@@ -89,8 +89,8 @@ class VeridaClient extends EventEmitter {
     return true;
   }
 
-  public async getSchemaSpecs(schema: string, context: Context): Promise<any> {
-    const schemas = await context.getClient().getSchema(schema);
+  public async getSchemaSpecs(schema: string): Promise<any> {
+    const schemas = await this.client.getSchema(schema);
 
     const json = await schemas.getSpecification();
 
@@ -111,16 +111,9 @@ class VeridaClient extends EventEmitter {
     return false;
   }
 
-  async readVerifiedCredential(uri: string) {
-    const decodedURI = Buffer.from(uri, "base64").toString("utf8");
-
-    const url = Utils.explodeVeridaUri(decodedURI);
-
-    const context = <Context>(
-      await this.client.openExternalContext(url.contextName, url.did)
-    );
-
-    const jwt = await Utils.fetchVeridaUri(decodedURI, context);
+  async readVerifiedCredential(encodedUri: string) {
+    const veridaUri = decodeUri(encodedUri);
+    const jwt = await fetchVeridaUri(veridaUri, this.client);
 
     const decodedPresentation = await Credentials.verifyPresentation(jwt, {});
 
@@ -145,11 +138,10 @@ class VeridaClient extends EventEmitter {
     const subjectProfile = await this.getProfile(verifiableCredential.vc.sub);
 
     const schemaSpec = await this.getSchemaSpecs(
-      verifiableCredential.credentialSchema.id,
-      context
+      verifiableCredential.credentialSchema.id
     );
 
-    const publicUri = `${window.origin}/${CREDENTIAL}?uri=${uri}`;
+    const publicUri = `${window.origin}/${CREDENTIAL}?uri=${encodedUri}`;
 
     return {
       publicUri,
