@@ -2603,28 +2603,38 @@
     copyfiles "^2.4.1"
     ethers "5.5.1"
 
-"@verida/vda-did-resolver@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.1.tgz#57235cdf65626f0afa6c08753177c69d913243b9"
-  integrity sha512-qPhh7BNOVAqhg8Rej3ofP8axR35BeswkCeU5by2ijHwhG3xk8aHlx+TDjV5/wXEtOii5ElKmI9rA1/3eCacHEQ==
+"@verida/vda-common@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@verida/vda-common/-/vda-common-2.3.4.tgz#06e910151c7d10f266d7dc829325810c92a56795"
+  integrity sha512-NFkeXt2kAHpcwdBydibxXr/iMDbFi4vFUAGmcuNTwiKKDUmf/G+vXvJkta5+kt71ca3otwddZJYG+EN5maSpRg==
+  dependencies:
+    "@verida/encryption-utils" "^2.2.1"
+    copyfiles "^2.4.1"
+    ethers "5.5.1"
+
+"@verida/vda-did-resolver@^2.3.1", "@verida/vda-did-resolver@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.5.tgz#ab0acf77677d56d75a9f68174f7827150432e04a"
+  integrity sha512-QSytshBHY/OjqLLCLzgCykVrUXK2R8jc1CYe9sramcmcJzfnN7i4HhxIj9D+WQNDaF9bHultX/VW+jClDelXqw==
   dependencies:
     "@ethersproject/providers" "^5.7.2"
     "@verida/did-document" "^2.3.1"
     "@verida/encryption-utils" "^2.2.1"
     "@verida/types" "^2.3.1"
-    "@verida/vda-did" "^2.3.1"
+    "@verida/vda-common" "^2.3.4"
+    "@verida/vda-did" "^2.3.5-rc1"
     axios "1.2.0-alpha.1"
     lodash "^4.17.21"
 
-"@verida/vda-did@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@verida/vda-did/-/vda-did-2.3.1.tgz#5d72d5fadeee4a0ae7f6f1dbf7a7d445693e78bd"
-  integrity sha512-bjZnizkds621vdZBMcpxVRwiGnmYbLgdet3sUg6AKwmjbOaJ6KnUsIsyUAcamBj6RfdXd2IIsGkw3D6Z0l6JBw==
+"@verida/vda-did@^2.3.5-rc1":
+  version "2.3.5-rc1"
+  resolved "https://registry.yarnpkg.com/@verida/vda-did/-/vda-did-2.3.5-rc1.tgz#dbb3785735fd6369bf36fc991412bbef7337d0f2"
+  integrity sha512-mcDlz88beGXwFALV8aIkriLzMng7gENA2cYgt8qJpW6WHoCxBz9grvy6fFtU4+bbhge9EEr/ToWfGyLA1W0U3g==
   dependencies:
     "@verida/did-document" "^2.3.1"
     "@verida/encryption-utils" "^2.2.1"
     "@verida/types" "^2.3.1"
-    "@verida/web3" "^2.3.1"
+    "@verida/web3" "^2.3.4"
     axios "1.2.0-alpha.1"
     lodash "^4.17.21"
 
@@ -2640,15 +2650,15 @@
     axios "^0.27.2"
     ethers "^5.7.0"
 
-"@verida/verifiable-credentials@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-2.3.2.tgz#242b0648778169d2245fc6b5c8edb75c9662fd75"
-  integrity sha512-4JvIwqfqmzQIwdsyrrHaOm6wBF3O+fF7d2496zkUBVOSqMb2KnpZIf1kcH9vunKiEW0KM1Xg0F+eV3Nc3BpnBw==
+"@verida/verifiable-credentials@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-2.3.5.tgz#5b59e0e58ce8beb496cbb0b14ff1233265240a69"
+  integrity sha512-qbNWpJPyygXmbtz50f4G2PTmxlk5aD6/iLANOf8O+uymRwLcoESOt0YLyf+Hs/w7s2GiyHBXxo7cxdFHtpME8Q==
   dependencies:
     "@verida/encryption-utils" "^2.2.1"
     "@verida/helpers" "^2.3.1"
     "@verida/types" "^2.3.1"
-    "@verida/vda-did-resolver" "^2.3.1"
+    "@verida/vda-did-resolver" "^2.3.5"
     axios "^1.3.3"
     dayjs "^1.10.7"
     did-jwt "^6.11.0"
@@ -2677,6 +2687,16 @@
   resolved "https://registry.yarnpkg.com/@verida/web3/-/web3-2.3.1.tgz#f48cf68f91124bc9b26a4d3fe37f686034331766"
   integrity sha512-ZEbcWO3bMs7dfKOal89ky6zWvGmgu1vZ5AYw/stU8+/0Vf5hAP19lczqmu1apKrRBnBibm9Ew77d5vTQs921fA==
   dependencies:
+    axios "^1.2.3"
+    ethers "^5.7.0"
+
+"@verida/web3@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@verida/web3/-/web3-2.3.4.tgz#f948d8efd811c9157cb458cfe9ef9be0d983794d"
+  integrity sha512-irxQdSSBlC3h5rwjAt2Bh1mk3jdVJffxG1+a4yAxXeW/AYXqoJmvNrpNhGQ7BgWJYEDqVyhSt57sNS12bMCBrg==
+  dependencies:
+    "@verida/types" "^2.3.1"
+    "@verida/vda-common" "^2.3.4"
     axios "^1.2.3"
     ethers "^5.7.0"
 
@@ -5469,15 +5489,10 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-dayjs@^1.10.7:
+dayjs@^1.10.7, dayjs@^1.11.0:
   version "1.11.7"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
   integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
-
-dayjs@^1.11.0:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.2.tgz#fa0f5223ef0d6724b3d8327134890cfe3d72fbe5"
-  integrity sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==
 
 deasync@^0.1.15:
   version "0.1.26"
