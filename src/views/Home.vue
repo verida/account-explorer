@@ -34,13 +34,12 @@
 <script lang="ts">
 import { PulseLoader, SearchInput, SearchList } from "@/components";
 import { Chart, registerables } from "chart.js";
-import "core-js";
 import * as d3 from "d3";
+import * as _ from "lodash";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 
 Chart.register(...registerables);
-
 
 export default defineComponent({
   name: "Home",
@@ -54,8 +53,9 @@ export default defineComponent({
     activeDIDs: 9000,
   }),
   methods: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    normalizeData(input: any): Array<{x: string, y: number}> {
+    normalizeData(
+      input: Array<{ datetime_utc: string; activedids: string }>
+    ): Array<{ x: string; y: number }> {
       // input is an array of objects like this:
       // {
       // "datetime_utc": "2023-06-07 00:00:00",
@@ -66,7 +66,8 @@ export default defineComponent({
       const sortedData = input.sort(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (a: any, b: any) =>
-          new Date(a.datetime_utc).getTime() - new Date(b.datetime_utc).getTime()
+          new Date(a.datetime_utc).getTime() -
+          new Date(b.datetime_utc).getTime()
       );
 
       const milliSecondsInDay = 1000 * 3600 * 24;
@@ -77,11 +78,13 @@ export default defineComponent({
 
       // group the data by the day not including the time
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const dataGroupedByDay = sortedData.groupBy((x: any) => {
+      const dataGroupedByDay = _.groupBy(sortedData, (x: any) => {
         return x.datetime_utc.substring(0, 10);
       });
 
-      let currentDidCount = sortedData[0].activedids.replace(/ /g, "");
+      let currentDidCount = parseInt(
+        sortedData[0].activedids.replace(/ /g, "")
+      );
       let results = [];
 
       // loop over the days, and set the count for each day
@@ -98,7 +101,7 @@ export default defineComponent({
         // Note that months are zero indexed
         const dtStr = `${dt.getFullYear()}-${(dt.getUTCMonth() + 1)
           .toString()
-          .padStart(2,"0")}-${dt.getUTCDate().toString().padStart(2, "0")}`;
+          .padStart(2, "0")}-${dt.getUTCDate().toString().padStart(2, "0")}`;
 
         const dayRecords = dataGroupedByDay[dtStr];
         if (dayRecords) {
@@ -116,9 +119,8 @@ export default defineComponent({
 
       return results;
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    makeChart(normalizedData: any) {
-
+    makeChart(normalizedData: Array<{ x: string; y: number }>) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       var chart = new Chart("growthchart", {
         type: "line",
         data: {
@@ -126,8 +128,8 @@ export default defineComponent({
             {
               label: "Active Verida DIDs",
               data: normalizedData,
-              borderColor: 'rgb(67, 229, 216)',
-              fill: {target: 'origin', above: 'rgb(227, 227, 227)'},
+              borderColor: "rgb(67, 229, 216)",
+              fill: { target: "origin", above: "rgb(227, 227, 227)" },
               tension: 0.1,
             },
           ],
@@ -135,12 +137,13 @@ export default defineComponent({
       });
     },
     handleStatsData(data: any) {
-      const normalizeData = this.normalizeData(data);
+      const normalizeData = this.normalizeData(
+        data as unknown as Array<{ datetime_utc: string; activedids: string }>
+      );
       const mostRecentRecord = normalizeData[normalizeData.length - 1];
       this.activeDIDs = mostRecentRecord.y;
 
       this.makeChart(normalizeData);
-
     },
   },
   computed: {
