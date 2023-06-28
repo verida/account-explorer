@@ -1,8 +1,17 @@
 <template>
   <header class="header py-1" :key="connected">
     <router-link to="/">
-      <img alt="Vue logo" src="@/assets/images/logoverida.svg"
-    /></router-link>
+      <img alt="Vue logo" src="@/assets/images/logoverida.svg"/>
+    </router-link>
+    <span class="navmenu">
+      <router-link to="/">
+        <span class="menuitem">Home</span>
+      </router-link>
+      <a href="/#networkstats">
+        <span class="menuitem">Network Stats</span>
+      </a>
+    </span>
+
     <!-- <vda-account
       :logo="logo"
       :contextName="contextName"
@@ -14,11 +23,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapMutations, mapState } from "vuex";
+import { config } from "@/config";
 import { VeridaHelper } from "@/helpers";
 import { Context } from "@verida/client-ts";
-import { config } from "@/config";
+import { defineComponent } from "vue";
+import { mapMutations, mapState } from "vuex";
 
 export default defineComponent({
   name: "Header",

@@ -1,5 +1,22 @@
 header {
-  @include centerItem(space-between);
+  @include centerItem(flex-start);
+
+  .navmenu {
+    @include centerItem(center);
+
+    padding-left: 16px;
+    width: 80%;
+
+    .menuitem {
+      color: #000000;
+      padding-left: 16px;
+      padding-right: 16px;
+      font-weight: 600;
+    }
+  }
+
+
+
 }
 
 footer {

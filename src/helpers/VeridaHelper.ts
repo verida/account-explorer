@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client, Context } from "@verida/client-ts";
-import { IMessaging } from "@verida/types";
-import { Credentials } from "@verida/verifiable-credentials";
-import { EventEmitter } from "events";
-import { Profile } from "@/interface";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
 import { config } from "@/config";
 import { CREDENTIAL } from "@/constant";
-import { fetchVeridaUri, decodeUri } from "@verida/helpers";
+import { Profile } from "@/interface";
+import { Client, Context } from "@verida/client-ts";
+import { decodeUri, fetchVeridaUri } from "@verida/helpers";
+import { IMessaging } from "@verida/types";
+import { Credentials } from "@verida/verifiable-credentials";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import { EventEmitter } from "events";
 
 dayjs.extend(utc);
 
@@ -161,7 +161,16 @@ class VeridaClient extends EventEmitter {
     this.context = undefined;
     this.connected = false;
     this.did = "";
+    this.didDocument = undefined;
+    this.credentials = undefined;
     this._messagingInstance = undefined;
+  }
+
+  public reset(): void {
+    this.did = "";
+    this.profile = undefined;
+    this.didDocument = undefined;
+    this.credentials = undefined;
   }
 }
 
