@@ -1,4 +1,4 @@
-# Verida Account Explorer
+# Verida Network Explorer
 
 This is a new application designed to show the public profile of any user on the Verida network
 

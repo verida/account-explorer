@@ -1,7 +1,7 @@
 <template>
   <div class="home mt-5">
     <div class="content">
-      <h1>Account Explorer</h1>
+      <h1>Network Explorer</h1>
       <p class="mt-1">
         Use this to search through your account. Search what account you have
         access to, and find the DIDs that you need.
