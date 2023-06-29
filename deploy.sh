@@ -8,3 +8,5 @@ git checkout main
 git pull
 git merge develop --ff-only 
 git push
+# switch back to develop branch
+git checkout develop
