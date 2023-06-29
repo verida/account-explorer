@@ -24,7 +24,7 @@
   <div id="networkstats" class="mt-5">
     <div class="content networkstats">
       <h2>Network Statistics</h2>
-      <h3>Number of Active DIDs: {{ activeDIDs }}</h3>
+      <h3>Number of Verida DIDs: {{ activeDIDs }}</h3>
       <div id="growthwrapper">
         <canvas id="growthchart"></canvas>
       </div>
@@ -129,7 +129,7 @@ export default defineComponent({
         data: {
           datasets: [
             {
-              label: "Active Verida DIDs",
+              label: "Verida DIDs",
               data: normalizedData,
               borderColor: "rgb(67, 229, 216)",
               fill: { target: "origin", above: "rgb(227, 227, 227)" },
