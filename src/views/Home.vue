@@ -39,6 +39,10 @@ import { groupBy } from "lodash";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 
+type RawDataRow = { datetime_utc: string; activedids: string };
+type RawData = RawDataRow[];
+type NormalizedDataRow = { x: string; y: number };
+type NormalizedData = NormalizedDataRow[];
 
 Chart.register(...registerables);
 
@@ -54,9 +58,7 @@ export default defineComponent({
     activeDIDs: 9000,
   }),
   methods: {
-    normalizeData(
-      input: Array<{ datetime_utc: string; activedids: string }>
-    ): Array<{ x: string; y: number }> {
+    normalizeData(input: RawData): NormalizedData {
       // input is an array of objects like this:
       // {
       // "datetime_utc": "2023-06-07 00:00:00",
@@ -65,8 +67,7 @@ export default defineComponent({
 
       // sort the data by date
       const sortedData = input.sort(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (a: any, b: any) =>
+        (a, b) =>
           new Date(a.datetime_utc).getTime() -
           new Date(b.datetime_utc).getTime()
       );
@@ -78,7 +79,6 @@ export default defineComponent({
       ).getTime();
 
       // group the data by the day not including the time
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const dataGroupedByDay = groupBy(sortedData, (x) => {
         return x.datetime_utc.substring(0, 10);
       });
@@ -86,7 +86,7 @@ export default defineComponent({
       let currentDidCount = parseInt(
         sortedData[0].activedids.replace(/ /g, "")
       );
-      let results = [];
+      const results: NormalizedDataRow[] = [];
 
       // loop over the days, and set the count for each day
       for (
@@ -119,9 +119,8 @@ export default defineComponent({
 
       return results;
     },
-    makeChart(normalizedData: Array<{ x: string; y: number }>) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      var chart = new Chart("growthchart", {
+    makeChart(normalizedData: NormalizedData) {
+      new Chart("growthchart", {
         type: "line",
         options: {
           responsive: true,
@@ -140,14 +139,12 @@ export default defineComponent({
         },
       });
     },
-    handleStatsData(data: unknown) {
-      const normalizeData = this.normalizeData(
-        data as unknown as Array<{ datetime_utc: string; activedids: string }>
-      );
-      const mostRecentRecord = normalizeData[normalizeData.length - 1];
+    handleStatsData(data: RawData) {
+      const normalizedData = this.normalizeData(data);
+      const mostRecentRecord = normalizedData[normalizedData.length - 1];
       this.activeDIDs = mostRecentRecord.y;
 
-      this.makeChart(normalizeData);
+      this.makeChart(normalizedData);
     },
   },
   computed: {
@@ -161,7 +158,11 @@ export default defineComponent({
     const cachebreak = new Date().getTime();
 
     csv(`https://assets.verida.io/metrics/stats.csv?cb=${cachebreak}`).then(
-      this.handleStatsData
+      (value) => {
+        // d3 is poorly typed and doesn't allow overriding the generic type for the returned data. It is forced as 'string' while it's clearly an object, so have to cast it.
+        // A better option would be to validate the data with Zod and infer the type from it.
+        this.handleStatsData(value as unknown as RawData);
+      }
     );
   },
 });
