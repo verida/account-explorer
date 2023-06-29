@@ -1,7 +1,7 @@
 <template>
   <header class="header py-1" :key="connected">
     <router-link to="/">
-      <img alt="Vue logo" src="@/assets/images/logoverida.svg"/>
+      <img alt="Vue logo" src="@/assets/images/logoverida.svg" />
     </router-link>
     <span class="navmenu">
       <router-link to="/">

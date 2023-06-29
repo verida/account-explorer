@@ -34,10 +34,11 @@
 <script lang="ts">
 import { PulseLoader, SearchInput, SearchList } from "@/components";
 import { Chart, registerables } from "chart.js";
-import * as d3 from "d3";
-import * as _ from "lodash";
+import { csv } from "d3";
+import { groupBy } from "lodash";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
+
 
 Chart.register(...registerables);
 
@@ -78,7 +79,7 @@ export default defineComponent({
 
       // group the data by the day not including the time
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const dataGroupedByDay = _.groupBy(sortedData, (x: any) => {
+      const dataGroupedByDay = groupBy(sortedData, (x) => {
         return x.datetime_utc.substring(0, 10);
       });
 
@@ -93,7 +94,6 @@ export default defineComponent({
         ts <= maxDate + milliSecondsInDay;
         ts = ts + milliSecondsInDay
       ) {
-        //console.log(i);
         const dt = new Date(ts);
 
         // This abomination is due to stupid date handling
@@ -123,6 +123,10 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       var chart = new Chart("growthchart", {
         type: "line",
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
         data: {
           datasets: [
             {
@@ -136,7 +140,7 @@ export default defineComponent({
         },
       });
     },
-    handleStatsData(data: any) {
+    handleStatsData(data: unknown) {
       const normalizeData = this.normalizeData(
         data as unknown as Array<{ datetime_utc: string; activedids: string }>
       );
@@ -156,7 +160,7 @@ export default defineComponent({
     // Request data using D3
     const cachebreak = new Date().getTime();
 
-    d3.csv(`https://assets.verida.io/metrics/stats.csv?cb=${cachebreak}`).then(
+    csv(`https://assets.verida.io/metrics/stats.csv?cb=${cachebreak}`).then(
       this.handleStatsData
     );
   },

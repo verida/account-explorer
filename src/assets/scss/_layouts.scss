@@ -9,9 +9,10 @@ header {
 
     .menuitem {
       color: #000000;
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: calc(min(16px, 15%));
+      padding-right: calc(max(16px, 15%));
       font-weight: 600;
+      white-space: nowrap;
     }
   }
 
