@@ -21,12 +21,25 @@
       <img src="@/assets/images/Illustration_desktop.svg" alt="desktop" />
     </div>
   </div>
+
   <div id="networkstats" class="mt-5">
-    <div class="content networkstats">
-      <h2>Network Statistics</h2>
-      <h3>Number of Verida DIDs: {{ activeDIDs }}</h3>
-      <div id="growthwrapper">
-        <canvas id="growthchart"></canvas>
+    <h2>Network Statistics</h2>
+    <h3>Total Verida DIDs: {{ activeDIDs }}</h3>
+    <div class="content networkstats flex-grid-thirds">
+      <div class="col">
+        <div class="chartwrapper">
+          <canvas id="growthchart"></canvas>
+        </div>
+      </div>
+      <div class="col">
+        <div class="chartwrapper">
+          <canvas id="weekgrowthchart"></canvas>
+        </div>
+      </div>
+      <div class="col">
+        <div class="chartwrapper">
+          <canvas id="monthgrowthchart"></canvas>
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +48,10 @@
 import { PulseLoader, SearchInput, SearchList } from "@/components";
 import { Chart, registerables } from "chart.js";
 import { csv } from "d3";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import isoWeek from "dayjs/plugin/isoWeek";
+import weekOfYear from "dayjs/plugin/weekOfYear";
 import { groupBy } from "lodash";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
@@ -43,6 +60,11 @@ type RawDataRow = { datetime_utc: string; activedids: string };
 type RawData = RawDataRow[];
 type NormalizedDataRow = { x: string; y: number };
 type NormalizedData = NormalizedDataRow[];
+type SortPeriod = "week" | "month";
+
+dayjs.extend(advancedFormat);
+dayjs.extend(weekOfYear);
+dayjs.extend(isoWeek);
 
 Chart.register(...registerables);
 
@@ -119,12 +141,66 @@ export default defineComponent({
 
       return results;
     },
-    makeChart(normalizedData: NormalizedData) {
-      new Chart("growthchart", {
+    getNormalizeDataOverPeriod(
+      normalizedDailyData: NormalizedData,
+      period: SortPeriod
+    ): NormalizedData {
+      const dataGroupedByPeriod = groupBy(normalizedDailyData, (row) => {
+        let day = dayjs(row.x, "YYYY-MM-DD");
+
+        // Careful that this string sorts correctly over year boundries
+        if (period == "week") {
+          return day.format("YYYY WW"); // 2 digit week of year
+        } else {
+          return day.format("YYYY MM"); // 2 digit month of year
+        }
+      });
+
+      const normalizedPeriodicData: NormalizedData = [];
+      for (const groupKey of Object.keys(dataGroupedByPeriod).sort()) {
+        const periodData = dataGroupedByPeriod[groupKey];
+
+        // periodData has a row for each day, sorted by date.
+        // Get the last row
+        const lastDayData = periodData[periodData.length - 1];
+        const firstDayData = periodData[0];
+        const day = dayjs(firstDayData.x, "YYYY-MM-DD");
+
+        let displayStr: string;
+        if (period == "week") {
+          displayStr = day.format("DD MMM YYYY");
+        } else {
+          displayStr = day.format("MMM YYYY");
+        }
+        normalizedPeriodicData.push({ x: displayStr, y: lastDayData.y });
+      }
+
+      return normalizedPeriodicData;
+    },
+    makeDIDByDateChart(
+      normalizedData: NormalizedData,
+      targetCSSID: string,
+      title: string
+    ) {
+      new Chart(targetCSSID, {
         type: "line",
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              position: "top",
+              font: {
+                size: 18,
+                weight: "bold",
+              },
+            },
+            legend: {
+              display: false,
+            },
+          },
         },
         data: {
           datasets: [
@@ -139,12 +215,69 @@ export default defineComponent({
         },
       });
     },
+    makeDIDBarChart(
+      normalizedData: NormalizedData,
+      targetCSSID: string,
+      title: string
+    ) {
+      new Chart(targetCSSID, {
+        type: "bar",
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          backgroundColor: "rgb(67, 229, 216)",
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              position: "top",
+              font: {
+                size: 18,
+                weight: "bold",
+              },
+            },
+            legend: {
+              display: false,
+            },
+          },
+        },
+        data: {
+          datasets: [
+            {
+              label: "Verida DIDs",
+              data: normalizedData,
+              borderColor: "rgb(67, 229, 216)",
+            },
+          ],
+        },
+      });
+    },
     handleStatsData(data: RawData) {
-      const normalizedData = this.normalizeData(data);
-      const mostRecentRecord = normalizedData[normalizedData.length - 1];
+      const normalizedDailyData = this.normalizeData(data);
+      const mostRecentRecord =
+        normalizedDailyData[normalizedDailyData.length - 1];
       this.activeDIDs = mostRecentRecord.y;
 
-      this.makeChart(normalizedData);
+      // Daily data
+      this.makeDIDBarChart(
+        normalizedDailyData,
+        "growthchart",
+        "Total Verida DIDs, Daily"
+      );
+
+      // Weekly data
+      this.makeDIDBarChart(
+        this.getNormalizeDataOverPeriod(normalizedDailyData, "week"),
+        "weekgrowthchart",
+        "Total Verida DIDs, Weekly"
+      );
+
+      // Monthly data
+      this.makeDIDBarChart(
+        this.getNormalizeDataOverPeriod(normalizedDailyData, "month"),
+        "monthgrowthchart",
+        "Total Verida DIDs, Monthly"
+      );
     },
   },
   computed: {
