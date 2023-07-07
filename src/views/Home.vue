@@ -290,13 +290,13 @@ export default defineComponent({
     // Request data using D3
     const cachebreak = new Date().getTime();
 
-    csv(`https://assets.verida.io/metrics/stats.csv?cb=${cachebreak}`).then(
-      (value) => {
-        // d3 is poorly typed and doesn't allow overriding the generic type for the returned data. It is forced as 'string' while it's clearly an object, so have to cast it.
-        // A better option would be to validate the data with Zod and infer the type from it.
-        this.handleStatsData(value as unknown as RawData);
-      }
-    );
+    csv(
+      `https://assets.verida.io/metrics/network/testnet/stats.csv?cb=${cachebreak}`
+    ).then((value) => {
+      // d3 is poorly typed and doesn't allow overriding the generic type for the returned data. It is forced as 'string' while it's clearly an object, so have to cast it.
+      // A better option would be to validate the data with Zod and infer the type from it.
+      this.handleStatsData(value as unknown as RawData);
+    });
   },
 });
 </script>
