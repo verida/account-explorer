@@ -2824,10 +2824,10 @@
     copyfiles "^2.4.1"
     ethers "5.5.1"
 
-"@verida/vda-did-resolver@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.5.tgz#ab0acf77677d56d75a9f68174f7827150432e04a"
-  integrity sha512-QSytshBHY/OjqLLCLzgCykVrUXK2R8jc1CYe9sramcmcJzfnN7i4HhxIj9D+WQNDaF9bHultX/VW+jClDelXqw==
+"@verida/vda-did-resolver@^2.3.5", "@verida/vda-did-resolver@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.6.tgz#b6503c820ee765f0f6249871b4127008d44076dd"
+  integrity sha512-3xfxS8P9tVZlZBoHiWTn8GG3j+UYrDcBoQHVkGjUHjC8Y5UXdSoP94pg0WN4bzpd4sQPbNlKiJL2vrUEvtgCBA==
   dependencies:
     "@ethersproject/providers" "^5.7.2"
     "@verida/did-document" "^2.3.1"
@@ -2862,15 +2862,15 @@
     axios "^0.27.2"
     ethers "^5.7.0"
 
-"@verida/verifiable-credentials@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-2.3.5.tgz#5b59e0e58ce8beb496cbb0b14ff1233265240a69"
-  integrity sha512-qbNWpJPyygXmbtz50f4G2PTmxlk5aD6/iLANOf8O+uymRwLcoESOt0YLyf+Hs/w7s2GiyHBXxo7cxdFHtpME8Q==
+"@verida/verifiable-credentials@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-2.3.6.tgz#72d7bbc241c175f31a6ff3906b01124c459f8814"
+  integrity sha512-IrgeUuiM2L0i0MtH1AvNwYQcxO99zZBo38M8+ArNWT3pR0QiEq1HcQ7HJDsnfZKat/ggwCuS5XUXIcmmjbcQnw==
   dependencies:
     "@verida/encryption-utils" "^2.2.1"
     "@verida/helpers" "^2.3.1"
     "@verida/types" "^2.3.1"
-    "@verida/vda-did-resolver" "^2.3.5"
+    "@verida/vda-did-resolver" "^2.3.6"
     axios "^1.3.3"
     dayjs "^1.10.7"
     did-jwt "^6.11.0"
@@ -5952,12 +5952,7 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-dayjs@^1.10.7:
-  version "1.11.7"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
-  integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
-
-dayjs@^1.11.9:
+dayjs@^1.10.7, dayjs@^1.11.9:
   version "1.11.9"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
   integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
