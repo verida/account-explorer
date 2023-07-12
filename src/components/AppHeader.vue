@@ -8,8 +8,12 @@
         <span class="menuitem">Home</span>
       </router-link>
       <a href="/#networkstats">
-        <span class="menuitem">Network Stats</span>
+        <span class="menuitem">Network Statistics</span>
       </a>
+      <a href="/#nodestats">
+        <span class="menuitem">Node Statistics</span>
+      </a>
+
     </span>
 
     <!-- <vda-account
