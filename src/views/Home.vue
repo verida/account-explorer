@@ -147,7 +147,7 @@ export default defineComponent({
           isKey: false,
         },
         {
-          label: "Usage",
+          label: "User Contexts",
           field: "usage",
           sortable: true,
           isKey: false,
