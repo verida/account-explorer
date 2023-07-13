@@ -43,17 +43,32 @@
       </div>
     </div>
   </div>
+
+  <div id="nodestats" class="mt-5">
+    <h2>Node Statisitics</h2>
+    <vue-table-lite
+      :is-loading="table.isLoading"
+      :columns="table.columns"
+      :rows="table.rows"
+      :total="table.totalRecordCount"
+      :sortable="table.sortable"
+      :page-size="50"
+      @do-search="nodeSearch"
+      @is-finished="tableLoadingFinish"
+    />
+  </div>
 </template>
 <script lang="ts">
 import { PulseLoader, SearchInput, SearchList } from "@/components";
 import { Chart, registerables } from "chart.js";
-import { csv } from "d3";
+import { csv, json } from "d3";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import { groupBy } from "lodash";
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+import VueTableLite from "vue3-table-lite/ts";
 import { mapState } from "vuex";
 
 type RawDataRow = { datetime_utc: string; activedids: string };
@@ -61,6 +76,21 @@ type RawData = RawDataRow[];
 type NormalizedDataRow = { x: string; y: number };
 type NormalizedData = NormalizedDataRow[];
 type SortPeriod = "week" | "month";
+type NodeSummaryData = {
+  id: string;
+  name: string;
+  description: string;
+  datacenter: string;
+  serviceEndpoint: string;
+  country: string;
+  region: string;
+  subregion: string;
+  currentUserContexts: number;
+  maxUserContexts: number;
+};
+type NodeSummaryAsFields = {
+  [x: string]: string;
+};
 
 dayjs.extend(advancedFormat);
 dayjs.extend(weekOfYear);
@@ -74,6 +104,114 @@ export default defineComponent({
     SearchList,
     SearchInput,
     PulseLoader,
+    VueTableLite,
+  },
+  setup() {
+    const table = reactive({
+      isLoading: false,
+      columns: [
+        {
+          label: "ID",
+          field: "id",
+          sortable: true,
+          isKey: true,
+        },
+        {
+          label: "Name",
+          field: "name",
+          sortable: true,
+          isKey: false,
+        },
+        {
+          label: "Description",
+          field: "description",
+          sortable: true,
+          isKey: false,
+        },
+        {
+          label: "Country",
+          field: "country",
+          sortable: true,
+          isKey: false,
+        },
+        {
+          label: "Region",
+          field: "region",
+          sortable: true,
+          isKey: false,
+        },
+        {
+          label: "Sub Region",
+          field: "subregion",
+          sortable: true,
+          isKey: false,
+        },
+        {
+          label: "Usage",
+          field: "usage",
+          sortable: true,
+          isKey: false,
+        },
+      ],
+      rows: [{}],
+      totalRecordCount: 0,
+      sortable: {
+        order: "subregion",
+        sort: "asc",
+      },
+    });
+
+    const nodeSearch = (
+      offset: number,
+      limit: number,
+      order: string,
+      sort: string
+    ) => {
+      table.isLoading = true;
+      const url = `https://assets.verida.io/metrics/nodes/testnet-nodes-summary.json`;
+
+      json(url).then((data) => {
+        const nodeSummary: NodeSummaryData[] = data as NodeSummaryData[];
+
+        const rows: NodeSummaryAsFields[] = [];
+        for (let n of nodeSummary) {
+          rows.push({
+            id: n.id,
+            name: n.name,
+            description: n.description,
+            country: n.country,
+            region: n.region,
+            subregion: n.subregion,
+            usage: `${n.currentUserContexts} of ${n.maxUserContexts}`,
+          });
+        }
+
+        // sort by whatever field is selected as "order"
+        rows.sort((a, b) =>
+          sort === "asc"
+            ? a[order] < b[order]
+              ? -1
+              : 1
+            : a[order] < b[order]
+            ? 1
+            : -1
+        );
+
+        table.rows = rows;
+        table.totalRecordCount = nodeSummary.length;
+        table.sortable.order = order;
+        table.sortable.sort = sort;
+      });
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    const tableLoadingFinish = (_elements: any) => {
+      table.isLoading = false;
+    };
+
+    nodeSearch(0, 25, "region", "asc");
+
+    return { table, nodeSearch, tableLoadingFinish };
   },
   data: () => ({
     path: "",
