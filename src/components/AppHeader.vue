@@ -13,7 +13,6 @@
       <a href="/#nodestats">
         <span class="menuitem">Node Statistics</span>
       </a>
-
     </span>
 
     <!-- <vda-account

@@ -129,7 +129,7 @@ export default defineComponent({
           isKey: false,
         },
         {
-          label: "country",
+          label: "Country",
           field: "country",
           sortable: true,
           isKey: false,
