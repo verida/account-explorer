@@ -16,6 +16,7 @@
         :path="path"
         :url="[`/did/${profile.did}`]"
       />
+      <recent-dids />
     </div>
     <div class="landing-image">
       <img src="@/assets/images/Illustration_desktop.svg" alt="desktop" />
@@ -59,7 +60,7 @@
   </div>
 </template>
 <script lang="ts">
-import { PulseLoader, SearchInput, SearchList } from "@/components";
+import { PulseLoader, RecentDids, SearchInput, SearchList } from "@/components";
 import { Chart, registerables } from "chart.js";
 import { csv, json } from "d3";
 import dayjs from "dayjs";
@@ -105,6 +106,7 @@ export default defineComponent({
     SearchInput,
     PulseLoader,
     VueTableLite,
+    RecentDids,
   },
   setup() {
     const table = reactive({

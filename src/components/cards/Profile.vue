@@ -51,17 +51,19 @@
 </template>
 
 <script lang="ts">
+import { AddContact } from "@/components";
+import { APP_BASE_URL } from "@/constant";
+import { VeridaHelper } from "@/helpers";
+import { Profile } from "@verida/client-ts/dist/context/profiles/profile";
+import QrcodeVue from "qrcode.vue";
 import { defineComponent } from "vue";
 import useClipboard from "vue-clipboard3";
-import QrcodeVue from "qrcode.vue";
-import { AddContact } from "@/components";
-import { VeridaHelper } from "@/helpers";
-import { APP_BASE_URL } from "@/constant";
 
 export default defineComponent({
   name: "Profile",
   props: {
-    profile: {},
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    profile: {} as Profile | any,
   },
   components: { QrcodeVue, AddContact },
   setup() {
