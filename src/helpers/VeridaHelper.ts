@@ -44,24 +44,32 @@ class VeridaClient extends EventEmitter {
     }
   }
 
-  async getProfile(did: string, contextName?: string): Promise<any> {
+  async getProfileStateless(did: string, contextName?: string): Promise<any> {
     const profileContextName =
       contextName || (config.veridaVaultContextName as string);
 
-    const profileInstance = await this.client.openPublicProfile(
+    const profileConnection = await this.client.openPublicProfile(
       did,
       profileContextName,
       "basicProfile"
     );
-    if (profileInstance) {
-      this.profile = await profileInstance.getMany({}, {});
-      if (this.profile) {
-        this.profile.did = did;
-      }
+
+    if (profileConnection) {
+      const profile = await profileConnection.getMany({}, {});
+      profile.did = did;
+
+      return profile;
+    } else {
+      return undefined;
     }
+  }
+
+  async getProfile(did: string, contextName?: string): Promise<any> {
+    this.profile = await this.getProfileStateless(did, contextName);
 
     return this.profile;
   }
+
   private async initialiseMessagingInstance(): Promise<IMessaging> {
     if (!this.context) {
       throw new Error("No app context");
