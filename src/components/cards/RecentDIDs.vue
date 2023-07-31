@@ -1,10 +1,32 @@
 <template>
   <h2>Recent Verida DID Registrations</h2>
   <pulse-loader v-if="loading" />
+
   <div class="recent-dids">
-    <template v-bind:key="did" v-for="did in recentDIDList">
+    <template v-bind:key="profile.did" v-for="profile in recentProfileList">
       <div class="recent-did-item">
-        <router-link :to="'/did/' + did">{{ did }}</router-link>
+        <span class="avatar-wrapper">
+          <img
+            class="avatar-img"
+            v-if="profile.avatar?.uri"
+            alt="user-avatar"
+            :src="profile.avatar.uri"
+          />
+          <img v-else class="avatar-img" alt="user-avatar" src="@/assets/icons/icon_avatar.svg" />
+        </span>
+
+        <span class="did-details">
+          <div>
+          {{ profile.name }}
+          </div>
+
+          <div>
+            <router-link :to="'/did/' + profile.did">
+              {{ profile.did }}
+          </router-link>
+        </div>
+        </span>
+
       </div>
     </template>
   </div>
@@ -27,13 +49,14 @@ import { defineComponent } from "vue";
 // https://stackoverflow.com/questions/42170276/imported-vue-component-only-registered-on-webpack-hot-reload
 // suggested this fix which works (??)
 import PulseLoader from "@/components/PulseLoader.vue";
+import { Profile } from "@/interface";
 
 export default defineComponent({
   name: "RecentDids",
   components: { PulseLoader },
   data() {
     return {
-      recentDIDList: [] as string[],
+      recentProfileList: [] as Profile[],
       loading: true,
     };
   },
@@ -54,9 +77,14 @@ export default defineComponent({
       for (const did of correctedDIDs) {
         VeridaHelper.getProfileStateless(did)
           .then((profile) => {
-            this.recentDIDList.push(profile.did);
+            if (profile) {
+              this.recentProfileList.push(profile);
 
-            this.loading = false;
+              this.loading = false;
+            } else {
+              console.log(`Could not get basicProfile for DID ${did}`);
+            }
+
           })
           .catch((e) => {
             console.warn(e.message);

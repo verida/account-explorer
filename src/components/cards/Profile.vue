@@ -21,15 +21,7 @@
       </div>
       <div class="profile-card-details">
         <h4>{{ profile.name }}</h4>
-        <p>
-          <span> DID:</span> {{ profile.did }}
-          <img
-            title="copy"
-            @click="onCopy(profile.did)"
-            alt="user-avatar"
-            src="@/assets/icons/icon_copy.svg"
-          />
-        </p>
+        <p><span> DID:</span> {{ profile.did }}</p>
         <p><span>COUNTRY:</span> {{ profile.country }}</p>
         <p>
           <span>DESCRIPTION:</span> <br />

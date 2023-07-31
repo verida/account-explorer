@@ -74,7 +74,7 @@
 }
 
 .recent-dids {
-  width: 60ch;
+  width: 65ch;
 }
 
 .recent-dids > div:nth-of-type(odd)  {
@@ -82,7 +82,9 @@
 }
 
 .recent-did-item {
-  padding: 5px 3px 3px 2ch;
+  //padding: 5px 3px 3px 2ch;
+  display: flex;
+  justify-content: space-between;
 }
 
 .recent-did-item:hover {
@@ -90,3 +92,21 @@
   color: white;
   cursor:pointer;
 }
+
+.recent-dids .avatar-wrapper {
+  flex-basis: 3rem;
+}
+
+.recent-dids .did-details {
+  flex-basis: 62rem;
+  padding-left: 1rem;
+}
+
+
+
+.recent-dids .avatar-img {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: $border-radius;  
+}
+

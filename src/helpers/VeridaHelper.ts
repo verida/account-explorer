@@ -17,6 +17,7 @@ const userConfig = {
   didServerUrl: config.veridaTestnetDefaultDidServerUrl,
 };
 
+
 class VeridaClient extends EventEmitter {
   private client: Client;
   public profile?: Profile;
@@ -44,7 +45,10 @@ class VeridaClient extends EventEmitter {
     }
   }
 
-  async getProfileStateless(did: string, contextName?: string): Promise<any> {
+  async getProfileStateless(
+    did: string,
+    contextName?: string
+  ): Promise<Profile | undefined> {
     const profileContextName =
       contextName || (config.veridaVaultContextName as string);
 
@@ -64,7 +68,7 @@ class VeridaClient extends EventEmitter {
     }
   }
 
-  async getProfile(did: string, contextName?: string): Promise<any> {
+  async getProfile(did: string, contextName?: string): Promise<Profile | undefined> {
     this.profile = await this.getProfileStateless(did, contextName);
 
     return this.profile;
