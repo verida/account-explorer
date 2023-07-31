@@ -85,8 +85,8 @@ type NodeSummaryData = {
   country: string;
   region: string;
   subregion: string;
-  currentUserContexts: number;
-  maxUserContexts: number;
+  storageSlotsUsed: number;
+  maxStorageSlots: number;
 };
 type NodeSummaryAsFields = {
   [x: string]: string;
@@ -182,7 +182,7 @@ export default defineComponent({
             country: n.country,
             region: n.region,
             subregion: n.subregion,
-            usage: `${n.currentUserContexts} of ${n.maxUserContexts}`,
+            usage: `${n.storageSlotsUsed} of ${n.maxStorageSlots}`,
           });
         }
 
