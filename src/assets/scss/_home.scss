@@ -21,6 +21,7 @@
   h2 {
     font-size: 1.9rem;
     margin-bottom: 25px;
+    margin-top: 25px;
   }
 
   p {
@@ -71,3 +72,41 @@
   height: 500px;
   padding: 10px;
 }
+
+.recent-dids {
+  width: 65ch;
+}
+
+.recent-dids > div:nth-of-type(odd)  {
+  background: #e0e0e0;
+}
+
+.recent-did-item {
+  //padding: 5px 3px 3px 2ch;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recent-did-item:hover {
+  background: rgb(67,228,224) !important;
+  color: white;
+  cursor:pointer;
+}
+
+.recent-dids .avatar-wrapper {
+  flex-basis: 3rem;
+}
+
+.recent-dids .did-details {
+  flex-basis: 62rem;
+  padding-left: 1rem;
+}
+
+
+
+.recent-dids .avatar-img {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: $border-radius;  
+}
+
