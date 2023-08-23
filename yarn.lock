@@ -2825,9 +2825,9 @@
     ethers "5.5.1"
 
 "@verida/vda-did-resolver@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.5.tgz#ab0acf77677d56d75a9f68174f7827150432e04a"
-  integrity sha512-QSytshBHY/OjqLLCLzgCykVrUXK2R8jc1CYe9sramcmcJzfnN7i4HhxIj9D+WQNDaF9bHultX/VW+jClDelXqw==
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/@verida/vda-did-resolver/-/vda-did-resolver-2.3.7.tgz#7978dccdb015a9136ff028a352348a040e0fa68e"
+  integrity sha512-l3euzCJ2LN7Mw6myLVR733hwe8BEP82VA01BQ7C6DQLXvBfcdcuKDpEkXfPTlyGIkdJBH8cjlGr9S733lN54yg==
   dependencies:
     "@ethersproject/providers" "^5.7.2"
     "@verida/did-document" "^2.3.1"
