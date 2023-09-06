@@ -15,7 +15,7 @@
 	},
 	"dependencies": {
 		"@verida/account-web-vault": "^2.3.5",
-		"@verida/client-ts": "^2.3.5",
+		"@verida/client-ts": "^2.3.8",
 		"@verida/helpers": "^2.3.1",
 		"@verida/types": "^2.3.1",
 		"@verida/verifiable-credentials": "^2.3.5",
