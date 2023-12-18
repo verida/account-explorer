@@ -13,6 +13,9 @@
       <a href="/#nodestats">
         <span class="menuitem">Node Statistics</span>
       </a>
+      <a :href="changeNetworkLink">
+        <span class="menuitem">Switch to {{ changeNetwork }}</span>
+      </a>
     </span>
 
     <!-- <vda-account
@@ -39,6 +42,11 @@ export default defineComponent({
     loading: false,
     contextName: config.veridaContextName,
     logo: config.veridaLogoUrl,
+    changeNetwork: config.veridaEnv == "mainnet" ? "Testnet" : "Mainnet",
+    changeNetworkLink:
+      config.veridaExplorerUrls[
+        config.veridaEnv == "mainnet" ? "testnet" : "mainnet"
+      ],
   }),
   components: {},
   computed: {
