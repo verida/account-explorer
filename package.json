@@ -3,8 +3,8 @@
 	"version": "0.2.25",
 	"private": true,
 	"scripts": {
-		"serve": "vue-cli-service serve  --mode sample",
-		"build": "vue-cli-service build  --mode sample",
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
 		"test:unit": "vue-cli-service test:unit",
 		"lint": "vue-cli-service lint",
 		"format:check": "npx prettier src/ --check",
