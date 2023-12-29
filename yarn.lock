@@ -2769,6 +2769,16 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
+"@verida/encryption-utils@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@verida/encryption-utils/-/encryption-utils-2.2.3.tgz#625dc5d49f63f031d41a63c6769307420363809d"
+  integrity sha512-jYxWEsLjaOWmjb7NiOFMtSg8g93HHkg5/24VdCSbnHYRAy//r2Bj08E6gWkqU8ot6P9g1s+VCF2DeWnhcmPHpA==
+  dependencies:
+    ethers "^5.5.1"
+    json.sortify "^2.2.2"
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
+
 "@verida/helpers@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@verida/helpers/-/helpers-2.3.1.tgz#9adbfdbd898b628635550dae67a730c8e67252a9"
@@ -2780,11 +2790,11 @@
     url "^0.11.0"
 
 "@verida/keyring@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@verida/keyring/-/keyring-2.3.1.tgz#40fc34e91371325ab6cd3ea5e263f2f0c6d7be51"
-  integrity sha512-Rbbp36bwOlFZDF6hV2nr+A2GdHVyK1XV5mFumTDl2pdLEPgKcpzGkfBsfx8fyfNEgMfbaoB35hQt90FO4LrEWg==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@verida/keyring/-/keyring-2.3.3.tgz#0938b91c7d96c17b5e63256d31595392f8775b3c"
+  integrity sha512-KOuTOcoXBbTH8mq29GUodXmnyZaQs02Jrs8TSZzfeB53cs/tmWuoGSzZCX2ngX6rKZVs89clDf8kAvozDMr8Hg==
   dependencies:
-    "@verida/encryption-utils" "^2.2.1"
+    "@verida/encryption-utils" "^2.2.3"
     "@verida/types" "^2.3.1"
     ethers "^5.5.1"
     tweetnacl "^1.0.3"
