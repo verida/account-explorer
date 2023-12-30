@@ -70,6 +70,7 @@ import { groupBy } from "lodash";
 import { defineComponent, reactive } from "vue";
 import VueTableLite from "vue3-table-lite/ts";
 import { mapState } from "vuex";
+import { config } from "@/config";
 
 type RawDataRow = { datetime_utc: string; activedids: string };
 type RawData = RawDataRow[];
@@ -168,9 +169,9 @@ export default defineComponent({
       sort: string
     ) => {
       table.isLoading = true;
-      const url = `https://assets.verida.io/metrics/nodes/testnet-nodes-summary.json`;
+      const url = config.veridaNodeSummaryUrl;
 
-      json(url).then((data) => {
+      json(url!).then((data) => {
         const nodeSummary: NodeSummaryData[] = data as NodeSummaryData[];
 
         const rows: NodeSummaryAsFields[] = [];
@@ -428,9 +429,7 @@ export default defineComponent({
     // Request data using D3
     const cachebreak = new Date().getTime();
 
-    csv(
-      `https://assets.verida.io/metrics/network/testnet/stats.csv?cb=${cachebreak}`
-    ).then((value) => {
+    csv(`${config.veridaNetworkStatusUrl}?cb=${cachebreak}`).then((value) => {
       // d3 is poorly typed and doesn't allow overriding the generic type for the returned data. It is forced as 'string' while it's clearly an object, so have to cast it.
       // A better option would be to validate the data with Zod and infer the type from it.
       this.handleStatsData(value as unknown as RawData);
