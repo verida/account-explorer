@@ -2871,10 +2871,10 @@
     axios "^0.27.2"
     ethers "^5.7.0"
 
-"@verida/verifiable-credentials@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-3.0.1.tgz#e905ae82f28891d335f9e33ed73dbd1b36ab4f01"
-  integrity sha512-Cppzn9wDp1zr2He6u5XrCtMbJuvhv7AZk/P2LU9mc37lBnMltV5aP0HLFO3AcjDOSP5WsDsi5OeOeu0ksXpfpw==
+"@verida/verifiable-credentials@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@verida/verifiable-credentials/-/verifiable-credentials-3.0.2.tgz#1b84d334b23a2b6a6e658a2a077d2718dde0b373"
+  integrity sha512-M68/JDtsw6Se4fvL5NIFUYZDoEC4t2D2AC7SUnh4ENRPMnVaKNFlthfZ8hBcUOg5H8RzYaeeGY8Fc0IBPeBuwQ==
   dependencies:
     "@verida/encryption-utils" "^3.0.0"
     "@verida/helpers" "^3.0.1"
@@ -5966,15 +5966,10 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-dayjs@^1.10.7:
+dayjs@^1.10.7, dayjs@^1.11.9:
   version "1.11.10"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
   integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
-
-dayjs@^1.11.9:
-  version "1.11.9"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
-  integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
 
 deasync@^0.1.15:
   version "0.1.26"
