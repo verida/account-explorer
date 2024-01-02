@@ -244,6 +244,8 @@ export default defineComponent({
         return x.datetime_utc.substring(0, 10);
       });
 
+      console.log(dataGroupedByDay);
+
       let currentDidCount = parseInt(
         sortedData[0].activedids.replace(/ /g, "")
       );
@@ -260,7 +262,7 @@ export default defineComponent({
         // This abomination is due to stupid date handling
         // Need to make sure this will return the format 'yyyy-MM-dd' no matter what locale the user has set.
         // Note that months are zero indexed
-        const dtStr = `${dt.getFullYear()}-${(dt.getUTCMonth() + 1)
+        const dtStr = `${dt.getUTCFullYear()}-${(dt.getUTCMonth() + 1)
           .toString()
           .padStart(2, "0")}-${dt.getUTCDate().toString().padStart(2, "0")}`;
 
@@ -286,7 +288,6 @@ export default defineComponent({
     ): NormalizedData {
       const dataGroupedByPeriod = groupBy(normalizedDailyData, (row) => {
         let day = dayjs(row.x, "YYYY-MM-DD");
-
         // Careful that this string sorts correctly over year boundries
         if (period == "week") {
           return day.format("YYYY WW"); // 2 digit week of year

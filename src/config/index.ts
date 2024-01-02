@@ -21,8 +21,6 @@ const veridaExplorerUrls = {
   testnet: process.env.VUE_APP_EXPLORER_URL_TESTNET,
 };
 
-console.log(veridaExplorerUrls);
-
 export const config = {
   nodeEnv,
   veridaEnv,

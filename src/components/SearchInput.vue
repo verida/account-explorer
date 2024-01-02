@@ -44,7 +44,7 @@
 import { defineComponent } from "vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import { useField, useForm } from "vee-validate";
-import { config } from '@/config'
+import { config } from "@/config";
 import * as yup from "yup";
 
 export default defineComponent({
@@ -57,7 +57,7 @@ export default defineComponent({
   },
   setup() {
     const environment = config.veridaEnv;
-    console.log(environment)
+    console.log(environment);
     const schema = yup.object({
       did: yup
         .string()
