@@ -4,7 +4,7 @@ import { CREDENTIAL } from "@/constant";
 import { Profile } from "@/interface";
 import { Client, Context } from "@verida/client-ts";
 import { decodeUri, fetchVeridaUri } from "@verida/helpers";
-import { IMessaging } from "@verida/types";
+import { ClientConfig, IMessaging } from "@verida/types";
 import { Credentials } from "@verida/verifiable-credentials";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -12,9 +12,12 @@ import { EventEmitter } from "events";
 
 dayjs.extend(utc);
 
-const userConfig = {
+const userConfig: ClientConfig = {
   environment: config.veridaEnv,
-  didServerUrl: config.veridaTestnetDefaultDidServerUrl,
+  didClientConfig: {
+    network: config.veridaEnv,
+    rpcUrl: config.veridaRpcUrl,
+  },
 };
 
 class VeridaClient extends EventEmitter {
@@ -28,7 +31,7 @@ class VeridaClient extends EventEmitter {
   private _messagingInstance: IMessaging | undefined;
   on: any;
 
-  constructor(config: typeof userConfig) {
+  constructor(config: ClientConfig) {
     super();
     this.client = new Client(config);
     this.did = "";
