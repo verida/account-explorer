@@ -1,6 +1,6 @@
 {
 	"name": "account-explorer",
-	"version": "0.2.25",
+	"version": "0.2.36",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
